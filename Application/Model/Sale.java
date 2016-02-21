@@ -2,7 +2,6 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
- */
 
 
 import java.util.ArrayList;
@@ -21,7 +20,8 @@ public class Sale {
         cart = new ArrayList<LineItem>();
     }
     
-    /** calculate total amount */
+    /** calculate total amount
+     * @return  */
     public double getTotal(){
         double total=0;
         for(int i =0; i<cart.size();i++){
@@ -37,7 +37,7 @@ public class Sale {
      * 
      */
     public void addLineItem(String id,int quantity){
-        LineItem newLineItem = new LineItem(quantity, scanItem(id));
+        LineItem newLineItem = new LineItem(quantity, Item.scanItem(id));
         cart.add(newLineItem);
     }
     
@@ -46,14 +46,8 @@ public class Sale {
      * ???
      */
     public boolean removeLineItem(LineItem lineItem){
-        return false;
+        return cart.remove(lineItem);
     }
     
-    /** thinking maybe scanItem should be put in Sale class
-     * ??
-     * or it has to have a Item to scan for next item
-     */
-    public Item scanItem(String id){
-        return null;
-    }
+ 
 }

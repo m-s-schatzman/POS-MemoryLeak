@@ -33,6 +33,6 @@ public class LineItem {
     
     /** return Item */
     public Item getItem(){
-        return null;
+        return this.item;
     }
 }

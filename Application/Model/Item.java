@@ -36,9 +36,10 @@ public class Item {
     }
     
     /** scanItem() may interact with database 
-     * in this class or sale class
+     * call inventory.findItem
+      inventory will return that Item
      */
-    Item scanItem(String ID){
+    static Item scanItem(String ID){
      
         return null;
     }

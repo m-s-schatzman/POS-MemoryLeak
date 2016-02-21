@@ -1,10 +1,23 @@
-public class saleTaxCalc{
-  public static void main (String[] args){
-    double salePrice=getPrice(); // get price from another class
+
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author QingYi
+ */
+public class saleTaxCalc {
+    
+    public static double salesTax(Sale sale){
+    double salePrice=sale.getTotal(); // get price from another class
     double tax;
-    double taxRate;
+    double taxRate=0;
     double totalPrice; // price to charge with tax
-    String state=getState();//another class needs to pass in state info
+    String state="PA";//another class needs to pass in state info
     
     switch (state){
       case "PA": taxRate=0.06;
@@ -25,5 +38,7 @@ public class saleTaxCalc{
     System.out.println("The sales tax at "+state+" is: "+taxRate);
     System.out.println("The sales tax for this transaction is "+ tax);
     System.out.println("The total price for this transaction is "+totalPrice);
+    return totalPrice;
   }
+    
 }
