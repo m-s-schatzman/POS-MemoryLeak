@@ -9,7 +9,8 @@ CLASSES = \
         Model/Item.java \
         Model/LineItem.java \
         Model/Sale.java \
-        Model/saleTaxCalc.java
+        Model/saleTaxCalc.java \
+        Main.java
 
 default: classes
 
