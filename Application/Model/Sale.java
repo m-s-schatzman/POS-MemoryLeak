@@ -36,9 +36,9 @@ public class Sale {
      * will the validation deal with database as well?
      * 
      */
-    public void addLineItem(String id,int quantity){
-        LineItem newLineItem = new LineItem(quantity, Item.scanItem(id));
-        cart.add(newLineItem);
+    public void addLineItem(LineItem lineItem){
+       // LineItem newLineItem = new LineItem(quantity, Item.scanItem(id));
+        cart.add(lineItem);
     }
     
     /** removeLineItem()
