@@ -27,12 +27,12 @@ public class Item {
     
     /** get name */
     public String getName(){
-        return name;
+        return this.name;
     }
     
     /** get ID*/
     public String getID(){
-        return ID;
+        return this.ID;
     }
     
     /** scanItem() may interact with database 

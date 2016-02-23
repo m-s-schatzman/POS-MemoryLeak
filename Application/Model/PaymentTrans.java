@@ -14,7 +14,7 @@ public class PaymentTrans {
     /**
      * @param args the command line arguments
      */
-    public static String PaymentAuth (long cardID, int cash, int TotalPay) {
+    public static String PaymentAuth (long cardAmount, int cash, int TotalPay) {
         Scanner ms = new Scanner(System.in);
         System.out.println("Payment Option: Cash or Card?");
         String option = ms.next();
@@ -27,7 +27,7 @@ public class PaymentTrans {
             }
         }
         else if (option == "Card") {
-            if (cardID == TotalPay) {
+            if (cardAmount == TotalPay) {
                 return "Success! Payment has been authorized";
             }
             else {
