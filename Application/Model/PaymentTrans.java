@@ -34,5 +34,6 @@ public class PaymentTrans {
                 return "Payment fail! Please check card or amount";
             }
         }
+	return null;
     }
 }

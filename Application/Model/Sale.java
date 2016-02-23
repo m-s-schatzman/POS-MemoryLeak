@@ -10,6 +10,9 @@ import java.util.ArrayList;
  *
  * @author yuchencai
  */
+
+import java.util.*;
+
 public class Sale {
     
     // not sure what stack means
