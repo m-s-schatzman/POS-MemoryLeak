@@ -1,4 +1,4 @@
-JFLAGS = -g -classpath ./OutputTree -d ./OutputTree
+JFLAGS = -g -d OutputTree -classpath OutputTree/:OutputTree/View/:OutputTree/Controller/:OutputTree/Model/
 JC = javac
 .SUFFIXES: .java .class
 .java.class:
