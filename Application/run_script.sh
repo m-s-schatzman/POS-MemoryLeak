@@ -2,4 +2,4 @@
 
 set -x
 
-java -cp OutputTree Main 
+java -cp Output Main 
