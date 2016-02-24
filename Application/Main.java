@@ -1,5 +1,8 @@
+import javax.swing.*;
+
 public class Main{
   public static void main(String[] arg){
-    System.out.println("Sweet");
+      JFrame applicationFrame = new JFrame("Memory Leak Project");
+      ProcessSaleController controller = new ProcessSaleController(applicationFrame);
   }
 }

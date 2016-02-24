@@ -1,11 +1,27 @@
-public class ProcessSaleController extends java.util.Observable {
-    private Sale currentSale;
-    //private SaleView view;
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-    public ProcessSaleController(){
-	currentSale = new Sale();
+public class ProcessSaleController extends java.util.Observable implements ActionListener{
+    private Sale currentSale;
+    private ProcessSaleView view;
+
+    public void actionPerformed(ActionEvent ac){
+	if(ac.getActionCommand().equals("Exit")){
+	    System.exit(1);
+	}
+	//else if createSale
+	//else if addLineItem
+	//else if removeLineItem
+	//else if processSale
     }
 
+    public ProcessSaleController(JFrame applicationFrame){
+	currentSale = new Sale();
+	view = new ProcessSaleView(applicationFrame);
+	view.addController(this);
+    }
+    
     public void createSale(){
 	currentSale = new Sale();
 	notifyObservers(currentSale);

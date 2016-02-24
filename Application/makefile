@@ -6,12 +6,13 @@ JC = javac
 
 
 CLASSES = \
-        Model/Inventory.java \
         Model/Item.java \
+	Model/Inventory.java \
         Model/LineItem.java \
         Model/Sale.java \
         Model/saleTaxCalc.java \
 	Model/PaymentTrans.java \
+	View/ProcessSaleView.java \
 	Controller/ProcessSaleController.java \
         Main.java
 
@@ -20,4 +21,4 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 clean:
-	$(RM) *.class
+	$(RM) OutputTree/*.class
