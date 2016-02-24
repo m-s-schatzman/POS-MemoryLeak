@@ -2,7 +2,7 @@
 
 set -x
 
-mkdir -p OutputTree
+mkdir -p Output
 
 make clean
 
