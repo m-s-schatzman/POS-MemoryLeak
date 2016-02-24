@@ -11,6 +11,8 @@ CLASSES = \
         Model/LineItem.java \
         Model/Sale.java \
         Model/saleTaxCalc.java \
+	Model/PaymentTrans.java \
+	Controller/ProcessSaleController.java \
         Main.java
 
 default: classes

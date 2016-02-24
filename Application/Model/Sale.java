@@ -51,6 +51,10 @@ public class Sale {
     public boolean removeLineItem(LineItem lineItem){
         return cart.remove(lineItem);
     }
+
+    public void save(){
+	//Nothing for now, need back end db
+    }
     
  
 }

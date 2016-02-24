@@ -14,26 +14,24 @@ public class PaymentTrans {
     /**
      * @param args the command line arguments
      */
-    public static String PaymentAuth (long cardAmount, int cash, int TotalPay) {
-        Scanner ms = new Scanner(System.in);
-        System.out.println("Payment Option: Cash or Card?");
-        String option = ms.next();
-        if (option == "Cash") {
+    public static boolean PaymentAuth (int cardNumber, double total) {
+        /*if (option == "Cash") {
             if (cash == TotalPay) {
-                return "Success! Payment has been authorized";
+                return true;
             }
             else {
-                return "Payment fail! Please check amount";
+                return false;
             }
         }
         else if (option == "Card") {
             if (cardAmount == TotalPay) {
-                return "Success! Payment has been authorized";
+                return true;
             }
             else {
-                return "Payment fail! Please check card or amount";
+                return false;
             }
-        }
-	return null;
+	}
+	*/
+	return true;
     }
 }

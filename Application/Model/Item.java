@@ -10,12 +10,12 @@
  * @author yuchencai
  */
 public class Item {
-    private String ID;
+    private int ID; //going to change to int for not, not sure how we will do it with back end inventory, may need to be changed back
     private double price;
     private String name;
     
     /** constructor */
-    Item(String ID,double price,String name){
+    Item(int ID,double price,String name){
     this.ID = ID;
     this.price = price;
     this.name = name; 
@@ -31,7 +31,7 @@ public class Item {
     }
     
     /** get ID*/
-    public String getID(){
+    public int getID(){
         return this.ID;
     }
     
@@ -39,7 +39,7 @@ public class Item {
      * call inventory.findItem
       inventory will return that Item
      */
-    static Item scanItem(String ID){
+    static Item scanItem(int ID){
      
         return null;
     }
