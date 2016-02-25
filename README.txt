@@ -2,7 +2,7 @@
 Program for CSE216
 
 COMPILATION INSTRUCTIONS
-
+USELESS ADDITION FOR TESTING
 To Compile: From the Application/ folder run the command ./make_script.sh to run the automated compile process. This will create the OutputTree directory to store the compiled classes and put all compiled classes into that directory.
 Note: to run the make_script.sh bash script, you may need to use the command "chmod 700 make_script.sh" while in the Application folder. This should fix problem.
 
