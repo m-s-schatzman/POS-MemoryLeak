@@ -10,6 +10,10 @@ public class ProcessSaleController extends java.util.Observable implements Actio
 	if(ac.getActionCommand().equals("Exit")){
 	    System.exit(1);
 	}
+	else if(ac.getActionCommand().equals("Add Item"))
+	{
+		//this.addLineItem(view.getId(), view.getQuantity());
+	}
 	//else if createSale
 	//else if addLineItem
 	//else if removeLineItem

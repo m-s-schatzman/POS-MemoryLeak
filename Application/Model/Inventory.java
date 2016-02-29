@@ -12,6 +12,11 @@
  import java.util.ArrayList;
 public class Inventory {
 
- ArrayList<Item> items;
-    
+ ArrayList<Item> items = new ArrayList<Item>();
+
+ public Inventory(){
+ items.add(new Item(0, 1, "Apple"));
+ items.add(new Item(1, 1, "Banana"));
+ items.add(new Item(2, 3, "Capn Crunch"));
+}
 }
