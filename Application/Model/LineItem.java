@@ -32,7 +32,8 @@ public class LineItem {
     }
     
     /** return Item */
-    public Item getItem(){
-        return this.item;
-    }
+    /*
+    public Item getItem(Item item){
+
+    }*/
 }

@@ -5,14 +5,14 @@ import java.awt.event.ActionEvent;
 public class ProcessSaleController extends java.util.Observable implements ActionListener{
     private Sale currentSale;
     private ProcessSaleView view;
+    private Inventory db = new Inventory();
 
     public void actionPerformed(ActionEvent ac){
 	if(ac.getActionCommand().equals("Exit")){
 	    System.exit(1);
 	}
-	else if(ac.getActionCommand().equals("Add Item"))
-	{
-		//this.addLineItem(view.getId(), view.getQuantity());
+	else if(ac.getActionCommand().equals("Add Item")){
+		addLineItem(view.getId(), view.getQuantity());
 	}
 	//else if createSale
 	//else if addLineItem
@@ -32,14 +32,15 @@ public class ProcessSaleController extends java.util.Observable implements Actio
     }
 
     public void addLineItem(int ID, int quantity){
-	Item item = Item.scanItem(ID);
+	Item item = db.scanItem(ID);
 	LineItem lineItem = new LineItem(quantity, item);
+	view.totalItems.append("\n" + item.getName() + " " + quantity);
 	currentSale.addLineItem(lineItem);
 	notifyObservers(currentSale);
     }
 
     public void removeLineItem(int ID, int quantity){
-	Item item = Item.scanItem(ID);
+	Item item = db.scanItem(ID);
 	LineItem lineItem = new LineItem(quantity, item);
 	currentSale.removeLineItem(lineItem);
 	notifyObservers(currentSale);

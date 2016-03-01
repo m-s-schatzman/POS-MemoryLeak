@@ -19,4 +19,7 @@ public class Inventory {
  items.add(new Item(1, 1, "Banana"));
  items.add(new Item(2, 3, "Capn Crunch"));
 }
+public Item scanItem(int ID) {
+	return items.get(ID);
+}
 }
