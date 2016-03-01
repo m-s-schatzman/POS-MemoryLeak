@@ -10,7 +10,7 @@
  *
  * @author QingYi
  */
-public class saleTaxCalc {
+public class SaleTaxCalc {
     
     public static double salesTax(Sale sale){
     double salePrice=sale.getTotal(); // get price from another class

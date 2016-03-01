@@ -10,7 +10,7 @@ CLASSES = \
         Model/Inventory.java \
         Model/LineItem.java \
         Model/Sale.java \
-        Model/saleTaxCalc.java \
+        Model/SaleTaxCalc.java \
 	Model/PaymentTrans.java \
 	View/ProcessSaleView.java \
 	Controller/ProcessSaleController.java \
