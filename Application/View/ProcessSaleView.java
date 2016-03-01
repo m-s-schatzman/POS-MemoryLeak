@@ -11,6 +11,7 @@ public class ProcessSaleView implements java.util.Observer{
     private JTextField tfID;
     private JTextField tfQ;
     public JTextArea totalItems;
+    public JTextField totalCost;
     private JButton exitButton;
     private JButton addButton;
     
@@ -19,18 +20,23 @@ public class ProcessSaleView implements java.util.Observer{
 	p = new JPanel();
 	fl = new FlowLayout(FlowLayout.CENTER);
 	tfID = new JTextField("Item Id");
-	tfQ = new JTextField("Quantity");
+	tfQ = new JTextField("1");
 	totalItems = new JTextArea("Total Items: ");
+	totalItems.setBounds(10,10,200,60);
+	totalCost = new JTextField("");
+
 
 	addButton = new JButton("Add Item");
 	exitButton = new JButton("Exit");
 	
+	p.add(totalItems);
+	p.add(totalCost);
 	p.setLayout(fl);
 	p.add(tfID);
 	p.add(tfQ);
 	p.add(exitButton);
 	p.add(addButton);
-	p.add(totalItems);
+
 
 	f.setSize(400,400);
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
