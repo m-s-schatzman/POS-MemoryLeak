@@ -34,9 +34,9 @@ public class ProcessSaleController extends java.util.Observable implements Actio
     public void addLineItem(int ID, int quantity){
 	Item item = db.scanItem(ID);
 	LineItem lineItem = new LineItem(quantity, item);
-	view.totalItems.append("\n" + item.getName() + " " + quantity);
+	view.updateTotalItems(item.getName(), quantity);
 	currentSale.addLineItem(lineItem);
-	view.totalCost.setText("Total Cost: " + currentSale.getTotal());
+	view.updateTotalCost(currentSale.getTotal());
 	notifyObservers(currentSale);
     }
 

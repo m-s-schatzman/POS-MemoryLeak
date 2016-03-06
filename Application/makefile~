@@ -13,9 +13,7 @@ CLASSES = \
         Model/SaleTaxCalc.java \
 	Model/PaymentTrans.java \
 	View/ProcessSaleView.java \
-	View/LoginView.java \
 	Controller/ProcessSaleController.java \
-	Controller/LoginController.java \
         Main.java
 
 default: classes

@@ -10,8 +10,8 @@ public class ProcessSaleView implements java.util.Observer{
     private FlowLayout fl;
     private JTextField tfID;
     private JTextField tfQ;
-    public JTextArea totalItems;
-    public JTextField totalCost;
+    private JTextArea totalItems;
+    private JTextField totalCost;
     private JButton exitButton;
     private JButton addButton;
     
@@ -23,7 +23,7 @@ public class ProcessSaleView implements java.util.Observer{
 	tfQ = new JTextField("1");
 	totalItems = new JTextArea("Total Items: ");
 	totalItems.setBounds(10,10,200,60);
-	totalCost = new JTextField("");
+	totalCost = new JTextField("Total Cost: ");
 
 
 	addButton = new JButton("Add Item");
@@ -59,6 +59,14 @@ public class ProcessSaleView implements java.util.Observer{
 
     public int getQuantity(){
     	return Integer.parseInt(tfQ.getText());
+    }
+
+    public void updateTotalItems(String itemName, double quantity){
+    	totalItems.append("\n" + itemName + " " + quantity);
+    }
+
+    public void updateTotalCost(double total){
+    	totalCost.setText("Total Cost: " + total);
     }
 
 }
