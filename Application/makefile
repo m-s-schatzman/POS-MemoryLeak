@@ -6,8 +6,9 @@ JC = javac
 
 
 CLASSES = \
+	Model/User.java \
         Model/Item.java \
-        Model/Inventory.java \
+        Model/Database.java \
         Model/LineItem.java \
         Model/Sale.java \
         Model/SaleTaxCalc.java \

@@ -5,7 +5,7 @@ import java.awt.event.ActionEvent;
 public class ProcessSaleController extends java.util.Observable implements ActionListener{
     private Sale currentSale;
     private ProcessSaleView view;
-    private Inventory db = new Inventory();
+    private Database db = new Database();
 
     public void actionPerformed(ActionEvent ac){
 	if(ac.getActionCommand().equals("Exit")){
