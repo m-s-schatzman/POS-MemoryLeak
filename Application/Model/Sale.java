@@ -41,7 +41,21 @@ public class Sale {
      */
     public void addLineItem(LineItem lineItem){
        // LineItem newLineItem = new LineItem(quantity, Item.scanItem(id));
+        for(LineItem cartItem : cart){
+            if(lineItem.getItem().getID() == cartItem.getItem().getID()){
+                cartItem.setCount(lineItem.getCount() + cartItem.getCount());
+                return;
+            }
+        }
         cart.add(lineItem);
+    }
+
+    public String getCartList(){
+        String cartList = "";
+        for(LineItem cartItem : cart){
+            cartList += cartItem.getItem().getName() + " : " + cartItem.getCount() +"\n";
+        }
+        return cartList;
     }
     
     /** removeLineItem()

@@ -2,7 +2,7 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class ProcessSaleController extends java.util.Observable implements ActionListener{
+public class ProcessSaleController implements ActionListener{
     private Sale currentSale;
     private ProcessSaleView view;
     private Database db = new Database();
@@ -28,23 +28,20 @@ public class ProcessSaleController extends java.util.Observable implements Actio
     
     public void createSale(){
 	currentSale = new Sale();
-	notifyObservers(currentSale);
     }
 
     public void addLineItem(int ID, int quantity){
 	Item item = db.scanItem(ID);
 	LineItem lineItem = new LineItem(quantity, item);
-	view.updateTotalItems(item.getName(), quantity);
 	currentSale.addLineItem(lineItem);
+	view.updateTotalItems(currentSale.getCartList());
 	view.updateTotalCost(currentSale.getTotal());
-	notifyObservers(currentSale);
     }
 
     public void removeLineItem(int ID, int quantity){
 	Item item = db.scanItem(ID);
 	LineItem lineItem = new LineItem(quantity, item);
 	currentSale.removeLineItem(lineItem);
-	notifyObservers(currentSale);
     }
 
     public boolean processSale(int cardNumber){

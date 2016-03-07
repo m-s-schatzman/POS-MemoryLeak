@@ -3,7 +3,7 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionListener;
 
-public class ProcessSaleView implements java.util.Observer{
+public class ProcessSaleView{
     
     private JFrame f;
     private JPanel p;
@@ -49,10 +49,6 @@ public class ProcessSaleView implements java.util.Observer{
 	addButton.addActionListener(controller);
     }
 
-    public void update(Observable subject, Object subjectChange){
-	return;
-    }
-
     public int getId(){
     	return Integer.parseInt(tfID.getText());
     }
@@ -61,8 +57,9 @@ public class ProcessSaleView implements java.util.Observer{
     	return Integer.parseInt(tfQ.getText());
     }
 
-    public void updateTotalItems(String itemName, double quantity){
-    	totalItems.append("\n" + itemName + " " + quantity);
+    public void updateTotalItems(String cartList){
+    	//totalItems.append("\n" + itemName + " " + quantity);
+        totalItems.setText(cartList);
     }
 
     public void updateTotalCost(double total){

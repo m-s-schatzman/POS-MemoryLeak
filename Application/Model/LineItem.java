@@ -32,8 +32,17 @@ public class LineItem {
     }
     
     /** return Item */
-    /*
-    public Item getItem(Item item){
+    public Item getItem(){
+        return this.item;
+    }
 
-    }*/
+    /** return count */
+    public int getCount(){
+        return this.count;
+    }
+
+    /** set count of Item */
+    public void setCount(int count){
+        this.count = count;
+    }
 }

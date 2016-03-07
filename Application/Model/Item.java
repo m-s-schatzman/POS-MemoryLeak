@@ -16,10 +16,10 @@ public class Item {
     
     /** constructor */
     Item(int ID,double price,String name){
-    this.ID = ID;
-    this.price = price;
-    this.name = name; 
-}
+        this.ID = ID;
+        this.price = price;
+        this.name = name; 
+    }
     /** get price */
     public double getPrice(){
         return this.price;
