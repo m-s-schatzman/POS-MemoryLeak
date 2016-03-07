@@ -71,7 +71,7 @@ public class LoginView implements java.util.Observer{
     	f.dispose();
     }
 
-/*
+
     public void invalidMessage()
     {
     	pe = new JPanel();
@@ -79,8 +79,8 @@ public class LoginView implements java.util.Observer{
 
     	fe = new JFrame("Error Message");
 
-//    	JOptionPane.showMessageDialog(fe, pe, "Haha");
+	   	JOptionPane.showMessageDialog(fe, pe);
 		empId.setText("");
 		password.setText("");
-    } */
+    } 
 }

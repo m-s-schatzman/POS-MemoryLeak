@@ -26,11 +26,12 @@ public Item scanItem(int ID) {
 }
 
 public boolean authenticate(String userName, String password){
+	System.out.println("In authenticate: " + userName + " " + password);
 	for(int i = 0; i < users.size(); i++)
 	{
-		if(users.get(i).getUserId() == userName)
+		if(users.get(i).getUserId().equals(userName))
 		{
-			if(users.get(i).getPassword() == password)
+			if(users.get(i).getPassword().equals(password))
 			{
 				return true;
 			}

@@ -18,17 +18,20 @@ public class LoginController extends java.util.Observable implements ActionListe
 		userName = view.getUserName();
 		password = view.getPassword();
 		authenticated = db.authenticate(userName, password);
-		/*
-		while(!authenticated)
+		if(authenticated)
 		{
-			view.invalidMessage();
-			authenticated = db.authenticate(userName, password);
-		} */
 			JFrame applicationFrame = new JFrame("Memory Leak Project");
         	ProcessSaleController controller = new ProcessSaleController(applicationFrame);
         	view.closeFrame();
+		} 
+		/*
+		else
+		{
+        	view.invalidMessage();
         }
+        */
     }
+}
 
 	//else if createSale
 	//else if addLineItem
