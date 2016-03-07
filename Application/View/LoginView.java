@@ -7,6 +7,8 @@ public class LoginView implements java.util.Observer{
     
     private JFrame f;
     private JPanel p;
+    private JPanel pe;
+    private JFrame fe;
     private FlowLayout fl;
     private JLabel label1;
     private JLabel label2;
@@ -52,4 +54,27 @@ public class LoginView implements java.util.Observer{
     public void update(Observable subject, Object subjectChange){
 	return;
     }
+
+    public String getUserName()
+    {
+    	return empId.getText();
+    }
+
+    public String getPassword()
+    {
+    	return password.getText();
+    }
+
+/*
+    public void invalidMessage()
+    {
+    	pe = new JPanel();
+    	pe.setSize(200, 200);
+
+    	fe = new JFrame("Error Message");
+
+//    	JOptionPane.showMessageDialog(fe, pe, "Haha");
+		empId.setText("");
+		password.setText("");
+    } */
 }

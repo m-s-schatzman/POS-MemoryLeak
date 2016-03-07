@@ -1,4 +1,4 @@
-JFLAGS = -g -d Output -classpath Output/
+JFLAGS = -g -d -Xlint Output -classpath Output/
 JC = javac
 .SUFFIXES: .java .class
 .java.class:
@@ -6,8 +6,9 @@ JC = javac
 
 
 CLASSES = \
+	Model/User.java \
         Model/Item.java \
-        Model/Inventory.java \
+        Model/Database.java \
         Model/LineItem.java \
         Model/Sale.java \
         Model/SaleTaxCalc.java \
