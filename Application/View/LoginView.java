@@ -65,6 +65,12 @@ public class LoginView implements java.util.Observer{
     	return password.getText();
     }
 
+    public void closeFrame()
+    {
+    	f.setVisible(false);
+    	f.dispose();
+    }
+
 /*
     public void invalidMessage()
     {

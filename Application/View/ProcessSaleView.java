@@ -8,9 +8,13 @@ public class ProcessSaleView{
     private JFrame f;
     private JPanel p;
     private FlowLayout fl;
+    private JLabel jlID;
+    private JLabel jlQ;
     private JTextField tfID;
     private JTextField tfQ;
+    private JLabel totalItemsLabel;
     private JTextArea totalItems;
+    private JLabel totalCostLabel;
     private JTextField totalCost;
     private JButton exitButton;
     private JButton addButton;
@@ -19,23 +23,31 @@ public class ProcessSaleView{
 	this.f = f;
 	p = new JPanel();
 	fl = new FlowLayout(FlowLayout.CENTER);
-	tfID = new JTextField("Item Id");
-	tfQ = new JTextField("1");
-	totalItems = new JTextArea("Total Items: ");
+	jlID = new JLabel("Item ID: ");
+	tfID = new JTextField(10);
+	jlQ = new JLabel("Quantity: ");
+	tfQ = new JTextField(10);
+	totalItemsLabel = new JLabel("Total Items: ");
+	totalItems = new JTextArea("");
 	totalItems.setBounds(10,10,200,60);
-	totalCost = new JTextField("Total Cost: ");
+	totalCostLabel = new JLabel("Total Cost: ");
+	totalCost = new JTextField(10);
 
 
 	addButton = new JButton("Add Item");
 	exitButton = new JButton("Exit");
 	
+	p.add(jlID);
+	p.add(tfID);
+	p.add(jlQ);
+	p.add(tfQ);
+	p.add(addButton);
+	p.add(exitButton);
+	p.add(totalItemsLabel);
 	p.add(totalItems);
+	p.add(totalCostLabel);
 	p.add(totalCost);
 	p.setLayout(fl);
-	p.add(tfID);
-	p.add(tfQ);
-	p.add(exitButton);
-	p.add(addButton);
 
 
 	f.setSize(400,400);
@@ -63,7 +75,7 @@ public class ProcessSaleView{
     }
 
     public void updateTotalCost(double total){
-    	totalCost.setText("Total Cost: " + total);
+    	totalCost.setText(""+total);
     }
 
 }
