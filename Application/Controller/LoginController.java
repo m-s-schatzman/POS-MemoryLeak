@@ -8,7 +8,7 @@ public class LoginController extends java.util.Observable implements ActionListe
 	private String userName;
 	private String password;
 	private boolean authenticated;
-	private Database db = new Database();
+	private Database db = Database.getDatabase();
 
     public void actionPerformed(ActionEvent ac){
 	if(ac.getActionCommand().equals("Exit")){

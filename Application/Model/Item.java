@@ -39,10 +39,8 @@ public class Item {
      * call inventory.findItem
       inventory will return that Item
      */
-      /* Temporarily moving to inventory...
-    public Item scanItem(int ID){
-        db.getItem(ID);
+    public static Item scanItem(int ID){
+        return Database.getDatabase().getItem(ID);
     } 
-    */
     
 }

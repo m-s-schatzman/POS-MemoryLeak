@@ -5,7 +5,6 @@ import java.awt.event.ActionEvent;
 public class ProcessSaleController implements ActionListener{
     private Sale currentSale;
     private ProcessSaleView view;
-    private Database db = new Database();
 
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
@@ -37,7 +36,7 @@ public class ProcessSaleController implements ActionListener{
     }
 
     public void addLineItem(int ID, int quantity){
-		Item item = db.scanItem(ID);
+		Item item = Item.scanItem(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentSale.addLineItem(lineItem);
 		view.updateTotalItems(currentSale.getCartList());
@@ -45,7 +44,7 @@ public class ProcessSaleController implements ActionListener{
     }
 
     public void removeLineItem(int ID, int quantity){
-		Item item = db.scanItem(ID);
+		Item item = Item.scanItem(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentSale.removeLineItem(lineItem);
     }

@@ -9,34 +9,41 @@
  *
  * @author Cameron
  */
- import java.util.ArrayList;
+import java.util.ArrayList;
 public class Database {
 
- ArrayList<Item> items = new ArrayList<Item>();
- ArrayList<User> users = new ArrayList<User>();
+	private ArrayList<Item> items = new ArrayList<Item>();
+ 	private ArrayList<User> users = new ArrayList<User>();
+ 	private static Database databaseInstance;
 
- public Database(){
- items.add(new Item(0, 1, "Apple"));
- items.add(new Item(1, 1, "Banana"));
- items.add(new Item(2, 3, "Capn Crunch"));
- users.add(new User("MarkyMark", "funk"));
-}
-public Item scanItem(int ID) {
-	return items.get(ID);
-}
 
-public boolean authenticate(String userName, String password){
-	System.out.println("In authenticate: " + userName + " " + password);
-	for(int i = 0; i < users.size(); i++)
-	{
-		if(users.get(i).getUserId().equals(userName))
-		{
-			if(users.get(i).getPassword().equals(password))
-			{
-				return true;
+	private Database(){
+ 		items.add(new Item(0, 1, "Apple"));
+ 		items.add(new Item(1, 1, "Banana"));
+ 		items.add(new Item(2, 3, "Capn Crunch"));
+ 		users.add(new User("MarkyMark", "funk"));
+	}
+
+	public Item getItem(int ID) {
+		return items.get(ID);
+	}
+
+	public boolean authenticate(String userName, String password){
+		System.out.println("In authenticate: " + userName + " " + password);
+		for(int i = 0; i < users.size(); i++){
+			if(users.get(i).getUserId().equals(userName)){
+				if(users.get(i).getPassword().equals(password)){
+					return true;
+				}
 			}
 		}
+		return false;
 	}
-	return false;
-}
+
+	public static Database getDatabase(){
+		if(databaseInstance == null){
+			databaseInstance = new Database();
+		}
+		return databaseInstance;
+	}
 }
