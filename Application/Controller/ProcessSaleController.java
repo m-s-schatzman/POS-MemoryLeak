@@ -20,6 +20,7 @@ public class ProcessSaleController implements ActionListener{
 	}
 	else if(ac.getActionCommand().equals("Finalize"))
 	{
+		currentSale = new Sale();
 		view.returnToSale();
 	}
 	//else if createSale
