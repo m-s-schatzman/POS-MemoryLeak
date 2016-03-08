@@ -16,7 +16,7 @@ public class ProcessSaleController implements ActionListener{
 	}
 	else if(ac.getActionCommand().equals("Checkout"))
 	{
-		view.printReceipt();
+		view.printReceipt(currentSale.getCartList());
 	}
 	else if(ac.getActionCommand().equals("Finalize"))
 	{

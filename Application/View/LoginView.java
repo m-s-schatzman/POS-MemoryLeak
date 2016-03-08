@@ -33,7 +33,6 @@ public class LoginView implements java.util.Observer{
 	password = new JPasswordField(12);
 
 
-
 	loginButton = new JButton("Login");
 	exitButton = new JButton("Exit");
 	
@@ -49,7 +48,7 @@ public class LoginView implements java.util.Observer{
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	f.setContentPane(p);
 	f.setVisible(true);
-    }
+}
 
     public void addController(ActionListener controller){
 	exitButton.addActionListener(controller);

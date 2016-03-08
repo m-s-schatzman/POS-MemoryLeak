@@ -20,6 +20,7 @@ public class ProcessSaleView{
     private JButton addButton;
     private JButton checkoutButton;
     private static JButton finalize = new JButton("Finalize");
+
     
     public ProcessSaleView(JFrame f){
 	this.f = f;
@@ -92,19 +93,25 @@ public class ProcessSaleView{
     	totalCost.setText(""+total);
     }
 
-    public void printReceipt(){
-    	f.getContentPane().removeAll();
-    	f.getContentPane().repaint();
-    	p = new JPanel();
-    	p.add(finalize);
-
-    	f.setContentPane(p);
-		f.setVisible(true);
+    public void printReceipt(String cartList){
+    	JFrame receiptFrame = new JFrame();
+    	JPanel receiptPanel = new JPanel();
+    	JTextArea finalItems = new JTextArea(cartList);
+		finalItems.setColumns(10);
+		finalItems.setRows(12);
+		receiptPanel.add(finalItems);
+    	receiptPanel.add(finalize);
+    	receiptPanel.setLayout(fl);
+    	receiptFrame.setContentPane(receiptPanel);
+    	receiptFrame.setVisible(true);
+    	receiptFrame.setSize(400,400);
 	}
 
 	public void returnToSale()
     {
-    	f.getContentPane().removeAll();
-    	f.getContentPane().repaint();
+    	tfID.setText("");
+    	tfQ.setText("");
+    	totalItems.setText("");
+    	totalCost.setText("");
     }
 }
