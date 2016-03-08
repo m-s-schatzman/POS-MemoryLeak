@@ -1,4 +1,4 @@
-JFLAGS = -g -d Output -classpath Output/
+JFLAGS = -g -d Output -classpath ./:Output/:Model/:View/:Controller/
 JC = javac
 .SUFFIXES: .java .class
 .java.class:
@@ -7,8 +7,8 @@ JC = javac
 
 CLASSES = \
 	Model/User.java \
+	Model/Database.java \
         Model/Item.java \
-        Model/Database.java \
         Model/LineItem.java \
         Model/Sale.java \
         Model/SaleTaxCalc.java \
