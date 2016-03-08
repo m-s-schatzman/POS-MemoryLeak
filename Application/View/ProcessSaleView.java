@@ -19,7 +19,6 @@ public class ProcessSaleView{
     private JButton exitButton;
     private JButton addButton;
     private JButton checkoutButton;
-    private static JButton finalize = new JButton("Finalize");
 
     
     public ProcessSaleView(JFrame f){
@@ -73,7 +72,6 @@ public class ProcessSaleView{
 	exitButton.addActionListener(controller);
 	addButton.addActionListener(controller);
 	checkoutButton.addActionListener(controller);
-	finalize.addActionListener(controller);
     }
 
     public int getId(){
@@ -92,20 +90,6 @@ public class ProcessSaleView{
     public void updateTotalCost(double total){
     	totalCost.setText(""+total);
     }
-
-    public void printReceipt(String cartList){
-    	JFrame receiptFrame = new JFrame();
-    	JPanel receiptPanel = new JPanel();
-    	JTextArea finalItems = new JTextArea(cartList);
-		finalItems.setColumns(10);
-		finalItems.setRows(12);
-		receiptPanel.add(finalItems);
-    	receiptPanel.add(finalize);
-    	receiptPanel.setLayout(fl);
-    	receiptFrame.setContentPane(receiptPanel);
-    	receiptFrame.setVisible(true);
-    	receiptFrame.setSize(400,400);
-	}
 
 	public void returnToSale()
     {
