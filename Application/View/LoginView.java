@@ -19,6 +19,12 @@ public class LoginView implements java.util.Observer{
     
     public LoginView(JFrame f){
 	this.f = f;
+	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	int height = screenSize.height;
+	int width = screenSize.width;
+	f.setSize((width/2) - 600, (height/2) - 250);
+
+	f.setLocationRelativeTo(null);
 	p = new JPanel();
 	fl = new FlowLayout(FlowLayout.CENTER);
 	label1 = new JLabel("Enter Employee Id: ");
@@ -38,7 +44,6 @@ public class LoginView implements java.util.Observer{
 	p.add(loginButton);
 	p.setLayout(fl);
 	p.add(exitButton);
-
 
 	f.setSize(200,200);
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

@@ -14,6 +14,14 @@ public class ProcessSaleController implements ActionListener{
 	else if(ac.getActionCommand().equals("Add Item")){
 		addLineItem(view.getId(), view.getQuantity());
 	}
+	else if(ac.getActionCommand().equals("Checkout"))
+	{
+		view.printReceipt();
+	}
+	else if(ac.getActionCommand().equals("Finalize"))
+	{
+		view.returnToSale();
+	}
 	//else if createSale
 	//else if addLineItem
 	//else if removeLineItem
