@@ -38,10 +38,12 @@ public class ProcessSaleView{
 	tfQ = new JTextField(5);
 	totalItemsLabel = new JLabel("Total Items:");
 	totalItems = new JTextArea("");
+	totalItems.setEditable(false);
 	totalItems.setColumns(10);
 	totalItems.setRows(12);
 	totalCostLabel = new JLabel("Total Cost:");
 	totalCost = new JTextField(10);
+	totalCost.setEditable(false);
 
 
 	addButton = new JButton("Add Item");

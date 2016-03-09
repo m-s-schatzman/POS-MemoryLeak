@@ -21,7 +21,7 @@ public class Database {
  		items.add(new Item(0, 1, "Apple"));
  		items.add(new Item(1, 1, "Banana"));
  		items.add(new Item(2, 3, "Capn Crunch"));
- 		users.add(new User("MarkyMark", "funk"));
+ 		users.add(new User("100216", "ppfridays"));
 	}
 
 	public Item getItem(int ID) {
