@@ -8,7 +8,6 @@ public class LoginController extends java.util.Observable implements ActionListe
 	private String userName;
 	private String password;
 	private boolean authenticated;
-	private Database db = Database.getDatabase();
 
     public void actionPerformed(ActionEvent ac){
 	if(ac.getActionCommand().equals("Exit")){
@@ -17,7 +16,7 @@ public class LoginController extends java.util.Observable implements ActionListe
 	if(ac.getActionCommand().equals("Login")){
 		userName = view.getUserName();
 		password = view.getPassword();
-		authenticated = db.authenticate(userName, password);
+		authenticated = Database.getDatabase().authenticate(userName, password);
 		if(authenticated)
 		{
 			JFrame applicationFrame = new JFrame("Memory Leak POS");
