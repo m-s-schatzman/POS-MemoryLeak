@@ -10,27 +10,27 @@ public class LoginController extends java.util.Observable implements ActionListe
 	private boolean authenticated;
 
     public void actionPerformed(ActionEvent ac){
-	if(ac.getActionCommand().equals("Exit")){
-	    System.exit(1);
+		if(ac.getActionCommand().equals("Exit")){
+	    	System.exit(1);
+		}
+		if(ac.getActionCommand().equals("Login")){
+			userName = view.getUserName();
+			password = view.getPassword();
+			authenticated = Database.getDatabase().authenticate(userName, password);
+			if(authenticated)
+			{
+				JFrame applicationFrame = new JFrame("Memory Leak POS");
+        		ProcessSaleController controller = new ProcessSaleController(applicationFrame);
+        		view.closeFrame();
+			} 
+			/*
+			else
+			{
+        		view.invalidMessage();
+        	}
+        	*/
+    	}
 	}
-	if(ac.getActionCommand().equals("Login")){
-		userName = view.getUserName();
-		password = view.getPassword();
-		authenticated = Database.getDatabase().authenticate(userName, password);
-		if(authenticated)
-		{
-			JFrame applicationFrame = new JFrame("Memory Leak POS");
-        	ProcessSaleController controller = new ProcessSaleController(applicationFrame);
-        	view.closeFrame();
-		} 
-		/*
-		else
-		{
-        	view.invalidMessage();
-        }
-        */
-    }
-}
 
 	//else if createSale
 	//else if addLineItem
@@ -38,7 +38,7 @@ public class LoginController extends java.util.Observable implements ActionListe
 	//else if processSale
 
     public LoginController(JFrame applicationFrame){
-	view = new LoginView(applicationFrame);
-	view.addController(this);
+		view = new LoginView(applicationFrame);
+		view.addController(this);
     }
 }

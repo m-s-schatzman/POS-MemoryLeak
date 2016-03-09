@@ -18,45 +18,45 @@ public class LoginView implements java.util.Observer{
     private JButton exitButton;
     
     public LoginView(JFrame f){
-	this.f = f;
-	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	int height = screenSize.height;
-	int width = screenSize.width;
-	f.setSize((width/2) - 600, (height/2) - 250);
+	   this.f = f;
+	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+	   int height = screenSize.height;
+	   int width = screenSize.width;
+	   f.setSize((width/2) - 600, (height/2) - 250);
 
-	f.setLocationRelativeTo(null);
-	p = new JPanel();
-	fl = new FlowLayout(FlowLayout.CENTER);
-	label1 = new JLabel("Enter Employee Id: ");
-	empId = new JTextField(10);
-	label2 = new JLabel("Enter Password: ");
-	password = new JPasswordField(12);
+	   f.setLocationRelativeTo(null);
+	   p = new JPanel();
+	   fl = new FlowLayout(FlowLayout.CENTER);
+	   label1 = new JLabel("Enter Employee Id: ");
+	   empId = new JTextField(10);
+	   label2 = new JLabel("Enter Password: ");
+	   password = new JPasswordField(12);
 
 
-	loginButton = new JButton("Login");
-	exitButton = new JButton("Exit");
+	   loginButton = new JButton("Login");
+	   exitButton = new JButton("Exit");
 	
-	p.add(label1);
-	p.add(empId);
-	p.add(label2);
-	p.add(password);
-	p.add(loginButton);
-	p.setLayout(fl);
-	p.add(exitButton);
+	   p.add(label1);
+	   p.add(empId);
+	   p.add(label2);
+	   p.add(password);
+	   p.add(loginButton);
+	   p.setLayout(fl);
+	   p.add(exitButton);
 
-	f.setSize(200,200);
-	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	f.setContentPane(p);
-	f.setVisible(true);
-}
+	   f.setSize(200,200);
+	   f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	   f.setContentPane(p);
+	   f.setVisible(true);
+    }
 
     public void addController(ActionListener controller){
-	exitButton.addActionListener(controller);
-	loginButton.addActionListener(controller);
+	   exitButton.addActionListener(controller);
+	   loginButton.addActionListener(controller);
     }
 
     public void update(Observable subject, Object subjectChange){
-	return;
+	   return;
     }
 
     public String getUserName()
