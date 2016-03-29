@@ -3,10 +3,12 @@ Program for CSE216
 
 COMPILATION INSTRUCTIONS
 
-To Compile: From the Application/ folder run the command ./make_script.sh to run the automated compile process. This will create the OutputTree directory to store the compiled classes and put all compiled classes into that directory.
+To Compile: From the Application/ folder run the command "./make_script.sh" to run the automated compile process. This will create the OutputTree directory to store the compiled classes and put all compiled classes into that directory.
 Note: to run the make_script.sh bash script, you may need to use the command "chmod 700 make_script.sh" while in the Application folder. This should fix problem.
 
-To Run: from the Application/ folder run the command ./run_script.sh to run the automated run process. This will set the correct directory to run the compiled Main.java class out of.
+To Create Database: From the Application/ folder run the command "./run_script.sh database" to create database with schema stored in PersistentStorage.java main method. In order to change database schema, please edit that main method to reflect changes to the schema. You will then have to remove Output/POSApplication/ folder and recreate database in order to reflect most recent schema changes. Database only needs to be created a single time, it can then be used repeatedly by application as long as the schema isn't altered (hence the "PersistentStorage"). Currently the database needs to be recreated everytime the schema is changed or the application is built on a new machine. Working on better way to handle this problem...
+
+To Run: from the Application/ folder run the command "./run_script.sh" to run the automated run process. This will set the correct directory to run the compiled Main.java class out of.
 
 To Add Files to Compile: in the Application/makefile file, please include the file and the directory it is in, in the list of java files to be compiled. Please ensure the program compiles before pushing changes to the remote repository.
 
