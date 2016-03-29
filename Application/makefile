@@ -8,16 +8,16 @@ JC = javac
 CLASSES = \
 	Model/User.java \
 	Model/Database.java \
-        Model/Item.java \
-        Model/LineItem.java \
-        Model/Sale.java \
-        Model/SaleTaxCalc.java \
+    Model/Item.java \
+    Model/LineItem.java \
+    Model/Sale.java \
+    Model/TaxCalculator.java \
 	Model/PaymentAuthorizer.java \
 	View/ProcessSaleView.java \
 	View/LoginView.java \
 	Controller/ProcessSaleController.java \
 	Controller/LoginController.java \
-        Main.java
+    Main.java
 
 default: classes
 
