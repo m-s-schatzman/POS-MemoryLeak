@@ -13,6 +13,7 @@ CLASSES = \
     Model/Sale.java \
     Model/TaxCalculator.java \
 	Model/PaymentAuthorizer.java \
+	Model/PersistentStorage.java \
 	View/ProcessSaleView.java \
 	View/LoginView.java \
 	Controller/ProcessSaleController.java \
