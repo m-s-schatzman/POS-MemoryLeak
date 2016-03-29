@@ -20,7 +20,7 @@ public class LoginController extends java.util.Observable implements ActionListe
 			if(authenticated)
 			{
 				JFrame applicationFrame = new JFrame("Memory Leak POS");
-        		ProcessSaleController controller = new ProcessSaleController(applicationFrame);
+        		POSController controller = new POSController(applicationFrame);
         		view.closeFrame();
 			} 
 			/*

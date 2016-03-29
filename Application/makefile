@@ -17,9 +17,11 @@ CLASSES = \
 	View/ProcessSaleView.java \
 	View/LoginView.java \
 	View/ManageUserView.java \
+	View/POSView.java \
 	Controller/ProcessSaleController.java \
 	Controller/LoginController.java \
 	Controller/ManageUserController.java \
+	Controller/POSController.java \
 	Main.java
 
 
