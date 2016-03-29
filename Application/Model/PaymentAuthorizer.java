@@ -9,7 +9,7 @@ import java.util.Scanner;
  /*
  * @author Jason
  */
-public class PaymentTrans {
+public class PaymentAuthorizer {
 
     /**
      * @param args the command line arguments
@@ -19,7 +19,6 @@ public class PaymentTrans {
             if (cash == TotalPay) {
                 return true;
             }
-            else {
                 return false;
             }
         }

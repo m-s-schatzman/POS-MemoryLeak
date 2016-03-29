@@ -12,7 +12,7 @@ CLASSES = \
         Model/LineItem.java \
         Model/Sale.java \
         Model/SaleTaxCalc.java \
-	Model/PaymentTrans.java \
+	Model/PaymentAuthorizer.java \
 	View/ProcessSaleView.java \
 	View/LoginView.java \
 	Controller/ProcessSaleController.java \
