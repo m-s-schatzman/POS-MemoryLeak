@@ -53,7 +53,7 @@ public class ProcessSaleController implements ActionListener{
 
     public boolean processSale(int cardNumber){
 		double total = currentSale.getTotal();
-		if(true == PaymentTrans.PaymentAuth(cardNumber, total)){
+		if(true == PaymentAuthorizer.PaymentAuth(cardNumber, total)){
 	    	currentSale.save();
 	    	return true;
 		}
