@@ -21,6 +21,23 @@ public class PersistentStorage {
 		return persistentStorage;
 	}
 
+	//Executes query passed to it and returns the result set
+	//Will return null if exception is thrown
+	public ResultSet executeQuery(String query){
+		Connection conn = getConnection();
+		Statement s;
+		try{
+			s = conn.createStatement();
+			ResultSet rs = s.executeQuery(query);
+			conn.close();
+			return rs;
+		}catch(SQLException sqle){
+			System.out.println(sqle.getMessage());
+		}
+		return null;
+	}
+
+	//Gets connection to the database
 	private Connection getConnection(){
 		try{
 			return DriverManager.getConnection("jdbc:derby:Output/POSDatabase");
