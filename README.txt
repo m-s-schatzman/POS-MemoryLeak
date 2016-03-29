@@ -16,3 +16,14 @@ To Add Files to Compile: in the Application/makefile file, please include the fi
 USING GIT
 
 Getting access to remote repository: Please create folder on your own machine to store local copy of the repository. Once inside of this repository use the command "git clone https://GITHUBUSERNAME@github.com/m-s-schatzman/POS-MemoryLeak.git NEWGITREPOSITORYNAME". This will pull the repository onto your own machine. Once this is done, you should be able to do the standard pull, make changes, add, commit, repeat, pull, push workflow. See the slides for more info about how to do this. 
+
+WORKFLOW:
+
+pull latest changes from github (git pull)
+make changes you would like
+make sure program compiles (./make_script.sh)
+add those files you changed to the staging area (git add <filename>)
+commit those changes and give the commit a meaningful name (git commit)
+pull the most recent changes (git pull)
+     -If there are merge conflicts, you need to edit the files where there are conflicts and edit any discrepencies. This is very important and needs to be more carefully done than most other things. Once these manual changes are made you can then do another commit to commit the merge. If there are no merge conflicts there is no need to recommit, it will be done automatically.
+finally the changes need to be pushed to github (git push)
