@@ -15,8 +15,10 @@ CLASSES = \
 	Model/PaymentTrans.java \
 	View/ProcessSaleView.java \
 	View/LoginView.java \
+	View/ManageUserView.java \
 	Controller/ProcessSaleController.java \
 	Controller/LoginController.java \
+	Controller/ManageUserController.java \
         Main.java
 
 default: classes
