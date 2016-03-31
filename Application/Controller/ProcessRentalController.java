@@ -34,7 +34,7 @@ public class ProcessRentalController implements ActionListener {
 
     public ProcessRentalController(JFrame applicationFrame) {
         currentRental = new Rental();
-        view = new ProcessRental(applicationFrame);
+        view = new ProcessRentalView(applicationFrame);
         view.addController(this);
 
     }
@@ -43,14 +43,16 @@ public class ProcessRentalController implements ActionListener {
         currentRental = new Rental();
     }
 
+    //Needs to be changed to handle rental line items, not line items
     public void addLineItem(int ID, int quantity) {
         Item item = Item.scanItem(ID);
         LineItem lineItem = new LineItem(quantity, item);
         currentRental.addLineItem(lineItem);
         view.updateTotalItems(currentRental.getCartList());
-        view.updateTotalCOst(currentRental.getTotal());
+        view.updateTotalCost(currentRental.getTotal());
     }
 
+    //Needs to be changed to handle rental line items, not line items
     public void removeLineItem(int ID, int quantity) {
         Item item = Item.scanItem(ID);
         LineItem lineItem = new LineItem(quantity, item);
@@ -58,9 +60,9 @@ public class ProcessRentalController implements ActionListener {
     }
 
     public boolean processRental(int cardNumber) {
-        double total = currentRental.getRental();
+        double total = currentRental.getTotal();
         if (true == PaymentAuthorizer.PaymentAuth(cardNumber, total)) {
-            currentRenal.save();
+            currentRental.save();
             return true;
         }
         return false;
@@ -81,7 +83,7 @@ public class ProcessRentalController implements ActionListener {
     	JTextField finalTotal = new JTextField(5);
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(10);
-        finalTotal.setText(""+currentRental.getToatal());
+        finalTotal.setText(""+currentRental.getTotal());
         validated.setText("Payment Validated");
     	validated.setEditable(false);
 		finalItems.setColumns(10);

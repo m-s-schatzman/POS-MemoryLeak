@@ -98,7 +98,7 @@ public class ProcessRentalView {
     	totalCost.setText(""+total);
     }
 
-	public void returnToSale()
+	public void returnToRental()
     {
     	tfID.setText("");
     	tfQ.setText("");
