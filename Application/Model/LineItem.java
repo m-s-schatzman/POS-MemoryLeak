@@ -12,8 +12,8 @@
  */
 
 public class LineItem {
-    private int count;
-    private Item item;
+    protected int count;
+    protected Item item;
     
     /** constructor */
     LineItem(int count, Item item){
