@@ -14,14 +14,17 @@ CLASSES = \
     Model/TaxCalculator.java \
 	Model/PaymentAuthorizer.java \
 	Model/PersistentStorage.java \
+	Model/Rental.java \
 	View/ProcessSaleView.java \
 	View/LoginView.java \
 	View/ManageUserView.java \
 	View/POSView.java \
+	View/ProcessRentalView.java \
 	Controller/ProcessSaleController.java \
 	Controller/LoginController.java \
 	Controller/ManageUserController.java \
 	Controller/POSController.java \
+	#Controller/ProcessRentalController.java \
 	Main.java
 
 

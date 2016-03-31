@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 
 public class ProcessRentalController implements ActionListener {
 
-    private Rental cuurentRental;
+    private Rental currentRental;
     private ProcessRentalView view;
 
     public void actionPerformed(ActionEvent ac) {
@@ -40,7 +40,7 @@ public class ProcessRentalController implements ActionListener {
     }
 
     public void createRental() {
-        currentRental = new Rental;
+        currentRental = new Rental();
     }
 
     public void addLineItem(int ID, int quantity) {
