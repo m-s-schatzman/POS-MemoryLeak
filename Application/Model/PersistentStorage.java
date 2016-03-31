@@ -8,43 +8,32 @@ import java.sql.Statement;
 
 public class PersistentStorage {
 
-	private static PersistentStorage persistentStorage;
+	private static Connection conn;
 	
 	private PersistentStorage(){
  	}
 
- 	//Gets single instantiated instance of the PersistentStorage class
-	public static PersistentStorage getInstance(){
-		if(persistentStorage == null){
-			persistentStorage = new PersistentStorage();
-		}		
-		return persistentStorage;
-	}
-
-	//Executes query passed to it and returns the result set
-	//Will return null if exception is thrown
-	public ResultSet executeQuery(String query){
-		Connection conn = getConnection();
-		Statement s;
-		try{
-			s = conn.createStatement();
-			ResultSet rs = s.executeQuery(query);
-			conn.close();
-			return rs;
-		}catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
-		}
-		return null;
-	}
-
 	//Gets connection to the database
-	private Connection getConnection(){
-		try{
-			return DriverManager.getConnection("jdbc:derby:Output/POSDatabase");
+	//Opens connection if not yet opened
+	public static Connection getConnection(){
+		if(conn == null){
+			try{
+				conn = DriverManager.getConnection("jdbc:derby:Output/POSDatabase");
+			}catch(SQLException sqle){
+				System.out.println(sqle.getMessage());
+			}
 		}
-		catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
-			return null;
+		return conn;
+	}
+
+	//Closes connection to database
+	public static void closeConnection(){
+		if(conn != null){
+			try{
+				conn.close();
+			}catch(SQLException sqle){
+				System.out.println(sqle.getMessage());
+			}
 		}
 	}
 
