@@ -6,6 +6,7 @@ JC = javac
 
 
 CLASSES = \
+	Main.java \
 	Model/User.java \
 	Model/Database.java \
     Model/Item.java \
@@ -24,9 +25,9 @@ CLASSES = \
 	Controller/ProcessSaleController.java \
 	Controller/LoginController.java \
 	Controller/ManageUserController.java \
-	Controller/POSController.java \
-	#Controller/ProcessRentalController.java \
-	Main.java
+	Controller/POSController.java #\
+	#Controller/ProcessRentalController.java
+	
 
 
 default: classes
