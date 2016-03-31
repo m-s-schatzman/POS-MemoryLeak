@@ -1,0 +1,73 @@
+CREATE TABLE item
+(
+id numeric(10),
+name varchar(30),
+price numeric(5,2),
+primary key(id)
+);
+
+CREATE TABLE inventory
+(
+item_id numeric(10),
+quantity numeric(5),
+primary key(item_id),
+foreign key(item_id) references item(id)
+);
+
+CREATE TABLE user
+(
+id numeric(10),
+name varchar(30),
+password varchar(30),
+--access_level varchar(30),
+primary key(id)
+);
+
+CREATE TABLE sale
+(
+id numeric(10),
+primary key(id)
+);
+
+CREATE TABLE sale_item
+(
+sale_id numeric(10),
+item_id numeric(10),
+quantity numeric (5),
+primary key(sale_id, item_id),
+foreign key(sale_id) references sale(id),
+foreign key(item_id) references item(id)
+);
+
+CREATE TABLE rental
+(
+id numeric(10),
+primary key(id)
+);
+
+CREATE TABLE rental_item
+(
+rental_id numeric(10),
+item_id numeric(10),
+quantity numeric (5),
+return_date date,
+primary key(rental_id, item_id),
+foreign key(rental_id) references rental(id),
+foreign key(item_id) references item(id)
+);
+
+CREATE TABLE return
+(
+id numeric(10),
+primary key(10)
+);
+
+CREATE TABLE return_item
+(
+return_id numeric(10),
+item_id numeric(10),
+quantity numeric (5),
+primary key(return_id, item_id),
+foreign key(return_id) references return(id),
+foreign key(item_id) references item(id)
+);
