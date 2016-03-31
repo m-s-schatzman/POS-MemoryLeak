@@ -16,6 +16,8 @@ public class DBDriver{
 			populateDB();
 		}else if(args[0].equals("clear")){
 			clearDB();
+		}else{
+			System.out.println("command not recognized: try create, populate, or clear");
 		}
 	}
 
