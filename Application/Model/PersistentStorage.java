@@ -36,17 +36,4 @@ public class PersistentStorage {
 			}
 		}
 	}
-
-	//Calling the main method of this class will create a new database
-    //Should not be done if database already created
-	public static void main(String[] args){
-		Connection conn = null;
-		try{
-			conn = DriverManager.getConnection("jdbc:derby:Output/POSDatabase;create=true");
-			conn.close();
-		}
-		catch(SQLException sqle){
-			System.out.println(sqle.getMessage());
-		}
-	}
 }

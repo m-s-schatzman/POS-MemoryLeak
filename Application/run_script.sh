@@ -1,13 +1,9 @@
 #!/bin/bash
 
-if [ $# -ge 1 ] && [ $1 == "database" ]; then
+if [ $# -ge 1 ]; then
 	set -x
-	java -cp Output/:Output/derby.jar -Dderby.system.home=Output/ PersistentStorage
-	set +x
-elif [ $# -ge 1 ]; then
-	echo "parameter" "\""$1"\"" "not recognized"
+	java -cp Output/:Output/derby.jar -Dderby.system.home=Output/ DBDriver $1
 else
     set -x
-    java -cp Output/:Output/derby.jar Main 
-    set +x
+    java -cp Output/:Output/derby.jar Main
 fi
