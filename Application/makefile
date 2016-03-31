@@ -8,6 +8,7 @@ JC = javac
 CLASSES = \
 	Main.java \
 	Misc/DBDriver.java \
+	Misc/Logger.java \
 	Model/User.java \
 	Model/Database.java \
     Model/Item.java \
