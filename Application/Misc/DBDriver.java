@@ -26,7 +26,7 @@ public class DBDriver{
 				conn = DriverManager.getConnection("jdbc:derby:Output/POSDatabase;create=true");
 				conn.close();
 			}catch(SQLException sqle){
-				System.out.println(sqle.getMessage());
+				Logger.logError(sqle.getMessage());
 			}
 	}
 

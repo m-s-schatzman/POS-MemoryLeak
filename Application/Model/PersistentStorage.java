@@ -20,7 +20,7 @@ public class PersistentStorage {
 			try{
 				conn = DriverManager.getConnection("jdbc:derby:Output/POSDatabase");
 			}catch(SQLException sqle){
-				System.out.println(sqle.getMessage());
+				Logger.logError(sqle.getMessage());
 			}
 		}
 		return conn;
@@ -32,7 +32,7 @@ public class PersistentStorage {
 			try{
 				conn.close();
 			}catch(SQLException sqle){
-				System.out.println(sqle.getMessage());
+				Logger.logError(sqle.getMessage());
 			}
 		}
 	}
