@@ -15,6 +15,7 @@ CLASSES = \
 	Model/PaymentAuthorizer.java \
 	Model/PersistentStorage.java \
 	Model/Rental.java \
+	Model/RentalLineItem.java \
 	View/ProcessSaleView.java \
 	View/LoginView.java \
 	View/ManageUserView.java \
