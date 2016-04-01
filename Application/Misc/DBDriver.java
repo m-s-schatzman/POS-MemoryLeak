@@ -1,6 +1,9 @@
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.io.*;
+import java.lang.StringBuilder;
 
 public class DBDriver{
 	
@@ -26,6 +29,7 @@ public class DBDriver{
 		Connection conn = null;
 			try{
 				conn = DriverManager.getConnection("jdbc:derby:Output/POSDatabase;create=true");
+				createDDL(conn);
 				conn.close();
 			}catch(SQLException sqle){
 				Logger.logError(sqle.getMessage());
@@ -35,11 +39,40 @@ public class DBDriver{
 	//Populates the database with items and users
 	//Creates inventory
 	private static void populateDB(){
-
+		
 	}
 
 	//Clears all the the entities currently in the database
 	private static void clearDB(){
 
+	}
+
+	//Runs DDL queries on database
+	private static void createDDL(Connection conn){
+		StringBuilder sb = new StringBuilder();
+		BufferedReader br;
+		try {
+			br = new BufferedReader(new FileReader("Output/ProjectDDL.txt"));
+			String line = br.readLine();
+
+			while (line != null) {
+				sb.append(line);
+				line = br.readLine();
+			}
+			br.close();
+		} catch(IOException ioe) {
+			Logger.logError(ioe.getMessage());
+		}
+
+		String [] queryList = sb.toString().split(";");
+		for(int count = 0; count < queryList.length; count++){
+			try{
+				Statement s = conn.createStatement();
+				s.execute(queryList[count]);
+				s.close();
+			}catch(SQLException sqle){
+				Logger.logError(sqle.getMessage());
+			}
+		}
 	}
 }
