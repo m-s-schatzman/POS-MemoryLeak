@@ -4,7 +4,7 @@ set -x
 
 mkdir -p Output
 
-cp -n Libraries/* Output/
+cp Libraries/* Output/
 
 make clean
 
