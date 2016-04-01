@@ -7,30 +7,8 @@ JC = javac
 
 CLASSES = \
 	Main.java \
-	Misc/DBDriver.java \
-	Misc/Logger.java \
-	Model/User.java \
-	Model/Database.java \
-    Model/Item.java \
-    Model/LineItem.java \
-    Model/Sale.java \
-    Model/TaxCalculator.java \
-	Model/PaymentAuthorizer.java \
-	Model/PersistentStorage.java \
-	Model/Rental.java \
-	Model/RentalLineItem.java \
-	View/ProcessSaleView.java \
-	View/LoginView.java \
-	View/ManageUserView.java \
-	View/POSView.java \
-	View/ProcessRentalView.java \
-	Controller/ProcessSaleController.java \
-	Controller/LoginController.java \
-	Controller/ManageUserController.java \
-	Controller/POSController.java #\
-	#Controller/ProcessRentalController.java
+	Misc/DBDriver.java
 	
-
 
 default: classes
 
