@@ -1,3 +1,13 @@
+DROP TABLE return_item;
+DROP TABLE return;
+DROP TABLE rental_item;
+DROP TABLE rental;
+DROP TABLE sale_item;
+DROP TABLE sale;
+DROP TABLE employee;
+DROP TABLE inventory;
+DROP TABLE item;
+
 CREATE TABLE item
 (
 id numeric(10),
@@ -14,12 +24,11 @@ primary key(item_id),
 foreign key(item_id) references item(id)
 );
 
-CREATE TABLE user
+CREATE TABLE employee
 (
 id numeric(10),
 name varchar(30),
 password varchar(30),
---access_level varchar(30),
 primary key(id)
 );
 
@@ -33,7 +42,7 @@ CREATE TABLE sale_item
 (
 sale_id numeric(10),
 item_id numeric(10),
-quantity numeric (5),
+quantity numeric(5),
 primary key(sale_id, item_id),
 foreign key(sale_id) references sale(id),
 foreign key(item_id) references item(id)
@@ -49,7 +58,7 @@ CREATE TABLE rental_item
 (
 rental_id numeric(10),
 item_id numeric(10),
-quantity numeric (5),
+quantity numeric(5),
 return_date date,
 primary key(rental_id, item_id),
 foreign key(rental_id) references rental(id),
@@ -59,14 +68,14 @@ foreign key(item_id) references item(id)
 CREATE TABLE return
 (
 id numeric(10),
-primary key(10)
+primary key(id)
 );
 
 CREATE TABLE return_item
 (
 return_id numeric(10),
 item_id numeric(10),
-quantity numeric (5),
+quantity numeric(5),
 primary key(return_id, item_id),
 foreign key(return_id) references return(id),
 foreign key(item_id) references item(id)
