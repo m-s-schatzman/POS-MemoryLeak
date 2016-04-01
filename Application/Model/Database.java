@@ -30,7 +30,7 @@ public class Database {
 
 	public boolean authenticate(String userName, String password){
 		for(int i = 0; i < users.size(); i++){
-			if(users.get(i).getUserId().equals(userName)){
+			if(users.get(i).getUsername().equals(userName)){
 				if(users.get(i).getPassword().equals(password)){
 					return true;
 				}
