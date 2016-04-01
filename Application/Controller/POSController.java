@@ -9,8 +9,7 @@ public class POSController implements ActionListener{
 
 	public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Process Sale")){
-			JFrame applicationFrame = new JFrame("Process Sale");
-        	ProcessSaleController controller = new ProcessSaleController(applicationFrame);
+        	ProcessSaleController.create();
         	view.closeFrame();
 		}
 		else if(ac.getActionCommand().equals("Process Rental")){
