@@ -6,11 +6,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class PersistentStorage {
+public class DBConnection {
 
 	private static Connection conn;
 	
-	private PersistentStorage(){
+	private DBConnection(){
  	}
 
 	//Gets connection to the database
@@ -34,6 +34,18 @@ public class PersistentStorage {
 			}catch(SQLException sqle){
 				Logger.logError(sqle.getMessage());
 			}
+		}
+	}
+
+	//Submits query without needing result set
+	public static void submitQuery(String query){
+
+		try{
+			Statement s = getConnection().createStatement();
+			s.executeQuery(query);
+			s.close();
+		}catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
 		}
 	}
 }
