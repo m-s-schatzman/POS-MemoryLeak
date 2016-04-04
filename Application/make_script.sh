@@ -4,9 +4,9 @@ set -v
 
 mkdir -p Output
 
-cp Libraries/* Output/
-
 rm Output/*.class
+
+cp Libraries/* Output/
 
 javac -g -d Output -classpath ./:Output/:Model/:View/:Controller/:Misc/ Main.java
 
