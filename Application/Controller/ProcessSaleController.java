@@ -4,6 +4,8 @@ import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Need to implement multiple payment types (cash and credit card) according to rubic
+
 public class ProcessSaleController implements ActionListener{
     private Sale currentSale;
     private ProcessSaleView view;

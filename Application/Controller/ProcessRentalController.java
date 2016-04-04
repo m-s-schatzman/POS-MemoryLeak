@@ -14,6 +14,9 @@ import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//When it prints receipt, it will need to print the rental rules clearly according to rubic
+//Possibly use a simple formula of x*price per day it is rented...
+
 public class ProcessRentalController implements ActionListener {
 
     private Rental currentRental;

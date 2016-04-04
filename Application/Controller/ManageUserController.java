@@ -4,6 +4,10 @@ import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Need to implement adding and removing users from db according to rubic
+//We also need some sort of "role" associated with each user.
+//	-Thinking about implementing "level" attribute in db and use admin/normal enum in User class
+
 public class ManageUserController implements ActionListener{
 
 	private ManageUserView view;

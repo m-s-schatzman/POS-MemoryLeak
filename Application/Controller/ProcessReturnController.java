@@ -4,6 +4,9 @@ import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//Return items need to be stored in differt table in database according to Huan... no idea what that means, need to ask him
+//Also receipt should be printed and amount of cash given back needs to be printed
+
 public class ProcessReturnController implements ActionListener{
     private Return currentReturn;
     private ProcessReturnView view;
