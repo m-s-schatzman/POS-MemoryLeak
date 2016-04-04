@@ -5,22 +5,16 @@ import java.awt.event.ActionEvent;
 public class LoginController extends java.util.Observable implements ActionListener{
 
 	private LoginView view;
-	private String userName;
-	private String password;
-	private boolean authenticated;
 
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
 	    	System.exit(1);
 		}
 		if(ac.getActionCommand().equals("Login")){
-			userName = view.getUserName();
-			password = view.getPassword();
-			authenticated = Database.getDatabase().authenticate(userName, password);
-			if(authenticated)
-			{
-				JFrame applicationFrame = new JFrame("Memory Leak POS");
-        		POSController controller = new POSController(applicationFrame);
+			String userName = view.getUserName();
+			String password = view.getPassword();
+			if(CurrentUser.login(userName, password)){
+				POSController.create();
         		view.closeFrame();
 			} 
 			/*
@@ -31,6 +25,12 @@ public class LoginController extends java.util.Observable implements ActionListe
         	*/
     	}
 	}
+
+	//Creates new login view and controller
+	public static void create(){
+		JFrame loginFrame = new JFrame("Login");
+  		new LoginController(loginFrame);
+  	}
 
 	//else if createSale
 	//else if addLineItem

@@ -25,9 +25,8 @@ public class POSController implements ActionListener{
         	view.closeFrame();
 		}
 		else if(ac.getActionCommand().equals("Logout")){
-			//NEED TO LOGOUT CURRENT USER ONCE IMPLEMENTED
-			JFrame applicationFrame = new JFrame("Login");
-        	LoginController controller = new LoginController(applicationFrame);
+			CurrentUser.logout();
+			LoginController.create();
         	view.closeFrame();
 		}
 	}
@@ -35,5 +34,11 @@ public class POSController implements ActionListener{
 	public POSController(JFrame applicationFrame){
 		view = new POSView(applicationFrame);
 		view.addController(this);
+	}
+
+	//Creates a new view and controller for POS
+	public static void create(){
+		JFrame applicationFrame = new JFrame("Memory Leak POS");
+       	new POSController(applicationFrame);
 	}
 }
