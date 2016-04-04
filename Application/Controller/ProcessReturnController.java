@@ -60,6 +60,11 @@ public class ProcessReturnController implements ActionListener{
 		return false;
     }
 
+    public static void create() {
+    	JFrame applicationFrame = new JFrame("Process Return");
+    	new ProcessReturnController(applicationFrame);
+    }
+
     public void printReceipt(String cartList){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();

@@ -6,26 +6,31 @@ import java.awt.event.ActionEvent;
 
 public class ManageUserController implements ActionListener{
 
-private ManageUserView view;
+	private ManageUserView view;
 
-public ManageUserController(JFrame applicationFrame){
+	public ManageUserController(JFrame applicationFrame){
 		
 		view = new ManageUserView(applicationFrame);
 		view.addController(this);
+	}
+
+	public void addUser(String newid,String newpassword){
+		System.out.println(newid);
+		System.out.println(newpassword);
+	} 
+
+	public static void create() {
+    	JFrame applicationFrame = new JFrame("Manage Users");
+    	new ManageUserController(applicationFrame);
     }
 
-public void addUser(String newid,String newpassword){
-System.out.println(newid);
-System.out.println(newpassword);
-} 
-
- public void actionPerformed(ActionEvent ac){
+	public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
-	    	System.exit(1);
+			System.exit(1);
 		}
 		else if(ac.getActionCommand().equals("Add User")){
 			addUser(view.getId(), view.getPassword());
 		}
-}
+	}
 
 }

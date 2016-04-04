@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 public class ProcessSaleController implements ActionListener{
     private Sale currentSale;
     private ProcessSaleView view;
-    private static ProcessSaleController controller;
 
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
@@ -62,12 +61,8 @@ public class ProcessSaleController implements ActionListener{
     }
 
     public static void create() {
-    	if(controller == null)
-    	{
-    		JFrame applicationFrame = new JFrame("Process Sale");
-    		controller = new ProcessSaleController(applicationFrame);
-    		System.out.println("in create method");
-    	}
+    	JFrame applicationFrame = new JFrame("Process Sale");
+    	new ProcessSaleController(applicationFrame);
     }
 
     public void printReceipt(String cartList){

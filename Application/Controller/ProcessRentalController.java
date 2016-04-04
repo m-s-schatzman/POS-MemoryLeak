@@ -67,6 +67,11 @@ public class ProcessRentalController implements ActionListener {
         }
         return false;
     }
+
+    public static void create() {
+        JFrame applicationFrame = new JFrame("Process Rental");
+        new ProcessRentalController(applicationFrame);
+    }
     
     public void printReceipt(String cartList){
         JFrame receiptFrame=new JFrame("Receipt");
