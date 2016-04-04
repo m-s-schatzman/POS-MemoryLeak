@@ -38,11 +38,11 @@ public class DBConnection {
 	}
 
 	//Submits query without needing result set
-	public static void submitQuery(String query){
+	public static void submitUpdate(String query){
 
 		try{
 			Statement s = getConnection().createStatement();
-			s.executeQuery(query);
+			s.executeUpdate(query);
 			s.close();
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());

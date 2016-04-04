@@ -39,12 +39,12 @@ public class DBDriver{
 	//Populates the database with items and users
 	//Creates inventory
 	private static void populateDB(){
-		
+		User.populateTable();
 	}
 
 	//Clears all the the entities currently in the database
 	private static void clearDB(){
-
+		User.clearTable();
 	}
 
 	//Runs DDL queries on database
