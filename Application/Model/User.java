@@ -22,7 +22,7 @@ public class User {
 	//Saves given instance of User into the database
 	public void save(){
 		String query = "insert into employee values ( '"+username+"', '"+password+"' )";
-		DBConnection.submitQuery(query);
+		DBConnection.submitUpdate(query);
 	}
 
 	//retrieves a given user from the database using a username
@@ -30,7 +30,7 @@ public class User {
 		Connection conn = DBConnection.getConnection();
 		try{
 			Statement s = conn.createStatement();
-			ResultSet rs = s.executeQuery("select * from user where name = "+username);
+			ResultSet rs = s.executeQuery("select * from employee where name = '"+username+"'");
 			while(rs.next()){
 				User user = new User(rs.getString("name"),rs.getString("password"));
 				rs.close();
@@ -46,6 +46,17 @@ public class User {
 	//deletes the given user from the database
 	public void delete(){
 		String query = "delete from employee where name = '"+username+"' )";
-		DBConnection.submitQuery(query);
+		DBConnection.submitUpdate(query);
+	}
+
+	//Add original user list to DB
+	public static void populateTable(){
+		User user1 = new User("100216","ppfridays");
+		user1.save();
+	}
+
+	//Clear all current rows in the user table
+	public static void clearTable(){
+		DBConnection.submitUpdate("delete from employee");
 	}
 }
