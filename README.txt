@@ -10,8 +10,6 @@ To Create Database: From the Application/ folder run the command "./run_script.s
 
 To Run: from the Application/ folder run the command "./run_script.sh" to run the automated run process. This will set the correct directory to run the compiled Main.java class out of.
 
-To Add Files to Compile: in the Application/makefile file, please include the file and the directory it is in, in the list of java files to be compiled. Please ensure the program compiles before pushing changes to the remote repository.
-
 
 USING GIT
 
