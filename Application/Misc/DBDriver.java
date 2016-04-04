@@ -7,29 +7,28 @@ import java.lang.StringBuilder;
 
 public class DBDriver{
 	
-	//Calling the main method of this class will create a new database
-    //Should not be done if database already created
+	//Calling the main method of this class will do specific tasks for the database
+    //Used for testing purposes, not compiled with main class
 	public static void main(String[] args){
 		if(args.length < 1){
-			System.out.println("No argument given.\nTry create, populate, or clear.");
+			System.out.println("No argument given.\nTry create, tables, or populate.");
 		}
 		if(args[0].equals("create")){
 			createDB();
+		}else if(args[0].equals("tables")){
+			createDBTables();
 		}else if(args[0].equals("populate")){
 			populateDB();
-		}else if(args[0].equals("clear")){
-			clearDB();
 		}else{
-			System.out.println("command not recognized: try create, populate, or clear");
+			System.out.println("command not recognized: try create, tables, or populate");
 		}
 	}
 
 	//Creates the database, may overwrite if already created
-	private static void createDB(){
+	public static void createDB(){
 		Connection conn = null;
 			try{
 				conn = DriverManager.getConnection("jdbc:derby:Output/POSDatabase;create=true");
-				createDDL(conn);
 				conn.close();
 			}catch(SQLException sqle){
 				Logger.logError(sqle.getMessage());
@@ -38,17 +37,17 @@ public class DBDriver{
 
 	//Populates the database with items and users
 	//Creates inventory
-	private static void populateDB(){
+	public static void populateDB(){
 		User.populateTable();
 	}
 
 	//Clears all the the entities currently in the database
-	private static void clearDB(){
+	public static void clearDB(){
 		User.clearTable();
 	}
 
 	//Runs DDL queries on database
-	private static void createDDL(Connection conn){
+	public static void createDBTables(){
 		StringBuilder sb = new StringBuilder();
 		BufferedReader br;
 		try {
@@ -64,6 +63,7 @@ public class DBDriver{
 			Logger.logError(ioe.getMessage());
 		}
 
+		Connection conn = DBConnection.getConnection();
 		String [] queryList = sb.toString().split(";");
 		for(int count = 0; count < queryList.length; count++){
 			try{

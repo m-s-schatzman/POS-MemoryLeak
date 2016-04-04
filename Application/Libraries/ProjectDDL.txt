@@ -1,13 +1,3 @@
-DROP TABLE return_item;
-DROP TABLE return;
-DROP TABLE rental_item;
-DROP TABLE rental;
-DROP TABLE sale_item;
-DROP TABLE sale;
-DROP TABLE employee;
-DROP TABLE inventory;
-DROP TABLE item;
-
 CREATE TABLE item
 (
 id numeric(10),

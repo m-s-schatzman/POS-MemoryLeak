@@ -6,7 +6,7 @@ COMPILATION INSTRUCTIONS
 To Compile: From the Application/ folder run the command "./make_script.sh" to run the automated compile process. This will create the OutputTree directory to store the compiled classes and put all compiled classes into that directory.
 Note: to run the make_script.sh bash script, you may need to use the command "chmod 700 make_script.sh" while in the Application folder. This should fix problem.
 
-To Create Database: From the Application/ folder run the command "./run_script.sh create" to create database with schema stored in Misc/ProjectDDL.txt. In order to change database schema, please edit that file to reflect changes to the schema. You will then have to remove Output/POSApplication/ folder and recreate database in order to reflect most recent schema changes. Database only needs to be created a single time, it can then be used repeatedly by application as long as the schema isn't altered (hence the "PersistentStorage"). Currently the database needs to be recreated everytime the schema is changed or the application is built on a new machine. Working on better way to handle this problem...
+To Reset Database: To reset the database (delete it) run the run_script.sh with the argument reset ("./run_script.sh reset"). This will delete the database and when the application is started again, it will be reset with the values defined by populateDB in DBDriver.
 
 To Run: from the Application/ folder run the command "./run_script.sh" to run the automated run process. This will set the correct directory to run the compiled Main.java class out of.
 

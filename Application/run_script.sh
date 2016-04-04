@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ $# -ge 1 ]; then
+if [ $# -ge 1 ] && [ "$1" == "reset" ]; then
 	set -x
-	java -cp Output/:Output/derby.jar -Dderby.system.home=Output/ DBDriver $1
+	rm -r Output/POSDatabase
 else
     set -x
-    java -cp Output/:Output/derby.jar Main
+    java -cp Output/:Output/derby.jar -Dderby.system.home=Output/ Main
 fi

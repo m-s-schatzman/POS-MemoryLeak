@@ -13,6 +13,27 @@ public class DBConnection {
 	private DBConnection(){
  	}
 
+ 	//This will open the connection to the database and create it if not already created
+ 	//If the database has not yet been created, it will also create the tables and populate them
+ 	public static void openConnection(){
+ 		DBDriver.createDB();
+ 		try{
+ 			conn = getConnection();
+ 			Statement s = conn.createStatement();
+ 			ResultSet rs = s.executeQuery("select count(*) as COUNT from SYS.SYSTABLES");
+ 			//Check if tables have been populated... Definitely better way to do this
+ 			boolean created = (rs.next() && rs.getInt("COUNT") > 23);
+ 			rs.close();
+ 			s.close();
+ 			if(!created){
+ 				DBDriver.createDBTables();
+ 				DBDriver.populateDB();
+ 			}
+ 		}catch(SQLException sqle){
+ 			Logger.logError(sqle.getMessage());
+ 		}
+ 	}
+
 	//Gets connection to the database
 	//Opens connection if not yet opened
 	public static Connection getConnection(){
