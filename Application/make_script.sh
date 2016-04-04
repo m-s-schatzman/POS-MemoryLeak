@@ -1,11 +1,13 @@
 #!/bin/bash
 
-set -x
+set -v
 
 mkdir -p Output
 
 cp Libraries/* Output/
 
-make clean
+rm Output/*.class
 
-make
+javac -g -d Output -classpath ./:Output/:Model/:View/:Controller/:Misc/ Main.java
+
+javac -g -d Output -classpath ./:Output/:Model/:View/:Controller/:Misc/ Misc/DBDriver.java
