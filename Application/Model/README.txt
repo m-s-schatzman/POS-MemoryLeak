@@ -1,1 +1,0 @@
-To run the JUnit test for the user class open up the jUnitTest project in netbeans. Then navigate to /TestPackages/junittest/UserTest.java. Right click UserTest.java and choose Run File in order to executre the JUnit test.
