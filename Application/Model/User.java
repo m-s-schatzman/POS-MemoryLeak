@@ -37,8 +37,8 @@ public class User {
 		return this.password;
 	}
 
-	public String getRole(){
-		return this.role.toString();
+	public Role getRole(){
+		return role;
 	}
 
 	//Saves given instance of User into the database

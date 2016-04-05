@@ -24,7 +24,8 @@ public class ProcessRentalController implements ActionListener {
 
     public void actionPerformed(ActionEvent ac) {
         if (ac.getActionCommand().equals("Exit")) {
-            System.exit(1);
+            POSController.create();
+            view.closeFrame();
         } else if (ac.getActionCommand().equals("Add Item")) {
             addLineItem(view.getId(), view.getQuantity());
         } else if (ac.getActionCommand().equals("Checkout")) {
