@@ -18,6 +18,7 @@ CREATE TABLE employee
 (
 name varchar(30),
 password varchar(30),
+role varchar(12),
 primary key(name)
 );
 

@@ -3,12 +3,30 @@ import java.sql.*;
 
 public class User {
 
+	//Enum to hold the roles of the users
+	public enum Role {
+    	Normal,
+    	Admin
+	}
+
+	//Convert a given string into it's corresponding Role
+	public static Role stringToRole(String role){
+		if(role.equals(Role.Normal.toString())){
+			return Role.Normal;
+		}else if(role.equals(Role.Admin.toString())){
+			return Role.Admin;
+		}
+		return null;
+	}
+
 	private String username;
 	private String password;
+	private Role role;
 
-	public User(String username, String password){
+	public User(String username, String password, Role role){
 		this.username = username;
 		this.password = password;
+		this.role = role;
 	}
 
 	public String getUsername(){
@@ -19,9 +37,13 @@ public class User {
 		return this.password;
 	}
 
+	public Role getRole(){
+		return this.role;
+	}
+
 	//Saves given instance of User into the database
 	public void save(){
-		String query = "insert into employee values ( '"+username+"', '"+password+"' )";
+		String query = "insert into employee values ( '"+username+"', '"+password+"', '"+role.toString()+"' )";
 		DBConnection.submitUpdate(query);
 	}
 
@@ -32,7 +54,7 @@ public class User {
 			Statement s = conn.createStatement();
 			ResultSet rs = s.executeQuery("select * from employee where name = '"+username+"'");
 			while(rs.next()){
-				User user = new User(rs.getString("name"),rs.getString("password"));
+				User user = new User(rs.getString("name"),rs.getString("password"), stringToRole(rs.getString("role")));
 				rs.close();
 				s.close();
 				return user;
@@ -51,7 +73,7 @@ public class User {
 
 	//Add original user list to DB
 	public static void populateTable(){
-		User user1 = new User("100216","ppfridays");
+		User user1 = new User("100216","ppfridays", Role.Admin);
 		user1.save();
 	}
 

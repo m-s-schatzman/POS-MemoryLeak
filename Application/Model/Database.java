@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class Database {
 
 	private ArrayList<Item> items = new ArrayList<Item>();
- 	private ArrayList<User> users = new ArrayList<User>();
+ 	//private ArrayList<User> users = new ArrayList<User>();
  	private static Database databaseInstance;
 
 
@@ -21,14 +21,14 @@ public class Database {
  		items.add(new Item(0, 1, "Apple"));
  		items.add(new Item(1, 1, "Banana"));
  		items.add(new Item(2, 3, "Capn Crunch"));
- 		users.add(new User("100216", "ppfridays"));
+ 		//users.add(new User("100216", "ppfridays"));
 	}
 
 	public Item getItem(int ID) {
 		return items.get(ID);
 	}
 
-	public boolean authenticate(String userName, String password){
+	/*public boolean authenticate(String userName, String password){
 		for(int i = 0; i < users.size(); i++){
 			if(users.get(i).getUsername().equals(userName)){
 				if(users.get(i).getPassword().equals(password)){
@@ -37,7 +37,7 @@ public class Database {
 			}
 		}
 		return false;
-	}
+	}*/
 
 	public static Database getDatabase(){
 		if(databaseInstance == null){
