@@ -2,9 +2,7 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
-
-
-import java.util.ArrayList;
+ */
 
 /**
  *
@@ -12,6 +10,7 @@ import java.util.ArrayList;
  */
 
 import java.util.*;
+import java.sql.*;
 
 public class Sale {
     
@@ -19,12 +18,11 @@ public class Sale {
     private ArrayList<LineItem> cart;
     
     /** constructor */
-    Sale(){
+    public Sale(){
         cart = new ArrayList<LineItem>();
     }
     
-    /** calculate total amount
-     * @return  */
+    /** calculate total amount */
     public double getTotal(){
         double total=0;
         for(int i =0; i<cart.size();i++){
@@ -33,14 +31,8 @@ public class Sale {
         return total;
     }
     
-    /** add a lineItem to sale 
-     * 
-     *  didn't consider if ID is valid 
-     * will the validation deal with database as well?
-     * 
-     */
+    /** add lineitem to the cart unless cart already has a lineitem of the same item, then it will add the quantity */
     public void addLineItem(LineItem lineItem){
-       // LineItem newLineItem = new LineItem(quantity, Item.scanItem(id));
         for(LineItem cartItem : cart){
             if(lineItem.getItem().getID() == cartItem.getItem().getID()){
                 cartItem.setCount(lineItem.getCount() + cartItem.getCount());
@@ -58,17 +50,33 @@ public class Sale {
         return cartList;
     }
     
-    /** removeLineItem()
-     * maybe remove item from LineItem rather than remove the whole LineItem 
-     * ???
-     */
+    /** removeLineItem() */
     public boolean removeLineItem(LineItem lineItem){
         return cart.remove(lineItem);
     }
 
+    /** save the sale to the db */
     public void save(){
-	//Nothing for now, need back end db
+        Connection conn = DBConnection.getConnection();
+        int id = 0;
+        try{
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select max(id) as MAX from sale");
+            if(rs.next()){
+                id = rs.getInt("MAX") + 1;
+            }else{
+                id = 1;
+            }
+            rs.close();
+            s.close();
+        }catch(SQLException sqle){
+            Logger.logError(sqle.getMessage());
+        }
+        String query = "insert into sale values ( "+id+" )";
+        DBConnection.submitUpdate(query);
+
+        for(LineItem lineItem : cart){
+            //lineItem.save(id);
+        }
     }
-    
- 
 }
