@@ -32,7 +32,9 @@ public class POSView{
     processReturnButton = new JButton("Process Return");
     p.add(processReturnButton);
     manageUsersButton = new JButton("Manage Users");
-    p.add(manageUsersButton);
+    if(CurrentUser.getUser().getRole() == User.Role.Admin){
+      p.add(manageUsersButton);
+    }
     logoutButton = new JButton("Logout");
     p.add(logoutButton);
     
