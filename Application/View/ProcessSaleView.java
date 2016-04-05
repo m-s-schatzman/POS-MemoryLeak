@@ -100,4 +100,9 @@ public class ProcessSaleView{
     	totalItems.setText("");
     	totalCost.setText("");
     }
+
+  public void closeFrame(){
+    f.setVisible(false);
+    f.dispose();
+  }
 }

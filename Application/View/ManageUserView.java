@@ -79,5 +79,10 @@ public class ManageUserView{
     public String getPassword(){
     	return tfQ.getText();
     }
+
+    public void closeFrame(){
+      f.setVisible(false);
+      f.dispose();
+    }
 }
  	
