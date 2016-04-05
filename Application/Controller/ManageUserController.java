@@ -30,7 +30,8 @@ public class ManageUserController implements ActionListener{
 
 	public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
-			System.exit(1);
+			POSController.create();
+			view.closeFrame();
 		}
 		else if(ac.getActionCommand().equals("Add User")){
 			addUser(view.getId(), view.getPassword());
