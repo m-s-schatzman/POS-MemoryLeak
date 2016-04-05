@@ -79,5 +79,7 @@ public class ManageUserView{
     public String getPassword(){
     	return tfQ.getText();
     }
+    public User.Role getRole(){
+    	return User.stringToRole("Normal");}//TODO fix this when the UI is ready for it. 
 }
  	

@@ -16,13 +16,25 @@ public class ManageUserController implements ActionListener{
 		
 		view = new ManageUserView(applicationFrame);
 		view.addController(this);
+		showUsers();
 	}
 
-	public void addUser(String newid,String newpassword){
-		System.out.println(newid);
-		System.out.println(newpassword);
+	public void addUser(String newid,String newpassword, User.Role r){
+		User myadder=new User(newid,newpassword,r);
+				//myadder.save();
+				//showUsers();
+		
 	} 
-
+	public static void showUsers(){
+		
+		ArrayList<User> shows=new ArrayList();
+		shows=User.getAll();
+		for(User i:shows){
+			System.out.println(i.getUsername());
+			System.out.println(i.getPassword());
+			System.out.println(i.getRole());}
+	
+	}
 	public static void create() {
     	JFrame applicationFrame = new JFrame("Manage Users");
     	new ManageUserController(applicationFrame);
@@ -33,7 +45,7 @@ public class ManageUserController implements ActionListener{
 			System.exit(1);
 		}
 		else if(ac.getActionCommand().equals("Add User")){
-			addUser(view.getId(), view.getPassword());
+			addUser(view.getId(), view.getPassword(),view.getRole());
 		}
 	}
 

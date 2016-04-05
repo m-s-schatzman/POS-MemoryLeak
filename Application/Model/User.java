@@ -37,8 +37,8 @@ public class User {
 		return this.password;
 	}
 
-	public Role getRole(){
-		return this.role;
+	public String getRole(){
+		return this.role.toString();
 	}
 
 	//Saves given instance of User into the database
@@ -46,7 +46,33 @@ public class User {
 		String query = "insert into employee values ( '"+username+"', '"+password+"', '"+role.toString()+"' )";
 		DBConnection.submitUpdate(query);
 	}
-
+	public static ArrayList<User> getAll(){
+	
+		ArrayList<User> users=new ArrayList<>();
+	try{	Connection conn=DBConnection.getConnection();
+		Statement statement = conn.createStatement();
+		String query="select * from employee";
+		ResultSet result=statement.executeQuery(query);
+			while(result.next()){
+				String un=result.getString("name");
+				String pwd=result.getString("password");
+				String role=result.getString("role");
+				Role r=stringToRole(role);
+				users.add(new User(un,pwd,r));
+			}
+			
+		
+		result.close();
+		
+		}
+		catch(SQLException x){
+		
+				System.out.print(x);
+				}
+		
+	
+	return users;
+	}
 	//retrieves a given user from the database using a username
 	public static User retrieve(String username){
 		Connection conn = DBConnection.getConnection();
@@ -70,7 +96,7 @@ public class User {
 		String query = "delete from employee where name = '"+username+"' )";
 		DBConnection.submitUpdate(query);
 	}
-
+	
 	//Add original user list to DB
 	public static void populateTable(){
 		new User("100216","ppfridays", Role.Normal).save();
