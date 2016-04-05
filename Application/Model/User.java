@@ -73,8 +73,8 @@ public class User {
 
 	//Add original user list to DB
 	public static void populateTable(){
-		User user1 = new User("100216","ppfridays", Role.Admin);
-		user1.save();
+		new User("100216","ppfridays", Role.Normal).save();
+		new User("Admin","admin", Role.Admin).save();
 	}
 
 	//Clear all current rows in the user table
