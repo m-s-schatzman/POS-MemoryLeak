@@ -4,22 +4,23 @@
  * and open the template in the editor.
  */
 
+import java.sql.*;
 
 /**
  *
  * @author yuchencai
  */
 public class Item {
-    private int ID; //going to change to int for not, not sure how we will do it with back end inventory, may need to be changed back
-    private double price;
+    private int ID;
     private String name;
+    private double price;
     
     /** constructor */
-    Item(int ID,double price,String name){
+    public Item(int ID, String name, double price){
         this.ID = ID;
-        this.price = price;
         this.name = name; 
-    }
+        this.price = price;
+   }
     /** get price */
     public double getPrice(){
         return this.price;
@@ -34,13 +35,40 @@ public class Item {
     public int getID(){
         return this.ID;
     }
-    
-    /** scanItem() may interact with database 
-     * call inventory.findItem
-      inventory will return that Item
-     */
-    public static Item scanItem(int ID){
-        return Database.getDatabase().getItem(ID);
-    } 
-    
+
+    //Save item in the database
+    public void save(){
+        String query = "insert into item values ( "+ID+", '"+name+"', "+price+" )";
+        DBConnection.submitUpdate(query);
+    }
+
+    //Retrieve given item from the database given an id
+    public static Item retrieve(int id){
+        Item item = null;
+        Connection conn = DBConnection.getConnection();
+        try{
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select * from item where id = " + id);
+            if(rs.next()){
+                item = new Item(rs.getInt("id"),rs.getString("name"),rs.getDouble("price"));
+            }
+            rs.close();
+            s.close();
+        }catch(SQLException sqle){
+            Logger.logError(sqle.getMessage());
+        }
+        return item;
+    }
+
+    //Add original item list to DB
+    public static void populateTable(){
+        new Item(1,"Apple", 1.00).save();
+        new Item(2,"Banana", 1.00).save();
+        new Item(3,"Capn Crunch", 3.00).save();
+    }
+
+    //Clear all current rows in the item table
+    public static void clearTable(){
+        DBConnection.submitUpdate("delete from item");
+    }
 }

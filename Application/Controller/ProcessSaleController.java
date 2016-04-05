@@ -40,7 +40,7 @@ public class ProcessSaleController implements ActionListener{
     }
 
     public void addLineItem(int ID, int quantity){
-		Item item = Item.scanItem(ID);
+		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentSale.addLineItem(lineItem);
 		view.updateTotalItems(currentSale.getCartList());
@@ -48,7 +48,7 @@ public class ProcessSaleController implements ActionListener{
     }
 
     public void removeLineItem(int ID, int quantity){
-		Item item = Item.scanItem(ID);
+		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentSale.removeLineItem(lineItem);
     }

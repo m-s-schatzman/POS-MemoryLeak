@@ -41,7 +41,7 @@ public class ProcessReturnController implements ActionListener{
     }
 
     public void addLineItem(int ID, int quantity){
-		Item item = Item.scanItem(ID);
+		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentReturn.addLineItem(lineItem);
 		view.updateTotalItems(currentReturn.getCartList());
@@ -49,7 +49,7 @@ public class ProcessReturnController implements ActionListener{
     }
 
     public void removeLineItem(int ID, int quantity){
-		Item item = Item.scanItem(ID);
+		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentReturn.removeLineItem(lineItem);
     }
