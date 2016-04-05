@@ -14,11 +14,8 @@ public class CurrentUser{
 		return false;
 	}
 
-	public static String getUserName(){
-		if(currentUser != null){
-			return currentUser.getUsername();
-		}
-		return null;
+	public static User getUser(){
+		return currentUser;
 	}
 
 	public static void logout(){
