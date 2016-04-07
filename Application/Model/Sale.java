@@ -73,7 +73,6 @@ public class Sale {
             Logger.logError(sqle.getMessage());
         }
         String query = "insert into sale values ( "+id+" )";
-        System.out.println(query);
         DBConnection.submitUpdate(query);
 
         for(LineItem lineItem : cart){

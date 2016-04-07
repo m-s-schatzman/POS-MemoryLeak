@@ -50,6 +50,5 @@ public class LineItem {
     public void save(int saleId){
         String query = "insert into sale_item values ( "+saleId+", "+item.getID()+", "+count+" )";
         DBConnection.submitUpdate(query);
-        System.out.println(query);
     }
 }
