@@ -59,16 +59,4 @@ public class Item {
         }
         return item;
     }
-
-    //Add original item list to DB
-    public static void populateTable(){
-        new Item(1,"Apple", 1.00).save();
-        new Item(2,"Banana", 1.00).save();
-        new Item(3,"Capn Crunch", 3.00).save();
-    }
-
-    //Clear all current rows in the item table
-    public static void clearTable(){
-        DBConnection.submitUpdate("delete from item");
-    }
 }

@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.sql.*;
+
 public class Inventory{
 
 	private static Inventory inventory;
@@ -47,5 +50,26 @@ public class Inventory{
             Logger.logError(sqle.getMessage());
         }
         return count;
+	}
+
+	//Populates the db with sample items and adds them to the inventory
+	public void populateDB(){
+		ArrayList<Item> items = new ArrayList<Item>();
+        items.add(new Item(1,"Apple", 1.00));
+        items.add(new Item(2,"Banana", 1.00));
+        items.add(new Item(3,"Capn Crunch", 3.00));
+        items.add(new Item(4,"Mac n Cheese", 3.00));
+        items.add(new Item(5,"Secret Sauce", 99.00));
+        items.add(new Item(6,"Tortillas", 0.50));
+        items.add(new Item(7,"Pancakes", 2.00));
+        items.add(new Item(8,"Pasta Sauce", 5.00));
+        items.add(new Item(9,"Pizza Pie", 8.00));
+
+        String query;
+        for(Item item : items){
+        	item.save();
+        	query = "insert into inventory values ( "+item.getID()+", "+100+" )";
+        	DBConnection.submitUpdate(query);
+        }
 	}
 }
