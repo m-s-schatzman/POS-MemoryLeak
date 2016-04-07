@@ -22,7 +22,7 @@ public class ManageUserController implements ActionListener{
 	public void addUser(String newId, String newPassword, User.Role role){
 		User newUser = new User(newId, newPassword, role);
 		newUser.save();
-		showUsers();
+		view.showUser(User.retrieve(newId));
 	} 
 	public static void showUsers(){
 		
@@ -46,6 +46,7 @@ public class ManageUserController implements ActionListener{
 		}
 		else if(ac.getActionCommand().equals("Add User")){
 			addUser(view.getId(), view.getPassword(), User.Role.Normal);
+			view.clearIdPassFields();
 		}
 	}
 

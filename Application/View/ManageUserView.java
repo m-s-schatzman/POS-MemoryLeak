@@ -79,7 +79,19 @@ public class ManageUserView{
     }
 
     public User.Role getRole(){
-    	return User.stringToRole("Normal");}//TODO fix this when the UI is ready for it. 
+    	return User.stringToRole("Normal");
+      }//TODO fix this when the UI is ready for it. 
+
+public void showUser(User user)
+{
+  totalUsers.append(user.getUsername() + "\n");
+}
+
+public void clearIdPassFields()
+{
+  tfID.setText("");
+  tfPwd.setText("");
+}
 
 
     public void closeFrame(){
