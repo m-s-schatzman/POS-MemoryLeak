@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.sql.*;
 
 public class Rental{
 
@@ -45,7 +46,6 @@ public class Rental{
 	}
 
 	/** save instance to db */
-    /*
     public void save(){
 		Connection conn = DBConnection.getConnection();
         int id = 0;
@@ -65,8 +65,10 @@ public class Rental{
         String query = "insert into rental values ( "+id+" )";
         DBConnection.submitUpdate(query);
 
+        Inventory inventory = Inventory.getInventory();
         for(RentalLineItem lineItem : cart){
             lineItem.save(id);
+            inventory.purchaseLineItem(lineItem);
         }
-    }*/
+    }
 }

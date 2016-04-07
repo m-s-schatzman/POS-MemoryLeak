@@ -78,8 +78,10 @@ public class Return {
         String query = "insert into return values ( "+id+" )";
         DBConnection.submitUpdate(query);
 
+        Inventory inventory = Inventory.getInventory();
         for(ReturnLineItem lineItem : cart){
             lineItem.save(id);
+            inventory.returnLineItem(id);
         }
     } 
 }

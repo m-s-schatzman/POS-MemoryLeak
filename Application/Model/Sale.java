@@ -75,8 +75,10 @@ public class Sale {
         String query = "insert into sale values ( "+id+" )";
         DBConnection.submitUpdate(query);
 
+        Inventory inventory = Inventory.getInventory();
         for(LineItem lineItem : cart){
             lineItem.save(id);
+            inventory.purchaseLineItem(lineItem);
         }
     }
 }
