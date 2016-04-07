@@ -20,7 +20,19 @@ public class ProcessSaleController implements ActionListener{
 		}
 		else if(ac.getActionCommand().equals("Checkout"))
 		{
-			processSale();
+			double amountGiven = view.getCashAmount();
+			double change = amountGiven - currentSale.getTotal(); 
+			processSale(change);
+		}
+		else
+		{
+			AbstractButton rButton = (AbstractButton) ac.getSource();
+			String choice = rButton.getText();
+			if(choice.equals("Cash"))
+			{
+				view.addCashField();
+			}
+        	
 		}
 		//else if createSale
 		//else if addLineItem
@@ -42,9 +54,9 @@ public class ProcessSaleController implements ActionListener{
 		view.updateTotalCost(currentSale.getTotal());
     }
 
-    private void processSale(){
+    private void processSale(double change){
 	   	currentSale.save();
-	    printReceipt(currentSale.getCartList());
+	    printReceipt(currentSale.getCartList(), change);
 		currentSale = new Sale();
 		view.returnToSale();
     }
@@ -54,7 +66,7 @@ public class ProcessSaleController implements ActionListener{
     	new ProcessSaleController(applicationFrame);
     }
 
-    private void printReceipt(String cartList){
+    private void printReceipt(String cartList, double change){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -70,6 +82,8 @@ public class ProcessSaleController implements ActionListener{
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(10);
     	finalTotal.setText(""+currentSale.getTotal());
+    	JLabel changeLabel = new JLabel("Your change: $" + change);
+
     	validated.setText("Payment Validated");
     	validated.setEditable(false);
 		finalItems.setColumns(10);
@@ -77,6 +91,7 @@ public class ProcessSaleController implements ActionListener{
 		receiptPanel.add(finalItems);
 		receiptPanel.add(finalLabel);
 		receiptPanel.add(finalTotal);
+		receiptPanel.add(changeLabel);
 		receiptPanel.add(validated);
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);

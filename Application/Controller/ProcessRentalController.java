@@ -51,7 +51,7 @@ public class ProcessRentalController implements ActionListener {
     private void addLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
         LineItem lineItem = new LineItem(quantity, item);
-        currentRental.addLineItem(lineItem);
+//        currentRental.addLineItem(lineItem);
         view.updateTotalItems(currentRental.getCartList());
         view.updateTotalCost(currentRental.getTotal());
     }
@@ -60,13 +60,13 @@ public class ProcessRentalController implements ActionListener {
     private void removeLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
         LineItem lineItem = new LineItem(quantity, item);
-        currentRental.removeLineItem(lineItem);
+ //       currentRental.removeLineItem(lineItem);
     }
 
     private boolean processRental(int cardNumber) {
         double total = currentRental.getTotal();
         if (true == PaymentAuthorizer.PaymentAuth(cardNumber, total)) {
-            currentRental.save();
+           // currentRental.save();
             return true;
         }
         return false;

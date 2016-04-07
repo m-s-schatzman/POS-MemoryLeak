@@ -45,6 +45,7 @@ public class Rental{
 	}
 
 	/** save instance to db */
+    /*
     public void save(){
 		Connection conn = DBConnection.getConnection();
         int id = 0;
@@ -67,5 +68,5 @@ public class Rental{
         for(RentalLineItem lineItem : cart){
             lineItem.save(id);
         }
-    }
+    }*/
 }

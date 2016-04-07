@@ -22,6 +22,8 @@ public class ProcessSaleView{
     private JButton exitButton;
     private JButton addButton;
     private JButton checkoutButton;
+    private JLabel cashFieldLabel;
+    private JTextField cashField;
 
     
     public ProcessSaleView(JFrame f){
@@ -87,6 +89,8 @@ public class ProcessSaleView{
        exitButton.addActionListener(controller);
        addButton.addActionListener(controller);
        checkoutButton.addActionListener(controller);
+       ccOption.addActionListener(controller);
+       cashOption.addActionListener(controller);
    }
 
     public int getId(){
@@ -97,6 +101,10 @@ public class ProcessSaleView{
     	return Integer.parseInt(tfQ.getText());
     }
 
+    public int getCashAmount(){
+      return Integer.parseInt(cashField.getText());
+    }
+
     public void updateTotalItems(String cartList){
     	//totalItems.append("\n" + itemName + " " + quantity);
         totalItems.setText(cartList);
@@ -104,6 +112,16 @@ public class ProcessSaleView{
 
     public void updateTotalCost(double total){
     	totalCost.setText(""+total);
+    }
+
+    public void addCashField()
+    {
+      cashFieldLabel = new JLabel("Given cash amount: $");
+      cashField = new JTextField(3);
+      p.add(cashFieldLabel);
+      p.add(cashField);
+      p.setLayout(fl);
+      f.setContentPane(p);
     }
 
 	public void returnToSale()
