@@ -3,6 +3,9 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
+
 
 //Need to implement multiple payment types (cash and credit card) according to rubic
 
@@ -82,7 +85,8 @@ public class ProcessSaleController implements ActionListener{
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(10);
     	finalTotal.setText(""+currentSale.getTotal());
-    	JLabel changeLabel = new JLabel("Your change: $" + change);
+    	NumberFormat formatter = new DecimalFormat("#0.00");     
+    	JLabel changeLabel = new JLabel("Your change: $" + formatter.format(change));
 
     	validated.setText("Payment Validated");
     	validated.setEditable(false);
