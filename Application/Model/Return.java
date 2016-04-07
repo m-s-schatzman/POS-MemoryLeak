@@ -12,18 +12,18 @@ import java.util.ArrayList;
  */
 
 import java.util.*;
+import java.sql.*;
 
 public class Return {
 
-    private ArrayList<LineItem> cart;
+    private ArrayList<ReturnLineItem> cart;
     
-    /** constructor */
-    Return(){
-        cart = new ArrayList<LineItem>();
+    /** Constructor */
+    public Return(){
+        cart = new ArrayList<ReturnLineItem>();
     }
     
-    /** calculate total amount
-     * @return  */
+    /** calculate total amount */
     public double getTotal(){
         double total=0;
         for(int i =0; i<cart.size();i++){
@@ -32,10 +32,8 @@ public class Return {
         return total;
     }
     
-    /** add a lineItem to return 
-
-     */
-    public void addLineItem(LineItem lineItem){
+    /** add the given line item to the cart */
+    public void addLineItem(ReturnLineItem lineItem){
        // LineItem newLineItem = new LineItem(quantity, Item.scanItem(id));
         for(LineItem cartItem : cart){
             if(lineItem.getItem().getID() == cartItem.getItem().getID()){
@@ -46,6 +44,7 @@ public class Return {
         cart.add(lineItem);
     }
 
+    //Gets a formatted string version of the cart
     public String getCartList(){
         String cartList = "";
         for(LineItem cartItem : cart){
@@ -54,16 +53,33 @@ public class Return {
         return cartList;
     }
     
-    /** removeLineItem()
-
-     */
-    public boolean removeLineItem(LineItem lineItem){
+    /** remove given line item from the cart */
+    public boolean removeLineItem(ReturnLineItem lineItem){
         return cart.remove(lineItem);
     }
 
+    //Save this return into the database and save it's children return line items
     public void save(){
-	//Nothing for now, need back end db
-    }
-    
- 
+        Connection conn = DBConnection.getConnection();
+        int id = 0;
+        try{
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select max(id) as maximum from return");
+            if(rs.next()){
+                id = rs.getInt("maximum") + 1;
+            }else{
+                id = 1;
+            }
+            rs.close();
+            s.close();
+        }catch(SQLException sqle){
+            Logger.logError(sqle.getMessage());
+        }
+        String query = "insert into return values ( "+id+" )";
+        DBConnection.submitUpdate(query);
+
+        for(ReturnLineItem lineItem : cart){
+            lineItem.save(id);
+        }
+    } 
 }
