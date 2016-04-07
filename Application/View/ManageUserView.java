@@ -11,7 +11,7 @@ public class ManageUserView{
     private JLabel id;
     private JLabel pwd;
     private JTextField tfID;
-    private JTextField tfPwd;
+    private JPasswordField password;
     private JTextArea totalUsers;
     private JLabel delLabel;
     private JTextField delField;
@@ -34,7 +34,7 @@ public class ManageUserView{
        id = new JLabel("User ID:");
        tfID = new JTextField(5);
        pwd = new JLabel("User Password:");
-       tfPwd = new JTextField(5);
+       password = new JPasswordField(5);
        totalUsers = new JTextArea("");
        totalUsers.setEditable(false);
        totalUsers.setColumns(10);
@@ -50,7 +50,7 @@ public class ManageUserView{
        p.add(id);
        p.add(tfID);
        p.add(pwd);
-       p.add(tfPwd);
+       p.add(password);
        p.add(addButton);
        p.add(exitButton);
        p.add(totalUsers);
@@ -76,7 +76,7 @@ public class ManageUserView{
     }
 
     public String getPassword(){
-    	return tfPwd.getText();
+    	return password.getText();
     }
 
 public String getDeleteField()
@@ -98,7 +98,7 @@ public void showUsers(ArrayList<User> users)
 public void clearIdPassFields()
 {
   tfID.setText("");
-  tfPwd.setText("");
+  password.setText("");
 }
 
 public void clearDelField()
