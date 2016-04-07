@@ -14,6 +14,14 @@ primary key(item_id),
 foreign key(item_id) references item(id)
 );
 
+CREATE TABLE returned_item
+(
+item_id numeric(10),
+quantity numeric(5),
+primary key(item_id),
+foreign key(item_id) references item(id)
+);
+
 CREATE TABLE employee
 (
 name varchar(30),
