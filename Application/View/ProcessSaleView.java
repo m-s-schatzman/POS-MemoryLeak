@@ -16,6 +16,7 @@ public class ProcessSaleView{
     private JTextArea totalItems;
     private JLabel totalCostLabel;
     private JTextField totalCost;
+    private JLabel paymentOption;
     private final JRadioButton ccOption;
     private final JRadioButton cashOption;
     private JButton exitButton;
@@ -46,6 +47,7 @@ public class ProcessSaleView{
        totalCostLabel = new JLabel("Total Cost:");
        totalCost = new JTextField(10);
        totalCost.setEditable(false);
+       paymentOption = new JLabel("Select Payment Method: ");
 
        ccOption = new JRadioButton("Credit Card", false);
        cashOption = new JRadioButton("Cash", false);
@@ -68,6 +70,7 @@ public class ProcessSaleView{
        p.add(totalItems);
        p.add(totalCostLabel);
        p.add(totalCost);
+       p.add(paymentOption);
        p.add(ccOption);
        p.add(cashOption);
        p.add(checkoutButton);

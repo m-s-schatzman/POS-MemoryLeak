@@ -8,10 +8,10 @@ public class ManageUserView{
  private JFrame f;
     private JPanel p;
     private FlowLayout fl;
-    private JLabel UID;
-    private JLabel PWD;
+    private JLabel id;
+    private JLabel pwd;
     private JTextField tfID;
-    private JTextField tfQ;
+    private JTextField tfPwd;
     private JTextArea totalUsers;
     private JLabel delLabel;
     private JTextField delField;
@@ -31,16 +31,15 @@ public class ManageUserView{
 
        f.setLocationRelativeTo(null);
        fl = new FlowLayout(FlowLayout.CENTER);
-       UID = new JLabel("Specify User ID:");
+       id = new JLabel("User ID:");
        tfID = new JTextField(5);
-       PWD = new JLabel("Specify User Password");
-       tfQ = new JTextField(5);
+       pwd = new JLabel("User Password:");
+       tfPwd = new JTextField(5);
        totalUsers = new JTextArea("");
        totalUsers.setEditable(false);
        totalUsers.setColumns(10);
        totalUsers.setRows(12);
-       delLabel = new JLabel("Specify User for Delete");
-       delField = new JTextField(20);
+       delField = new JTextField(10);
        
 
 
@@ -48,14 +47,13 @@ public class ManageUserView{
        exitButton = new JButton("Exit");
        deleteButton = new JButton("Delete User");
 
-       p.add(UID);
-       p.add(PWD);
+       p.add(id);
        p.add(tfID);
-       p.add(tfQ);
+       p.add(pwd);
+       p.add(tfPwd);
        p.add(addButton);
        p.add(exitButton);
        p.add(totalUsers);
-       p.add(delLabel);
        p.add(delField);
        p.add(deleteButton);
        p.setLayout(fl);
@@ -77,7 +75,7 @@ public class ManageUserView{
     }
 
     public String getPassword(){
-    	return tfQ.getText();
+    	return tfPwd.getText();
     }
 
     public User.Role getRole(){
