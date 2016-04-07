@@ -45,7 +45,7 @@ public class ManageUserView{
 
        addButton = new JButton("Add User");
        exitButton = new JButton("Exit");
-       deleteButton = new JButton("Delete User");
+       deleteButton = new JButton("Delete");
 
        p.add(id);
        p.add(tfID);
@@ -63,6 +63,7 @@ public class ManageUserView{
        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
        f.setContentPane(p);
        f.setVisible(true);
+
    }
 
    public void addController(ActionListener controller){
@@ -78,19 +79,31 @@ public class ManageUserView{
     	return tfPwd.getText();
     }
 
+public String getDeleteField()
+{
+  return delField.getText();
+}
+
     public User.Role getRole(){
     	return User.stringToRole("Normal");
       }//TODO fix this when the UI is ready for it. 
 
-public void showUser(User user)
+public void showUsers(ArrayList<User> users)
 {
-  totalUsers.append(user.getUsername() + "\n");
+  totalUsers.setText("");
+  for(int i = 0; i < users.size(); i++)
+    totalUsers.append(users.get(i).getUsername() + "\n");
 }
 
 public void clearIdPassFields()
 {
   tfID.setText("");
   tfPwd.setText("");
+}
+
+public void clearDelField()
+{
+  delField.setText("");
 }
 
 

@@ -22,17 +22,18 @@ public class ManageUserController implements ActionListener{
 	public void addUser(String newId, String newPassword, User.Role role){
 		User newUser = new User(newId, newPassword, role);
 		newUser.save();
-		view.showUser(User.retrieve(newId));
+		showUsers();
 	} 
-	public static void showUsers(){
-		
-		ArrayList<User> shows=new ArrayList();
-		shows=User.getAll();
-		for(User i:shows){
-			System.out.println(i.getUsername());
-			System.out.println(i.getPassword());
-			System.out.println(i.getRole().toString());}
-	
+
+	public void deleteUser(String id)
+	{
+		User.delete(id);
+		showUsers();
+	}
+	public void showUsers(){	
+		ArrayList<User> users = new ArrayList();
+		users = User.getAll();
+		view.showUsers(users);
 	}
 	public static void create() {
     	JFrame applicationFrame = new JFrame("Manage Users");
@@ -47,6 +48,12 @@ public class ManageUserController implements ActionListener{
 		else if(ac.getActionCommand().equals("Add User")){
 			addUser(view.getId(), view.getPassword(), User.Role.Normal);
 			view.clearIdPassFields();
+		}
+
+		else if(ac.getActionCommand().equals("Delete"))
+		{
+			deleteUser(view.getDeleteField());
+			view.clearDelField();
 		}
 	}
 

@@ -92,8 +92,8 @@ public class User {
 	}
 
 	//deletes the given user from the database
-	public void delete(){
-		String query = "delete from employee where name = '"+username+"' )";
+	public static void delete(String username){
+		String query = "delete from employee where name = '"+username+"'";
 		DBConnection.submitUpdate(query);
 	}
 	
