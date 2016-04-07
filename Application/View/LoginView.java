@@ -48,6 +48,7 @@ public class LoginView implements java.util.Observer{
 	   f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	   f.setContentPane(p);
 	   f.setVisible(true);
+       f.getRootPane().setDefaultButton(loginButton); //Allows user to hit enter button to login
     }
 
     public void addController(ActionListener controller){
