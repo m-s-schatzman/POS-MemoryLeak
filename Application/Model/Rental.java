@@ -46,6 +46,26 @@ public class Rental{
 
 	/** save instance to db */
     public void save(){
-		//Nothing for now, need back end db
+		Connection conn = DBConnection.getConnection();
+        int id = 0;
+        try{
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select max(id) as maximum from rental");
+            if(rs.next()){
+                id = rs.getInt("maximum") + 1;
+            }else{
+                id = 1;
+            }
+            rs.close();
+            s.close();
+        }catch(SQLException sqle){
+            Logger.logError(sqle.getMessage());
+        }
+        String query = "insert into rental values ( "+id+" )";
+        DBConnection.submitUpdate(query);
+
+        for(RentalLineItem lineItem : cart){
+            lineItem.save(id);
+        }
     }
 }
