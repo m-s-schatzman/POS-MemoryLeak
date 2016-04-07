@@ -27,7 +27,8 @@ public class ManageUserController implements ActionListener{
 
 	public void deleteUser(String id)
 	{
-		User.delete(id);
+		User deletedUser = User.retrieve(id);
+		deletedUser.delete();
 		showUsers();
 	}
 	public void showUsers(){	

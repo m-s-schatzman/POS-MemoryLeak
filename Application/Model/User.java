@@ -46,13 +46,15 @@ public class User {
 		String query = "insert into employee values ( '"+username+"', '"+password+"', '"+role.toString()+"' )";
 		DBConnection.submitUpdate(query);
 	}
+
+	//getAll Users
 	public static ArrayList<User> getAll(){
-	
 		ArrayList<User> users=new ArrayList<>();
-	try{	Connection conn=DBConnection.getConnection();
-		Statement statement = conn.createStatement();
-		String query="select * from employee";
-		ResultSet result=statement.executeQuery(query);
+		try{	
+			Connection conn=DBConnection.getConnection();
+			Statement statement = conn.createStatement();
+			String query="select * from employee";
+			ResultSet result=statement.executeQuery(query);
 			while(result.next()){
 				String un=result.getString("name");
 				String pwd=result.getString("password");
@@ -60,19 +62,14 @@ public class User {
 				Role r=stringToRole(role);
 				users.add(new User(un,pwd,r));
 			}
-			
-		
-		result.close();
-		
+			result.close();
 		}
-		catch(SQLException x){
-		
-				System.out.print(x);
-				}
-		
-	
-	return users;
+		catch(SQLException sqle){
+			Logger.logError(sqle.getMessage());
+		}
+		return users;
 	}
+
 	//retrieves a given user from the database using a username
 	public static User retrieve(String username){
 		Connection conn = DBConnection.getConnection();
@@ -92,7 +89,7 @@ public class User {
 	}
 
 	//deletes the given user from the database
-	public static void delete(String username){
+	public void delete(){
 		String query = "delete from employee where name = '"+username+"'";
 		DBConnection.submitUpdate(query);
 	}
