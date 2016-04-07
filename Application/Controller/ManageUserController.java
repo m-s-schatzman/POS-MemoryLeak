@@ -43,10 +43,12 @@ public class ManageUserController implements ActionListener{
 	} 
 
 	private void deleteUser(String id)
-	{
+	{	
 		User deletedUser = User.retrieve(id);
+		if(deletedUser.getRole() != User.Role.Admin){
 		deletedUser.delete();
 		showUsers();
+		}
 	}
 	private void showUsers(){	
 		ArrayList<User> users = new ArrayList();
