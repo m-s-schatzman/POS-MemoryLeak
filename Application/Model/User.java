@@ -99,9 +99,4 @@ public class User {
 		new User("100216","ppfridays", Role.Normal).save();
 		new User("Admin","admin", Role.Admin).save();
 	}
-
-	//Clear all current rows in the user table
-	public static void clearTable(){
-		DBConnection.submitUpdate("delete from employee");
-	}
 }
