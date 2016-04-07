@@ -61,9 +61,9 @@ public class Sale {
         int id = 0;
         try{
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select max(id) as MAX from sale");
+            ResultSet rs = s.executeQuery("select max(id) as maximum from sale");
             if(rs.next()){
-                id = rs.getInt("MAX") + 1;
+                id = rs.getInt("maximum") + 1;
             }else{
                 id = 1;
             }
@@ -73,10 +73,11 @@ public class Sale {
             Logger.logError(sqle.getMessage());
         }
         String query = "insert into sale values ( "+id+" )";
+        System.out.println(query);
         DBConnection.submitUpdate(query);
 
         for(LineItem lineItem : cart){
-            //lineItem.save(id);
+            lineItem.save(id);
         }
     }
 }

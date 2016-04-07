@@ -20,9 +20,7 @@ public class ProcessSaleController implements ActionListener{
 		}
 		else if(ac.getActionCommand().equals("Checkout"))
 		{
-			printReceipt(currentSale.getCartList());
-			currentSale = new Sale();
-			view.returnToSale();
+			processSale();
 		}
 		//else if createSale
 		//else if addLineItem
@@ -35,10 +33,6 @@ public class ProcessSaleController implements ActionListener{
 		view = new ProcessSaleView(applicationFrame);
 		view.addController(this);
     }
-    
-    public void createSale(){
-		currentSale = new Sale();
-    }
 
     public void addLineItem(int ID, int quantity){
 		Item item = Item.retrieve(ID);
@@ -48,19 +42,11 @@ public class ProcessSaleController implements ActionListener{
 		view.updateTotalCost(currentSale.getTotal());
     }
 
-    public void removeLineItem(int ID, int quantity){
-		Item item = Item.retrieve(ID);
-		LineItem lineItem = new LineItem(quantity, item);
-		currentSale.removeLineItem(lineItem);
-    }
-
-    public boolean processSale(int cardNumber){
-		double total = currentSale.getTotal();
-		if(true == PaymentAuthorizer.PaymentAuth(cardNumber, total)){
-	    	currentSale.save();
-	    	return true;
-		}
-		return false;
+    public void processSale(){
+	   	currentSale.save();
+	    printReceipt(currentSale.getCartList());
+		currentSale = new Sale();
+		view.returnToSale();
     }
 
     public static void create() {
