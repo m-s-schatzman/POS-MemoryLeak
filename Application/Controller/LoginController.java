@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class LoginController extends java.util.Observable implements ActionListener{
+public class LoginController implements ActionListener{
 
 	private LoginView view;
 
+	//Routes the actions performed in the view to their respective actions in the controller
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
 	    	System.exit(1);

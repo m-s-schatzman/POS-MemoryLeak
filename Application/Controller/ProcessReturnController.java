@@ -31,17 +31,17 @@ public class ProcessReturnController implements ActionListener{
 		//else if processSale
     	}
 
-    public ProcessReturnController(JFrame applicationFrame){
+    private ProcessReturnController(JFrame applicationFrame){
 		currentReturn = new Return();
 		view = new ProcessReturnView(applicationFrame);
 		view.addController(this);
     }
     
-    public void createReturn(){
+    private void createReturn(){
 		currentReturn = new Return();
     }
 
-    public void addLineItem(int ID, int quantity){
+    private void addLineItem(int ID, int quantity){
 		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentReturn.addLineItem(lineItem);
@@ -49,13 +49,13 @@ public class ProcessReturnController implements ActionListener{
 		view.updateTotalCost(currentReturn.getTotal());
     }
 
-    public void removeLineItem(int ID, int quantity){
+    private void removeLineItem(int ID, int quantity){
 		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentReturn.removeLineItem(lineItem);
     }
 
-    public boolean processReturn(int cardNumber){
+    private boolean processReturn(int cardNumber){
 		double total = currentReturn.getTotal();
 		if(true == PaymentAuthorizer.PaymentAuth(cardNumber, total)){
 	    	currentReturn.save();
@@ -69,7 +69,7 @@ public class ProcessReturnController implements ActionListener{
     	new ProcessReturnController(applicationFrame);
     }
 
-    public void printReceipt(String cartList){
+    private void printReceipt(String cartList){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

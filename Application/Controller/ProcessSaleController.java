@@ -28,13 +28,13 @@ public class ProcessSaleController implements ActionListener{
 		//else if processSale
     	}
 
-    public ProcessSaleController(JFrame applicationFrame){
+    private ProcessSaleController(JFrame applicationFrame){
 		currentSale = new Sale();
 		view = new ProcessSaleView(applicationFrame);
 		view.addController(this);
     }
 
-    public void addLineItem(int ID, int quantity){
+    private void addLineItem(int ID, int quantity){
 		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentSale.addLineItem(lineItem);
@@ -42,7 +42,7 @@ public class ProcessSaleController implements ActionListener{
 		view.updateTotalCost(currentSale.getTotal());
     }
 
-    public void processSale(){
+    private void processSale(){
 	   	currentSale.save();
 	    printReceipt(currentSale.getCartList());
 		currentSale = new Sale();
@@ -54,7 +54,7 @@ public class ProcessSaleController implements ActionListener{
     	new ProcessSaleController(applicationFrame);
     }
 
-    public void printReceipt(String cartList){
+    private void printReceipt(String cartList){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

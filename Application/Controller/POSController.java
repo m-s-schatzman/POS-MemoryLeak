@@ -31,7 +31,7 @@ public class POSController implements ActionListener{
 		}
 	}
 
-	public POSController(JFrame applicationFrame){
+	private POSController(JFrame applicationFrame){
 		view = new POSView(applicationFrame);
 		view.addController(this);
 	}

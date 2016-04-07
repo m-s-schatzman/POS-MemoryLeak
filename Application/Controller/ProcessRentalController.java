@@ -36,19 +36,19 @@ public class ProcessRentalController implements ActionListener {
 
     }
 
-    public ProcessRentalController(JFrame applicationFrame) {
+    private ProcessRentalController(JFrame applicationFrame) {
         currentRental = new Rental();
         view = new ProcessRentalView(applicationFrame);
         view.addController(this);
 
     }
 
-    public void createRental() {
+    private void createRental() {
         currentRental = new Rental();
     }
 
     //Needs to be changed to handle rental line items, not line items
-    public void addLineItem(int ID, int quantity) {
+    private void addLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
         LineItem lineItem = new LineItem(quantity, item);
         currentRental.addLineItem(lineItem);
@@ -57,13 +57,13 @@ public class ProcessRentalController implements ActionListener {
     }
 
     //Needs to be changed to handle rental line items, not line items
-    public void removeLineItem(int ID, int quantity) {
+    private void removeLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
         LineItem lineItem = new LineItem(quantity, item);
         currentRental.removeLineItem(lineItem);
     }
 
-    public boolean processRental(int cardNumber) {
+    private boolean processRental(int cardNumber) {
         double total = currentRental.getTotal();
         if (true == PaymentAuthorizer.PaymentAuth(cardNumber, total)) {
             currentRental.save();
@@ -77,7 +77,7 @@ public class ProcessRentalController implements ActionListener {
         new ProcessRentalController(applicationFrame);
     }
     
-    public void printReceipt(String cartList){
+    private void printReceipt(String cartList){
         JFrame receiptFrame=new JFrame("Receipt");
         receiptFrame.pack();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,11 +104,5 @@ public class ProcessRentalController implements ActionListener {
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);
     	receiptFrame.setSize(400,400);
-	}
-        
-        
+	}     
 }
-    
-    
-    
-
