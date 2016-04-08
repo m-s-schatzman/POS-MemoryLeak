@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-
+import java.sql.*;
 
 /**
  *
@@ -16,14 +16,9 @@ public class LineItem {
     protected Item item;
     
     /** constructor */
-    LineItem(int count, Item item){
+    public LineItem(int count, Item item){
         this.count =count;
         this.item = item;
-    }
-    
-    /** create a lineItem with count and item */
-    public LineItem createLineItem(int count, Item item){
-        return new LineItem(count,item);
     }
     
     /** return amount of this lineItem */

@@ -31,7 +31,7 @@ public class ProcessRentalController implements ActionListener {
         } else if (ac.getActionCommand().equals("Checkout")) {
             printReceipt(currentRental.getCartList());
             currentRental = new Rental();
-            view.returnToRental(); //////
+            view.returnToRental(); 
         }
 
     }
@@ -63,9 +63,9 @@ public class ProcessRentalController implements ActionListener {
  //       currentRental.removeLineItem(lineItem);
     }
 
-    private boolean processRental(int cardNumber) {
+    private boolean processRental(String cardNumber) {
         double total = currentRental.getTotal();
-        if (true == PaymentAuthorizer.PaymentAuth(cardNumber, total)) {
+        if (true == PaymentAuthorizer.authorizePayment(cardNumber, total)) {
            // currentRental.save();
             return true;
         }
