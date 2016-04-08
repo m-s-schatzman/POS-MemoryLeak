@@ -40,9 +40,9 @@ public class Inventory{
         int count = 0;
         try{
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select count from "+tableName+" where item_id = "+item.getID());
+            ResultSet rs = s.executeQuery("select quantity from "+tableName+" where item_id = "+item.getID());
             if(rs.next()){
-                count = rs.getInt("count");
+                count = rs.getInt("quantity");
             }
             rs.close();
             s.close();
