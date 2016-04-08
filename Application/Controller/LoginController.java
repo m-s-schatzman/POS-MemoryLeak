@@ -45,34 +45,12 @@ public class LoginController implements ActionListener{
 			POSController.create();
         	view.closeFrame();
 		}
-		/*
 		else
 		{
-			createInvalidMessage();
-		} */
+			Logger.logError("Invalid Login Credentials. Please Try Again.");
+			Logger.displayError("Invalid Login Credentials. Please Try Again.");
+		}
   	}
-
-/*
-  	private void createInvalidMessage()
-  	{
-  		f = new JFrame("Invalid Credentials");
-  		JPanel p = new JPanel();
-    	f.pack();
-    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	    int height = screenSize.height;
-	    int width = screenSize.width;
-	    f.setSize((width/2) - 600, (height/2) - 250);
-	   	f.setLocationRelativeTo(null);
-    	JPanel invalidPanel = new JPanel();
-    	JLabel message = new JLabel("Invalid Login. Please try again");
-
-    	p.add(message);
-   	    f.setSize(200,200);
-	    f.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
-	    f.setContentPane(p);
-	    f.setVisible(true);
-  	}
-  	*/
 
 
 }

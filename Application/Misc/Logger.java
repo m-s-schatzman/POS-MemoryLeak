@@ -5,7 +5,7 @@ import javax.swing.*;
 //Logger class used to log errors encountered at runtime
 public class Logger{
 	public static void logError(String error){
-		//Just print to terminal for now, will eventually be some type of log file
+		//Just print to terminal for now, will eventually be some type of log fileE
 		System.out.println(error);
 	}
 
@@ -28,5 +28,6 @@ public class Logger{
     	errorFrame.setContentPane(errorPanel);
     	errorFrame.setVisible(true);
     	errorFrame.setSize(400,400);
+    	errorFrame.getRootPane().setDefaultButton(returnButton);
 	}
 }
