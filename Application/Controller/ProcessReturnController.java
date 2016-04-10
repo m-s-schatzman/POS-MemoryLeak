@@ -33,6 +33,9 @@ public class ProcessReturnController implements ActionListener{
 			String choice = rButton.getText();
 			if(choice.equals("Credit Card"))
 			view.addCardField();	
+			else if(choice.equals("Cash")){
+				if(card.length()>0) view.removeCardField();
+			}
 		}
 		
     }

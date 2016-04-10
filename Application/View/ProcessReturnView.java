@@ -119,6 +119,13 @@ public class ProcessReturnView{
       f.setContentPane(p);
     }
 
+    public void removeCardField(){
+      p.remove(card);
+      p.remove(cardLabel);
+      p.setLayout(fl);
+      f.setContentPane(p);
+    }
+
 
     public String getCardNum(){
       return card.getText();
