@@ -64,7 +64,7 @@ public class Return {
         int id = 0;
         try{
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select max(id) as maximum from return");
+            ResultSet rs = s.executeQuery("select max(id) as maximum from returned_item");
             if(rs.next()){
                 id = rs.getInt("maximum") + 1;
             }else{
@@ -75,13 +75,13 @@ public class Return {
         }catch(SQLException sqle){
             Logger.logError(sqle.getMessage());
         }
-        String query = "insert into return values ( "+id+" )";
+        String query = "insert into returned_item values ( "+id+" )";
         DBConnection.submitUpdate(query);
 
         Inventory inventory = Inventory.getInventory();
-        for(ReturnLineItem lineItem : cart){
-            lineItem.save(id);
-            inventory.returnLineItem(id);
-        }
+        //for(ReturnLineItem lineItem : cart){
+          //  lineItem.save(id);
+            //inventory.purchaseLineItem(LineItem);
+        //}
     } 
 }

@@ -3,15 +3,18 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
-//Return items need to be stored in differt table in database according to Huan... no idea what that means, need to ask him
-//Also receipt should be printed and amount of cash given back needs to be printed
 
+//Return items need to be stored in differt table 
 public class ProcessReturnController implements ActionListener{
     private Return currentReturn;
     private ProcessReturnView view;
+    private String card = "";
 
     public void actionPerformed(ActionEvent ac){
+
 		if(ac.getActionCommand().equals("Exit")){
 	    	POSController.create();
 			view.closeFrame();
@@ -21,15 +24,18 @@ public class ProcessReturnController implements ActionListener{
 		}
 		else if(ac.getActionCommand().equals("Return"))
 		{
-			printReceipt(currentReturn.getCartList());
-			currentReturn = new Return();
-			view.returnToSale();
+			card = view.getCardNum();
+			double amountAsk = currentReturn.getTotal();
+			processReturn(amountAsk);
 		}
-		//else if createSale
-		//else if addLineItem
-		//else if removeLineItem
-		//else if processSale
-    	}
+		else {
+			AbstractButton rButton = (AbstractButton) ac.getSource();
+			String choice = rButton.getText();
+			if(choice.equals("Credit Card"))
+			view.addCardField();	
+		}
+		
+    }
 
     private ProcessReturnController(JFrame applicationFrame){
 		currentReturn = new Return();
@@ -37,9 +43,6 @@ public class ProcessReturnController implements ActionListener{
 		view.addController(this);
     }
     
-    private void createReturn(){
-		currentReturn = new Return();
-    }
 
     private void addLineItem(int ID, int quantity){
 		Item item = Item.retrieve(ID);
@@ -55,13 +58,11 @@ public class ProcessReturnController implements ActionListener{
 		currentReturn.removeLineItem(lineItem);
     }
 
-    private boolean processReturn(int cardNumber){
-		double total = currentReturn.getTotal();
-		if(true == PaymentAuthorizer.PaymentAuth(cardNumber, total)){
-	    	currentReturn.save();
-	    	return true;
-		}
-		return false;
+    private void processReturn(double amountAsk){
+		currentReturn.save();
+	    printReceipt(currentReturn.getCartList(), amountAsk);
+		currentReturn = new Return();
+		view.returnToSale();
     }
 
     public static void create() {
@@ -69,7 +70,7 @@ public class ProcessReturnController implements ActionListener{
     	new ProcessReturnController(applicationFrame);
     }
 
-    private void printReceipt(String cartList){
+    private void printReceipt(String cartList, double amountAsk){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -85,6 +86,17 @@ public class ProcessReturnController implements ActionListener{
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(10);
     	finalTotal.setText(""+currentReturn.getTotal());
+    	NumberFormat formatter = new DecimalFormat("#0.00");     
+    	JLabel changeLabel = new JLabel("Total returned: $" + formatter.format(amountAsk));
+    	JLabel pay;
+    	if(card.length()>0) {
+    		pay = new JLabel("to Credit Card: " + card);
+    	}
+    	else {
+    		pay = new JLabel("In Cash");
+
+    	}
+
     	validated.setText("Refund Validated");
     	validated.setEditable(false);
 		finalItems.setColumns(10);
@@ -92,9 +104,12 @@ public class ProcessReturnController implements ActionListener{
 		receiptPanel.add(finalItems);
 		receiptPanel.add(finalLabel);
 		receiptPanel.add(finalTotal);
+		receiptPanel.add(changeLabel);
+		receiptPanel.add(pay);
 		receiptPanel.add(validated);
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);
     	receiptFrame.setSize(400,400);
+    	
 	}
 }
