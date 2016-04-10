@@ -8,7 +8,7 @@ import java.sql.*;
 
 /**
  *
- * @author yuchencai
+ * @author 
  */
 
 public class LineItem {

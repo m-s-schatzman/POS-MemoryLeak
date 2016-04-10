@@ -11,7 +11,7 @@ import java.text.DecimalFormat;
 public class ProcessReturnController implements ActionListener{
     private Return currentReturn;
     private ProcessReturnView view;
-    private String card = "";
+    private String card;
 
     public void actionPerformed(ActionEvent ac){
 
@@ -31,10 +31,13 @@ public class ProcessReturnController implements ActionListener{
 		else {
 			AbstractButton rButton = (AbstractButton) ac.getSource();
 			String choice = rButton.getText();
-			if(choice.equals("Credit Card"))
-			view.addCardField();	
+			if(choice.equals("Credit Card")){
+				view.addCardField();
+				card = "";
+			}
+				
 			else if(choice.equals("Cash")){
-				if(card.length()>0) view.removeCardField();
+				if(card!=null) view.removeCardField();
 			}
 		}
 		
@@ -94,9 +97,12 @@ public class ProcessReturnController implements ActionListener{
     	JLabel pay;
     	if(card.length()>0) {
     		pay = new JLabel("to Credit Card: " + card);
+
+
     	}
     	else {
     		pay = new JLabel("In Cash");
+
 
     	}
 
@@ -109,7 +115,7 @@ public class ProcessReturnController implements ActionListener{
 		receiptPanel.add(finalTotal);
 		receiptPanel.add(changeLabel);
 		receiptPanel.add(pay);
-		receiptPanel.add(validated);
+		if(card.length()>0) receiptPanel.add(validated);
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);
     	receiptFrame.setSize(400,400);
