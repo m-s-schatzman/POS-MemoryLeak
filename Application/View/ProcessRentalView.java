@@ -29,8 +29,8 @@ public class ProcessRentalView {
     private JButton addButton;
     private JButton checkoutButton;
     
-    public ProcessRentalView(JFrame f){
-       this.f = f;
+    public ProcessRentalView(){
+       this.f = new JFrame("Process Rental");
        f.pack();
        p = new JPanel();
        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

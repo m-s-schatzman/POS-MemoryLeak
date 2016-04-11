@@ -17,8 +17,8 @@ public class LoginView implements java.util.Observer{
     private JButton loginButton;
     private JButton exitButton;
     
-    public LoginView(JFrame f){
-	   this.f = f;
+    public LoginView(){
+	   this.f = new JFrame("Login");
 	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 	   int height = screenSize.height;
 	   int width = screenSize.width;

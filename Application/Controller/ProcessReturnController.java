@@ -16,7 +16,7 @@ public class ProcessReturnController implements ActionListener{
     public void actionPerformed(ActionEvent ac){
 
 		if(ac.getActionCommand().equals("Exit")){
-	    	POSController.create();
+	    	new POSController();
 			view.closeFrame();
 		}
 		else if(ac.getActionCommand().equals("Add Item")){
