@@ -11,8 +11,8 @@ public class POSController implements ActionListener{
         	ProcessSaleController.create();
         	view.closeFrame();
 		}else if(ac.getActionCommand().equals("Process Rental")){
-			//new ProcessRentalController();
-			//view.closeFrame();
+			new ProcessRentalController();
+			view.closeFrame();
 		}else if(ac.getActionCommand().equals("Process Return")){
 			ProcessReturnController.create();
 			view.closeFrame();
