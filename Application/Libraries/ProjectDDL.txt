@@ -1,15 +1,15 @@
 CREATE TABLE item
 (
 id numeric(10),
-name varchar(30),
-price numeric(5,2),
+name varchar(30) not null,
+price numeric(5,2) not null,
 primary key(id)
 );
 
 CREATE TABLE inventory
 (
 item_id numeric(10),
-quantity numeric(5),
+quantity numeric(5) not null,
 primary key(item_id),
 foreign key(item_id) references item(id)
 );
@@ -17,7 +17,7 @@ foreign key(item_id) references item(id)
 CREATE TABLE returned_item
 (
 item_id numeric(10),
-quantity numeric(5),
+quantity numeric(5) not null,
 primary key(item_id),
 foreign key(item_id) references item(id)
 );
@@ -25,8 +25,8 @@ foreign key(item_id) references item(id)
 CREATE TABLE employee
 (
 name varchar(30),
-password varchar(30),
-role varchar(12),
+password varchar(30) not null,
+role varchar(12) not null,
 primary key(name)
 );
 
@@ -40,7 +40,7 @@ CREATE TABLE sale_item
 (
 sale_id numeric(10),
 item_id numeric(10),
-quantity numeric(5),
+quantity numeric(5) not null,
 primary key(sale_id, item_id),
 foreign key(sale_id) references sale(id),
 foreign key(item_id) references item(id)
@@ -57,7 +57,7 @@ CREATE TABLE rental_item
 rental_id numeric(10),
 item_id numeric(10),
 quantity numeric(5),
-return_date date,
+return_date date not null,
 primary key(rental_id, item_id),
 foreign key(rental_id) references rental(id),
 foreign key(item_id) references item(id)
@@ -73,7 +73,7 @@ CREATE TABLE return_item
 (
 return_id numeric(10),
 item_id numeric(10),
-quantity numeric(5),
+quantity numeric(5) not null,
 primary key(return_id, item_id),
 foreign key(return_id) references return(id),
 foreign key(item_id) references item(id)

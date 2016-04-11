@@ -50,12 +50,15 @@ public class ProcessSaleController implements ActionListener{
     }
 
     private void addLineItem(int ID, int quantity){
+		if(ID>=0 && quantity>0){
 		Item item = Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		currentSale.addLineItem(lineItem);
 		view.updateTotalItems(currentSale.getCartList());
 		view.updateTotalCost(currentSale.getTotal());
-    }
+		
+		} 
+		   }
 
     private void processSale(double change){
 	   	currentSale.save();
