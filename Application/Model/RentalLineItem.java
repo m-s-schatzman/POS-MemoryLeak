@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class RentalLineItem extends LineItem{
     
@@ -17,8 +18,8 @@ public class RentalLineItem extends LineItem{
 
     /** save rentalLineItem to db */
     public void save(int rentalId){
-        //This return date will likely need to be in another format, but this should work for now
-        String query = "insert into rental_item values ( "+rentalId+", "+item.getID()+", "+count+", "+returnDate.toString()+" )";
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String query = "insert into rental_item values ( "+rentalId+", "+item.getID()+", "+count+", '"+df.format(returnDate)+"' )";
         DBConnection.submitUpdate(query);
     }
 }
