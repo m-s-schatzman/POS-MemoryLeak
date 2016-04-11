@@ -8,6 +8,8 @@ Note: to run the make_script.sh bash script, you may need to use the command "ch
 
 To Reset Database: To reset the database (delete it) run the run_script.sh with the argument reset ("./run_script.sh reset"). This will delete the database and when the application is started again, it will be reset with the values defined by populateDB in DBDriver.
 
+To Run Test Suite: from the Application/ folder run the command "./run_script.sh test" to run the automated testing process. If the Test class has been added to the main of TestSuite.java, and the tests are declared correctly, the test should run.
+
 To Run: from the Application/ folder run the command "./run_script.sh" to run the automated run process. This will set the correct directory to run the compiled Main.java class out of.
 
 
