@@ -5,9 +5,11 @@ import org.junit.internal.TextListener;
 
 //Add classes to here to have them run as part of the test suite
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-   LoginTest.class
-})
+@Suite.SuiteClasses(
+{
+   LoginTest.class, ManageUserTest.class //TODO verify this works.
+}
+)
  
 public class TestSuite{
 	public static void main(String args[]){

@@ -28,27 +28,28 @@ public class ManageUserController implements ActionListener{
 			view.clearDelField();
 		}
 	}
-
-	private ManageUserController(JFrame applicationFrame){
+	
+	public ManageUserController(JFrame applicationFrame){
 		
 		view = new ManageUserView(applicationFrame);
 		view.addController(this);
 		showUsers();
 	}
 
-	private void addUser(String newId, String newPassword, User.Role role){
-	    if(newId.length()>0 && newPassword.length() >0 ){
-	        User newUser = new User(newId, newPassword, role);
-		newUser.save();
-		showUsers();}
+	public void addUser(String newId, String newPassword, User.Role role){
+	    	if(newId.length()>0 && newPassword.length() >0 ){
+	       		 User newUser = new User(newId, newPassword, role);
+				newUser.save();
+				showUsers();}
 	} 
 
-	private void deleteUser(String id)
-	{	
-		User deletedUser = User.retrieve(id);
-		if(deletedUser.getRole() != User.Role.Admin){
-		deletedUser.delete();
-		showUsers();
+	public void deleteUser(String id)
+	{	if(id.length()>0){
+			User deletedUser = User.retrieve(id);
+			if(deletedUser.getRole() != User.Role.Admin){
+					deletedUser.delete();
+					showUsers();
+				}
 		}
 	}
 	private void showUsers(){	
@@ -59,5 +60,8 @@ public class ManageUserController implements ActionListener{
 	public static void create() {
     	JFrame applicationFrame = new JFrame("Manage Users");
     	new ManageUserController(applicationFrame);
+    }
+    public void close(){
+    view.closeFrame();
     }
 }
