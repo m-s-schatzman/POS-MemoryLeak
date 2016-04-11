@@ -4,10 +4,6 @@ import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//Need to implement adding and removing users from db according to rubic
-//We also need some sort of "role" associated with each user.
-//	-Thinking about implementing "level" attribute in db and use admin/normal enum in User class
-
 public class ManageUserController implements ActionListener{
 
 	private ManageUserView view;
@@ -17,14 +13,10 @@ public class ManageUserController implements ActionListener{
 		if(ac.getActionCommand().equals("Exit")){
 			new POSController();
 			view.closeFrame();
-		}
-		else if(ac.getActionCommand().equals("Add User")){
+		}else if(ac.getActionCommand().equals("Add User")){
 			addUser(view.getId(), view.getPassword(), User.Role.Normal);
 			view.clearIdPassFields();
-		}
-
-		else if(ac.getActionCommand().equals("Delete"))
-		{
+		}else if(ac.getActionCommand().equals("Delete")){
 			deleteUser(view.getDeleteField());
 			view.clearDelField();
 		}
@@ -39,15 +31,16 @@ public class ManageUserController implements ActionListener{
 
 	//Adds user to database
 	public void addUser(String newId, String newPassword, User.Role role){
-	    	if(newId.length()>0 && newPassword.length() >0 ){
-	       		 User newUser = new User(newId, newPassword, role);
-				newUser.save();
-				showUsers();}
+	    if(newId.length()>0 && newPassword.length() >0 ){
+	  		User newUser = new User(newId, newPassword, role);
+			newUser.save();
+			showUsers();
+		}
 	} 
 
 	//Deletes user with given username from database
-	public void deleteUser(String username)
-	{	if(username.length()>0){
+	public void deleteUser(String username){
+		if(username.length()>0){
 			User deletedUser = User.retrieve(username);
 			if(deletedUser.getRole() != User.Role.Admin){
 				deletedUser.delete();
