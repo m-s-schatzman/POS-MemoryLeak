@@ -12,6 +12,7 @@ public class ManageUserController implements ActionListener{
 
 	private ManageUserView view;
 
+	//Handle actions performed in the view
 	public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
 			new POSController();
@@ -29,13 +30,14 @@ public class ManageUserController implements ActionListener{
 		}
 	}
 	
-	public ManageUserController(JFrame applicationFrame){
-		
-		view = new ManageUserView(applicationFrame);
+	//Constructor
+	public ManageUserController(){	
+		view = new ManageUserView();
 		view.addController(this);
 		showUsers();
 	}
 
+	//Adds user to database
 	public void addUser(String newId, String newPassword, User.Role role){
 	    	if(newId.length()>0 && newPassword.length() >0 ){
 	       		 User newUser = new User(newId, newPassword, role);
@@ -43,25 +45,26 @@ public class ManageUserController implements ActionListener{
 				showUsers();}
 	} 
 
-	public void deleteUser(String id)
-	{	if(id.length()>0){
-			User deletedUser = User.retrieve(id);
+	//Deletes user with given username from database
+	public void deleteUser(String username)
+	{	if(username.length()>0){
+			User deletedUser = User.retrieve(username);
 			if(deletedUser.getRole() != User.Role.Admin){
-					deletedUser.delete();
-					showUsers();
-				}
+				deletedUser.delete();
+				showUsers();
+			}
 		}
 	}
+
+	//Adds the list of Users to the view
 	private void showUsers(){	
 		ArrayList<User> users = new ArrayList();
 		users = User.getAll();
 		view.showUsers(users);
 	}
-	public static void create() {
-    	JFrame applicationFrame = new JFrame("Manage Users");
-    	new ManageUserController(applicationFrame);
-    }
+
+	//Closes the Controller and it's frame
     public void close(){
-    view.closeFrame();
+    	view.closeFrame();
     }
 }

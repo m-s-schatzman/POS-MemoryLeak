@@ -10,8 +10,7 @@ public class ManageUserTest{
 
 	@Test
 	public void testAddandDeleteUser(){
-		JFrame applicationFrame = new JFrame("Manage Users Test");
-		ManageUserController muc=new ManageUserController(applicationFrame);
+		ManageUserController muc=new ManageUserController();
 		muc.addUser("testname","12345", User.Role.Normal);
 		assertEquals("testname",User.retrieve("testname").getUsername());
 		assertEquals("12345",User.retrieve("testname").getPassword());

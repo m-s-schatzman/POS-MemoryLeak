@@ -20,8 +20,8 @@ public class ManageUserView{
     private JButton deleteButton;
 
     
-    public ManageUserView(JFrame f){
-       this.f = f;
+    public ManageUserView(){
+       this.f = new JFrame("Manage Users");
        f.pack();
        p = new JPanel();
        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

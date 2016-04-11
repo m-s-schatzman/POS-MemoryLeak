@@ -17,7 +17,7 @@ public class POSController implements ActionListener{
 			ProcessReturnController.create();
 			view.closeFrame();
 		}else if(ac.getActionCommand().equals("Manage Users")){
-			ManageUserController.create();
+			new ManageUserController();
         	view.closeFrame();
 		}else if(ac.getActionCommand().equals("Logout")){
 			CurrentUser.logout();
