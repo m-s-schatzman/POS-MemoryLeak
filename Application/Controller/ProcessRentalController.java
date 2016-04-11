@@ -46,7 +46,7 @@ public class ProcessRentalController implements ActionListener {
     private void createRental() {
         currentRental = new Rental();
     }
-
+/*
     //Needs to be changed to handle rental line items, not line items
     private void addLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
@@ -55,14 +55,28 @@ public class ProcessRentalController implements ActionListener {
         view.updateTotalItems(currentRental.getCartList());
         view.updateTotalCost(currentRental.getTotal());
     }
-
+*/
+    private void addLineItem(int ID, int quantity){
+    	Item item=Item.retrieve(ID);
+    	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item);
+    	currentRental.addLineItem(rentalLineItem);
+    	view.updateTotalItems(currentRental.getCartList());
+    	view.updateTotalCost(currentRental.getTotal());
+    }
+   /*
     //Needs to be changed to handle rental line items, not line items
     private void removeLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
         LineItem lineItem = new LineItem(quantity, item);
  //       currentRental.removeLineItem(lineItem);
     }
-
+    */
+     private void removeLineItem(int ID, int quantity) {
+        Item item = Item.retrieve(ID);
+        RentalLineItem rentalLineItem = new RentalLineItem(quantity, item);
+        currentRental.removeLineItem(rentalLineItem);
+    }
+/*
     private boolean processRental(String cardNumber) {
         double total = currentRental.getTotal();
         if (true == PaymentAuthorizer.authorizePayment(cardNumber, total)) {
@@ -70,6 +84,13 @@ public class ProcessRentalController implements ActionListener {
             return true;
         }
         return false;
+    }
+    */
+    private void processRental(double change){
+    	currentRental.save();
+    	printReceipt(currentRental.getCartList(),change);
+    	currentRental=new Rental();
+    	view.returnToRental();
     }
 
     public static void create() {

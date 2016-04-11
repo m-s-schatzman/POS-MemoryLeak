@@ -16,9 +16,14 @@ public class ProcessReturnView{
     private JTextArea totalItems;
     private JLabel totalCostLabel;
     private JTextField totalCost;
+    private JLabel paymentOption;
+    private final JRadioButton ccOption;
+    private final JRadioButton cashOption;
     private JButton exitButton;
     private JButton addButton;
     private JButton returnButton;
+    private JLabel cardLabel;
+    private JTextField card;
 
     
     public ProcessReturnView(JFrame f){
@@ -44,7 +49,12 @@ public class ProcessReturnView{
        totalCostLabel = new JLabel("Total returned:");
        totalCost = new JTextField(10);
        totalCost.setEditable(false);
-
+       paymentOption = new JLabel("Select Payment Method: ");
+       ccOption = new JRadioButton("Credit Card", false);
+       cashOption = new JRadioButton("Cash", false);
+       ButtonGroup group = new ButtonGroup();
+       group.add(ccOption);
+       group.add(cashOption);
 
        addButton = new JButton("Add Item");
        exitButton = new JButton("Exit");
@@ -60,6 +70,9 @@ public class ProcessReturnView{
        p.add(totalItems);
        p.add(totalCostLabel);
        p.add(totalCost);
+       p.add(paymentOption);
+       p.add(ccOption);
+       p.add(cashOption);
        p.add(returnButton);
        p.setLayout(fl);
 
@@ -74,6 +87,8 @@ public class ProcessReturnView{
        exitButton.addActionListener(controller);
        addButton.addActionListener(controller);
        returnButton.addActionListener(controller);
+       ccOption.addActionListener(controller);
+       cashOption.addActionListener(controller);
    }
 
     public int getId(){
@@ -84,6 +99,7 @@ public class ProcessReturnView{
     	return Integer.parseInt(tfQ.getText());
     }
 
+
     public void updateTotalItems(String cartList){
     	//totalItems.append("\n" + itemName + " " + quantity);
         totalItems.setText(cartList);
@@ -91,6 +107,30 @@ public class ProcessReturnView{
 
     public void updateTotalCost(double total){
     	totalCost.setText(""+total);
+    }
+    
+    public void addCardField()
+    {
+      if (cardLabel==null){
+      cardLabel = new JLabel("Card Number: ");
+      card = new JTextField(10);
+      p.add(cardLabel);
+      p.add(card);
+      p.setLayout(fl);
+      f.setContentPane(p);
+    }
+    }
+
+    public void removeCardField(){
+      p.remove(card);
+      p.remove(cardLabel);
+      p.setLayout(fl);
+      f.setContentPane(p);
+    }
+
+
+    public String getCardNum(){
+      return card.getText();
     }
 
 	public void returnToSale()
