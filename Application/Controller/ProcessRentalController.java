@@ -1,16 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Qing
- * @author qiy317
- */
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -22,40 +9,28 @@ public class ProcessRentalController implements ActionListener {
     private Rental currentRental;
     private ProcessRentalView view;
 
+    //Handles event that happens in the View
     public void actionPerformed(ActionEvent ac) {
         if (ac.getActionCommand().equals("Exit")) {
             new POSController();
             view.closeFrame();
-        } else if (ac.getActionCommand().equals("Add Item")) {
+        }else if (ac.getActionCommand().equals("Add Item")) {
             addLineItem(view.getId(), view.getQuantity());
-        } else if (ac.getActionCommand().equals("Checkout")) {
+        }else if (ac.getActionCommand().equals("Checkout")) {
             printReceipt(currentRental.getCartList());
             currentRental = new Rental();
             view.returnToRental(); 
         }
-
     }
 
-    private ProcessRentalController(JFrame applicationFrame) {
+    //Constructor
+    public ProcessRentalController() {
         currentRental = new Rental();
-        view = new ProcessRentalView(applicationFrame);
+        view = new ProcessRentalView();
         view.addController(this);
-
     }
 
-    private void createRental() {
-        currentRental = new Rental();
-    }
-/*
-    //Needs to be changed to handle rental line items, not line items
-    private void addLineItem(int ID, int quantity) {
-        Item item = Item.retrieve(ID);
-        LineItem lineItem = new LineItem(quantity, item);
-//        currentRental.addLineItem(lineItem);
-        view.updateTotalItems(currentRental.getCartList());
-        view.updateTotalCost(currentRental.getTotal());
-    }
-*/
+    //Adds a line item to the current rental
     private void addLineItem(int ID, int quantity){
     	Item item=Item.retrieve(ID);
     	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item);
@@ -63,41 +38,24 @@ public class ProcessRentalController implements ActionListener {
     	view.updateTotalItems(currentRental.getCartList());
     	view.updateTotalCost(currentRental.getTotal());
     }
-   /*
-    //Needs to be changed to handle rental line items, not line items
+   
+    //Removes given line item from the current rental
     private void removeLineItem(int ID, int quantity) {
-        Item item = Item.retrieve(ID);
-        LineItem lineItem = new LineItem(quantity, item);
- //       currentRental.removeLineItem(lineItem);
-    }
-    */
-     private void removeLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
         RentalLineItem rentalLineItem = new RentalLineItem(quantity, item);
         currentRental.removeLineItem(rentalLineItem);
     }
-/*
-    private boolean processRental(String cardNumber) {
-        double total = currentRental.getTotal();
-        if (true == PaymentAuthorizer.authorizePayment(cardNumber, total)) {
-           // currentRental.save();
-            return true;
-        }
-        return false;
-    }
-    */
+
+    //Process the current Rental
+    //Save to database
     private void processRental(double change){
     	currentRental.save();
     	printReceipt(currentRental.getCartList(),change);
     	currentRental=new Rental();
     	view.returnToRental();
     }
-
-    public static void create() {
-        JFrame applicationFrame = new JFrame("Process Rental");
-        new ProcessRentalController(applicationFrame);
-    }
     
+    //Prints the receipt in new JFrame
     private void printReceipt(String cartList){
         JFrame receiptFrame=new JFrame("Receipt");
         receiptFrame.pack();
