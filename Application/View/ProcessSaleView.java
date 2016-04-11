@@ -59,6 +59,11 @@ public class ProcessSaleView{
        group.add(ccOption);
        group.add(cashOption);
 
+       cashFieldLabel = new JLabel("Given cash amount: $");
+       cashField = new JTextField(3);
+       ccFieldLabel = new JLabel("Enter credit card number: ");
+       ccField = new JTextField(11);
+
 
        addButton = new JButton("Add Item");
        exitButton = new JButton("Exit");
@@ -103,8 +108,12 @@ public class ProcessSaleView{
     	return tfQ.getText();
     }
 
-    public int getCashAmount(){
-      return Integer.parseInt(cashField.getText());
+    public String getCashAmount(){
+      return cashField.getText();
+    }
+
+    public String getCcNumber(){
+      return ccField.getText();
     }
 
     public void updateTotalItems(String cartList){
@@ -116,20 +125,20 @@ public class ProcessSaleView{
     	totalCost.setText(""+total);
     }
 
-    public void addCashField()
+    public void showCashField()
     {
-      cashFieldLabel = new JLabel("Given cash amount: $");
-      cashField = new JTextField(3);
+      p.remove(ccFieldLabel);
+      p.remove(ccField);
       p.add(cashFieldLabel);
       p.add(cashField);
       p.setLayout(fl);
       f.setContentPane(p);
     }
 
-    public void addCCField()
+    public void showCCField()
     {
-      ccFieldLabel = new JLabel("Enter credit card number: ");
-      ccField = new JTextField(10);
+      p.remove(cashFieldLabel);
+      p.remove(cashField);
       p.add(ccFieldLabel);
       p.add(ccField);
       p.setLayout(fl);
@@ -142,6 +151,8 @@ public class ProcessSaleView{
     	tfQ.setText("");
     	totalItems.setText("");
     	totalCost.setText("");
+      cashField.setText("");
+      ccField.setText("");
     }
   
 
