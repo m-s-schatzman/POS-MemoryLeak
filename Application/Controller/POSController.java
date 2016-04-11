@@ -31,4 +31,9 @@ public class POSController implements ActionListener{
 		view = new POSView();
 		view.addController(this);
 	}
+
+	//Closes Controller and it's JFrame
+	public void close(){
+		view.closeFrame();
+	}
 }

@@ -12,7 +12,9 @@ public class LoginController implements ActionListener{
 		if(ac.getActionCommand().equals("Exit")){
 	    	System.exit(1);
 		}else if(ac.getActionCommand().equals("Login")){
-			login();
+			String username = view.getUserName();
+			String password = view.getPassword();
+			login(username, password);
     	}
 	}
 
@@ -23,16 +25,18 @@ public class LoginController implements ActionListener{
     }
 
   	//Attempt to login user into the application
-  	private void login(){
-  		String userName = view.getUserName();
-		String password = view.getPassword();
-		if(CurrentUser.login(userName, password)){
-			new POSController();
+  	public POSController login(String username, String password){
+		if(CurrentUser.login(username, password)){
         	view.closeFrame();
-		}
-		else
-		{
+        	return new POSController();
+		}else{
 			Logger.displayError("Invalid Login Credentials. Please Try Again.");
 		}
+		return null;
+  	}
+
+  	//Closes the controller and it's frame
+  	public void close(){
+  		view.closeFrame();
   	}
 }
