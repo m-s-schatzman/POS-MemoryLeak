@@ -37,7 +37,7 @@ public class ManageUserController implements ActionListener{
 	}
 
 	private void addUser(String newId, String newPassword, User.Role role){
-	    if(newId.length()>0 && newPassword.length() >0 ){
+	    if(newId.length()>0 && newPassword.length >0){
 	        User newUser = new User(newId, newPassword, role);
 		newUser.save();
 		showUsers();}
