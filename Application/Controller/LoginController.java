@@ -1,6 +1,4 @@
-import javax.swing.*;
 import java.awt.*;
-import java.util.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -8,7 +6,6 @@ import java.awt.event.ActionEvent;
 public class LoginController implements ActionListener{
 
 	private LoginView view;
-	private JFrame f;
 
 	//Routes the actions performed in the view to their respective actions in the controller
     public void actionPerformed(ActionEvent ac){
@@ -17,25 +14,13 @@ public class LoginController implements ActionListener{
 		}else if(ac.getActionCommand().equals("Login")){
 			login();
     	}
-    	else if(ac.getActionCommand().equals("Ok"))
-    	{
-    		f.setVisible(false);
-    		f.dispose();
-    	}
 	}
 
 	//Constuctor
-	//Create should be called to make this LoginController
-	private LoginController(JFrame applicationFrame){
-		view = new LoginView(applicationFrame);
+	public LoginController(){
+		view = new LoginView();
 		view.addController(this);
     }
-
-	//Creates new login view and controller
-	public static void create(){
-		JFrame loginFrame = new JFrame("Login");
-  		new LoginController(loginFrame);
-  	}
 
   	//Attempt to login user into the application
   	private void login(){
@@ -47,10 +32,7 @@ public class LoginController implements ActionListener{
 		}
 		else
 		{
-			Logger.logError("Invalid Login Credentials. Please Try Again.");
 			Logger.displayError("Invalid Login Credentials. Please Try Again.");
 		}
   	}
-
-
 }

@@ -4,7 +4,7 @@ public class Main{
   public static void main(String[] arg){
   	 DBConnection.openConnection();
   	 createClosingHook();
-  	 LoginController.create();
+  	 new LoginController();
   	 //Can comment following two lines in and comment out two above to skip login stage
   	 //JFrame posFrame = new JFrame("Memory Leak POS");
   	 //POSController posController = new POSController(posFrame);

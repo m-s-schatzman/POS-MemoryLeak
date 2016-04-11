@@ -26,7 +26,7 @@ public class POSController implements ActionListener{
 		}
 		else if(ac.getActionCommand().equals("Logout")){
 			CurrentUser.logout();
-			LoginController.create();
+			new LoginController();
         	view.closeFrame();
 		}
 	}
