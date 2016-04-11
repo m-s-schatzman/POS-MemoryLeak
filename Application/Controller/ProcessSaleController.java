@@ -12,6 +12,8 @@ import java.text.DecimalFormat;
 public class ProcessSaleController implements ActionListener{
     private Sale currentSale;
     private ProcessSaleView view;
+    private String paymentType;
+    private JLabel paymentLabel;
 
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
@@ -19,8 +21,24 @@ public class ProcessSaleController implements ActionListener{
 			view.closeFrame();
 		}
 		else if(ac.getActionCommand().equals("Add Item")){
-			addLineItem(view.getId(), view.getQuantity());
-		}
+			int id = 0;
+			int quantity = 0;
+			try {
+   				 id = Integer.parseInt(view.getId());
+   				 quantity = Integer.parseInt(view.getQuantity());
+   				 if(quantity == 0)
+   				 {
+   				 	Logger.logError("User entered 0 for amount of items.");
+   				 	Logger.displayError("Quanity of item must be greater than 0.");
+   				 }
+   				 else
+   				 	addLineItem(id, quantity);
+  				} catch (NumberFormatException e) 
+  				{
+    				Logger.logError("Invalid input. Try Again.");
+    				Logger.displayError("Invalid input. Try Again.");
+  				}
+  		}
 		else if(ac.getActionCommand().equals("Checkout"))
 		{
 			double amountGiven = view.getCashAmount();
@@ -30,10 +48,14 @@ public class ProcessSaleController implements ActionListener{
 		else
 		{
 			AbstractButton rButton = (AbstractButton) ac.getSource();
-			String choice = rButton.getText();
-			if(choice.equals("Cash"))
+			paymentType = rButton.getText();
+			if(paymentType.equals("Cash"))
 			{
 				view.addCashField();
+			}
+			else if(paymentType.equals("Credit Card"))
+			{
+				view.addCCField();
 			}
         	
 		}
@@ -85,17 +107,22 @@ public class ProcessSaleController implements ActionListener{
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(10);
     	finalTotal.setText(""+currentSale.getTotal());
-    	NumberFormat formatter = new DecimalFormat("#0.00");     
-    	JLabel changeLabel = new JLabel("Your change: $" + formatter.format(change));
-
-    	validated.setText("Payment Validated");
+    	NumberFormat formatter = new DecimalFormat("#0.00");
+    	if(paymentType.equals("Cash"))
+    	{     
+    		paymentLabel = new JLabel("Your change: $" + formatter.format(change));
+    	}
+    	else
+    	{
+    		validated.setText("Credit Card validated");
+    	}
     	validated.setEditable(false);
 		finalItems.setColumns(10);
 		finalItems.setRows(12);
 		receiptPanel.add(finalItems);
 		receiptPanel.add(finalLabel);
 		receiptPanel.add(finalTotal);
-		receiptPanel.add(changeLabel);
+		receiptPanel.add(paymentLabel);
 		receiptPanel.add(validated);
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);

@@ -24,6 +24,8 @@ public class ProcessSaleView{
     private JButton checkoutButton;
     private JLabel cashFieldLabel;
     private JTextField cashField;
+    private JLabel ccFieldLabel;
+    private JTextField ccField;
 
     
     public ProcessSaleView(JFrame f){
@@ -93,12 +95,12 @@ public class ProcessSaleView{
        cashOption.addActionListener(controller);
    }
 
-    public int getId(){
-    	return Integer.parseInt(tfID.getText());
+    public String getId(){
+    	return tfID.getText();
     }
 
-    public int getQuantity(){
-    	return Integer.parseInt(tfQ.getText());
+    public String getQuantity(){
+    	return tfQ.getText();
     }
 
     public int getCashAmount(){
@@ -120,6 +122,16 @@ public class ProcessSaleView{
       cashField = new JTextField(3);
       p.add(cashFieldLabel);
       p.add(cashField);
+      p.setLayout(fl);
+      f.setContentPane(p);
+    }
+
+    public void addCCField()
+    {
+      ccFieldLabel = new JLabel("Enter credit card number: ");
+      ccField = new JTextField(10);
+      p.add(ccFieldLabel);
+      p.add(ccField);
       p.setLayout(fl);
       f.setContentPane(p);
     }
