@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 import java.util.Date;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 
 //When it prints receipt, it will need to print the rental rules clearly according to rubic
 //Possibly use a simple formula of x*price per day it is rented...
@@ -18,11 +19,20 @@ public class ProcessRentalController implements ActionListener {
             new POSController();
             view.closeFrame();
         }else if (ac.getActionCommand().equals("Add Item")) {
-            addLineItem(view.getId(), view.getQuantity());
+            String idString = view.getId();
+            String quantityString = view.getQuantity();
+            String dateString = view.getDate();
+            try{
+                int id = Integer.parseInt(idString);
+                int quantity = Integer.parseInt(quantityString);
+                SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+                Date date = format.parse(dateString);
+                addLineItem(id, quantity, date);
+            }catch(Exception ex){
+                Logger.logError(ex.getMessage());
+            }
         }else if (ac.getActionCommand().equals("Checkout")) {
-            printReceipt(currentRental.getCartList());
-            currentRental = new Rental();
-            view.returnToRental(); 
+            processRental();
         }
     }
 
@@ -34,16 +44,16 @@ public class ProcessRentalController implements ActionListener {
     }
 
     //Adds a line item to the current rental
-    private void addLineItem(int ID, int quantity){
+    public void addLineItem(int ID, int quantity, Date returnDate){
     	Item item = Item.retrieve(ID);
-    	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, new Date());
+    	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, returnDate);
     	currentRental.addRentalLineItem(rentalLineItem);
     	view.updateTotalItems(currentRental.getCartList());
     	view.updateTotalCost(currentRental.getTotal());
     }
    
     //Removes given line item from the current rental
-    private void removeLineItem(int ID, int quantity) {
+    public void removeLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
         RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, new Date());
         currentRental.removeRentalLineItem(rentalLineItem);
@@ -51,7 +61,7 @@ public class ProcessRentalController implements ActionListener {
 
     //Process the current Rental
     //Save to database
-    private void processRental(double change){
+    public void processRental(){
     	currentRental.save();
     	printReceipt(currentRental.getCartList());
     	currentRental=new Rental();
