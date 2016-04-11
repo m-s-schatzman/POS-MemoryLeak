@@ -1,15 +1,21 @@
-import org.junit.*;
-import static org.junit.Assert.*;
- 
-import java.util.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runner.JUnitCore;
+import org.junit.internal.TextListener;
+
+//Add classes to here to have them run as part of the test suite
+@RunWith(Suite.class)
+@Suite.SuiteClasses({
+   LoginTest.class
+})
  
 public class TestSuite{
 	public static void main(String args[]){
-      org.junit.runner.JUnitCore.main("TestSuite");
-    }
-
-    @Test
-    public void testTest(){
-        assertTrue(true);
+		//Open db or create it if not yet created
+		DBConnection.openConnection();
+		//Run test classes and print output to System.out
+		JUnitCore junit = new JUnitCore();
+    	junit.addListener(new TextListener(System.out));
+    	junit.run(TestSuite.class);
     }
 }
