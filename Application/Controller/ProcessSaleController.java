@@ -14,6 +14,7 @@ public class ProcessSaleController implements ActionListener{
     private ProcessSaleView view;
     private String paymentType;
     private JLabel paymentLabel;
+    private boolean inCash;
 
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
@@ -41,9 +42,33 @@ public class ProcessSaleController implements ActionListener{
   		}
 		else if(ac.getActionCommand().equals("Checkout"))
 		{
-			double amountGiven = view.getCashAmount();
-			double change = amountGiven - currentSale.getTotal(); 
-			processSale(change);
+			if(inCash)
+			{
+				try {
+						int amountGiven = Integer.parseInt(view.getCashAmount());
+						double change = amountGiven - currentSale.getTotal(); 
+						processSale(change, inCash);
+					}
+					catch (NumberFormatException e) 
+  					{
+    					Logger.logError("Cash not given.");
+    					Logger.displayError("You have opted to pay in cash so please do so.");
+  					}
+			}
+			else
+			{
+				String ccNumber = view.getCcNumber();
+				if(PaymentAuthorizer.authorizePayment(ccNumber))
+				{
+					double ccNumberInt = Double.parseDouble(ccNumber);
+					processSale(ccNumberInt, inCash);
+				}
+				else
+				{
+					Logger.logError("Customer has invalid Credit Card.");
+					Logger.displayError("Payment not accepted. Please try again, or use alternative payment method.");
+				}
+			}
 		}
 		else
 		{
@@ -51,11 +76,13 @@ public class ProcessSaleController implements ActionListener{
 			paymentType = rButton.getText();
 			if(paymentType.equals("Cash"))
 			{
-				view.addCashField();
+				inCash = true;
+				view.showCashField();
 			}
 			else if(paymentType.equals("Credit Card"))
 			{
-				view.addCCField();
+				inCash = false;
+				view.showCCField();
 			}
         	
 		}
@@ -82,9 +109,9 @@ public class ProcessSaleController implements ActionListener{
 		} 
 		   }
 
-    private void processSale(double change){
+    private void processSale(double payment, boolean isCash){
 	   	currentSale.save();
-	    printReceipt(currentSale.getCartList(), change);
+	    printReceipt(currentSale.getCartList(), payment, isCash);
 		currentSale = new Sale();
 		view.returnToSale();
     }
@@ -94,7 +121,7 @@ public class ProcessSaleController implements ActionListener{
     	new ProcessSaleController(applicationFrame);
     }
 
-    private void printReceipt(String cartList, double change){
+    private void printReceipt(String cartList, double payment, boolean isCash){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -108,12 +135,12 @@ public class ProcessSaleController implements ActionListener{
     	JLabel finalLabel = new JLabel("Total Cost:");
     	JTextField finalTotal = new JTextField(5);
     	finalTotal.setEditable(false);
-    	JTextField validated = new JTextField(10);
+    	JTextField validated = new JTextField(11);
     	finalTotal.setText(""+currentSale.getTotal());
     	NumberFormat formatter = new DecimalFormat("#0.00");
-    	if(paymentType.equals("Cash"))
+    	if(isCash)
     	{     
-    		paymentLabel = new JLabel("Your change: $" + formatter.format(change));
+    		paymentLabel = new JLabel("Your change: $" + formatter.format(payment));
     	}
     	else
     	{
@@ -125,8 +152,14 @@ public class ProcessSaleController implements ActionListener{
 		receiptPanel.add(finalItems);
 		receiptPanel.add(finalLabel);
 		receiptPanel.add(finalTotal);
-		receiptPanel.add(paymentLabel);
-		receiptPanel.add(validated);
+		if(paymentLabel!=null)
+		{
+			receiptPanel.add(paymentLabel);
+		}
+		if(validated.getText().equals("Credit Card validated"))
+		{
+			receiptPanel.add(validated);
+		}
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);
     	receiptFrame.setSize(400,400);
