@@ -42,7 +42,7 @@ public class POSView{
     p.add(logoutButton);
     
     p.setLayout(fl);
-    f.setSize(200,200);
+    f.setSize(200,225);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setContentPane(p);
     f.setVisible(true);
