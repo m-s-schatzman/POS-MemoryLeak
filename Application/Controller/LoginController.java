@@ -27,7 +27,7 @@ public class LoginController implements ActionListener{
   		String userName = view.getUserName();
 		String password = view.getPassword();
 		if(CurrentUser.login(userName, password)){
-			POSController.create();
+			new POSController();
         	view.closeFrame();
 		}
 		else

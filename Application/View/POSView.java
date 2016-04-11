@@ -14,8 +14,8 @@ public class POSView{
   private JButton manageUsersButton;
   private JButton logoutButton;
 
-  public POSView(JFrame f){
-    this.f = f;
+  public POSView(){
+    this.f = new JFrame("Memory Leak POS");
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int height = screenSize.height;
     int width = screenSize.width;
