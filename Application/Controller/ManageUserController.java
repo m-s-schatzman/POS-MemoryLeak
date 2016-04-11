@@ -51,7 +51,7 @@ public class ManageUserController implements ActionListener{
 
 	//Adds the list of Users to the view
 	private void showUsers(){	
-		ArrayList<User> users = new ArrayList();
+		ArrayList<User> users = new ArrayList<User>();
 		users = User.getAll();
 		view.showUsers(users);
 	}
