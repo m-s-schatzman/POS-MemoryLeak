@@ -1,5 +1,8 @@
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.util.Date;
+import java.awt.*;
 
 //When it prints receipt, it will need to print the rental rules clearly according to rubic
 //Possibly use a simple formula of x*price per day it is rented...
@@ -32,9 +35,9 @@ public class ProcessRentalController implements ActionListener {
 
     //Adds a line item to the current rental
     private void addLineItem(int ID, int quantity){
-    	Item item=Item.retrieve(ID);
-    	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item);
-    	currentRental.addLineItem(rentalLineItem);
+    	Item item = Item.retrieve(ID);
+    	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, new Date());
+    	currentRental.addRentalLineItem(rentalLineItem);
     	view.updateTotalItems(currentRental.getCartList());
     	view.updateTotalCost(currentRental.getTotal());
     }
@@ -42,15 +45,15 @@ public class ProcessRentalController implements ActionListener {
     //Removes given line item from the current rental
     private void removeLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
-        RentalLineItem rentalLineItem = new RentalLineItem(quantity, item);
-        currentRental.removeLineItem(rentalLineItem);
+        RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, new Date());
+        currentRental.removeRentalLineItem(rentalLineItem);
     }
 
     //Process the current Rental
     //Save to database
     private void processRental(double change){
     	currentRental.save();
-    	printReceipt(currentRental.getCartList(),change);
+    	printReceipt(currentRental.getCartList());
     	currentRental=new Rental();
     	view.returnToRental();
     }

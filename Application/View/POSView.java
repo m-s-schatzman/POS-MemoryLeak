@@ -13,19 +13,22 @@ public class POSView{
   private JButton processReturnButton;
   private JButton manageUsersButton;
   private JButton logoutButton;
+  private JLabel roleLabel;
 
   public POSView(){
     this.f = new JFrame("Memory Leak POS");
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
     int height = screenSize.height;
     int width = screenSize.width;
-    f.setSize((width/2) - 600, (height/2) - 250);
+    f.setSize((width/2) - 550, (height/2) - 200);
 
     f.setLocationRelativeTo(null);
     p = new JPanel();
     fl = new FlowLayout(FlowLayout.CENTER);
-
-    processSaleButton = new JButton("Process Sale");
+    roleLabel=new JLabel();
+    p.add(roleLabel);
+	roleLabel.setText("Current User Level is: " + CurrentUser.getUser().getRole().toString());
+	processSaleButton = new JButton("Process Sale");
     p.add(processSaleButton);
     processRentalButton = new JButton("Process Rental");
     p.add(processRentalButton);
@@ -39,7 +42,7 @@ public class POSView{
     p.add(logoutButton);
     
     p.setLayout(fl);
-    f.setSize(200,200);
+    f.setSize(200,225);
     f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     f.setContentPane(p);
     f.setVisible(true);

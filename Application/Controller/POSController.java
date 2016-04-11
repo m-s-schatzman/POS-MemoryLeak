@@ -11,8 +11,8 @@ public class POSController implements ActionListener{
         	ProcessSaleController.create();
         	view.closeFrame();
 		}else if(ac.getActionCommand().equals("Process Rental")){
-			//new ProcessRentalController();
-			//view.closeFrame();
+			new ProcessRentalController();
+			view.closeFrame();
 		}else if(ac.getActionCommand().equals("Process Return")){
 			ProcessReturnController.create();
 			view.closeFrame();
@@ -30,5 +30,10 @@ public class POSController implements ActionListener{
 	public POSController(){
 		view = new POSView();
 		view.addController(this);
+	}
+
+	//Closes Controller and it's JFrame
+	public void close(){
+		view.closeFrame();
 	}
 }
