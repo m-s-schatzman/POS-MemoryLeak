@@ -58,7 +58,7 @@ rental_id numeric(10),
 item_id numeric(10),
 quantity numeric(5),
 return_date date not null,
-primary key(rental_id, item_id),
+primary key(rental_id, item_id, return_date),
 foreign key(rental_id) references rental(id),
 foreign key(item_id) references item(id)
 );
