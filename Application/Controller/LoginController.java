@@ -12,7 +12,7 @@ public class LoginController implements ActionListener{
 		if(ac.getActionCommand().equals("Exit")){
 	    	System.exit(1);
 		}else if(ac.getActionCommand().equals("Login")){
-			String username = view.getUserName();
+			String username = view.getUsername();
 			String password = view.getPassword();
 			login(username, password);
     	}

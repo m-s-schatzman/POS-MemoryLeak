@@ -3,20 +3,19 @@ import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionListener;
 
-public class LoginView implements java.util.Observer{
+public class LoginView{
     
     private JFrame f;
     private JPanel p;
-    private JPanel pe;
-    private JFrame fe;
     private FlowLayout fl;
-    private JLabel label1;
-    private JLabel label2;
-    private JTextField empId;
-    private JPasswordField password;
+    private JLabel idLabel;
+    private JLabel passwordLabel;
+    private JTextField idField;
+    private JPasswordField passwordField;
     private JButton loginButton;
     private JButton exitButton;
     
+    //Constructor
     public LoginView(){
 	   this.f = new JFrame("Login");
 	   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -27,19 +26,17 @@ public class LoginView implements java.util.Observer{
 	   f.setLocationRelativeTo(null);
 	   p = new JPanel();
 	   fl = new FlowLayout(FlowLayout.CENTER);
-	   label1 = new JLabel("Enter Employee Id: ");
-	   empId = new JTextField(10);
-	   label2 = new JLabel("Enter Password: ");
-	   password = new JPasswordField(12);
-
-
+	   idLabel = new JLabel("Enter Employee Id: ");
+	   idField = new JTextField(10);
+	   passwordLabel = new JLabel("Enter Password: ");
+	   passwordField = new JPasswordField(12);
 	   loginButton = new JButton("Login");
 	   exitButton = new JButton("Exit");
 	
-	   p.add(label1);
-	   p.add(empId);
-	   p.add(label2);
-	   p.add(password);
+	   p.add(idLabel);
+	   p.add(idField);
+	   p.add(passwordLabel);
+	   p.add(passwordField);
 	   p.add(loginButton);
 	   p.setLayout(fl);
 	   p.add(exitButton);
@@ -51,41 +48,25 @@ public class LoginView implements java.util.Observer{
        f.getRootPane().setDefaultButton(loginButton); //Allows user to hit enter button to login
     }
 
+    //Add ActionListener to buttons
     public void addController(ActionListener controller){
 	   exitButton.addActionListener(controller);
 	   loginButton.addActionListener(controller);
     }
 
-    public void update(Observable subject, Object subjectChange){
-	   return;
+    //Get the String in the username field
+    public String getUsername(){
+    	return idField.getText();
     }
 
-    public String getUserName()
-    {
-    	return empId.getText();
+    //Get the String in the password field
+    public String getPassword(){
+    	return passwordField.getText();
     }
 
-    public String getPassword()
-    {
-    	return password.getText();
-    }
-
-    public void closeFrame()
-    {
+    //Close the view and the JFrame
+    public void closeFrame(){
     	f.setVisible(false);
     	f.dispose();
     }
-
-
-    public void invalidMessage()
-    {
-    	pe = new JPanel();
-    	pe.setSize(200, 200);
-
-    	fe = new JFrame("Error Message");
-
-	   	JOptionPane.showMessageDialog(fe, pe);
-		empId.setText("");
-		password.setText("");
-    } 
 }
