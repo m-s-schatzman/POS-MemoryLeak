@@ -9,10 +9,10 @@ public class ProcessRentalTest{
 	  Rental r = new Rental();
 	  int ID = 1;
 	  int quantity = 1;
-	  Item item=Item.retrieve(ID);f
+	  Item item=Item.retrieve(ID);
 	  assertEquals("Apple", item.getName());
-	  RentalLineItem rentalLineItem = new RentalLineItem(quanty, item, "4/11/2016"); //date might not be the right format
-	  r.addLineItem(rentalLineItem);
+	  RentalLineItem rentalLineItem = new RentalLineItem(quanty, item, "2016-04-12"); //date might not be the right format
+	  r.addRentalLineItem(rentalLineItem);
 	  assertEquals("Apple : 1"+" ", r.getCartList());
 	  }
 }
