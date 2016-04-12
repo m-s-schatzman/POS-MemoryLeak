@@ -15,7 +15,7 @@ public class DBConnection {
 
  	//This will open the connection to the database and create it if not already created
  	//If the database has not yet been created, it will also create the tables and populate them
- 	public static void openConnection(){
+ 	public static boolean openConnection(){
  		DBDriver.createDB();
  		try{
  			conn = getConnection();
@@ -29,9 +29,11 @@ public class DBConnection {
  				DBDriver.createDBTables();
  				DBDriver.populateDB();
  			}
+ 			return true;
  		}catch(SQLException sqle){
  			Logger.logError(sqle.getMessage());
  		}
+ 		return false;
  	}
 
 	//Gets connection to the database
@@ -48,14 +50,16 @@ public class DBConnection {
 	}
 
 	//Closes connection to database
-	public static void closeConnection(){
+	public static boolean closeConnection(){
 		if(conn != null){
 			try{
 				conn.close();
+				return true;
 			}catch(SQLException sqle){
 				Logger.logError(sqle.getMessage());
 			}
 		}
+		return false;
 	}
 
 	//Submits query without needing result set
