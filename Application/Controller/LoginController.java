@@ -1,3 +1,8 @@
+/*------------------------------------------------------------------------------*/
+// Memory Leak
+// Adam Svetec, Cameron Clifton, Jason Yang, Mark Schatzman, Qing Yi, Yuchen Cai
+/*------------------------------------------------------------------------------*/
+
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

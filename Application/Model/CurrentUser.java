@@ -1,3 +1,8 @@
+/*------------------------------------------------------------------------------*/
+// Memory Leak
+// Adam Svetec, Cameron Clifton, Jason Yang, Mark Schatzman, Qing Yi, Yuchen Cai
+/*------------------------------------------------------------------------------*/
+
 public class CurrentUser{
 
 	private static User currentUser;

@@ -1,3 +1,8 @@
+/*------------------------------------------------------------------------------*/
+// Memory Leak
+// Adam Svetec, Cameron Clifton, Jason Yang, Mark Schatzman, Qing Yi, Yuchen Cai
+/*------------------------------------------------------------------------------*/
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
 

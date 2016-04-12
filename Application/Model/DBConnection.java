@@ -1,4 +1,8 @@
-//Class used to connect to the locally stored derby database
+/*------------------------------------------------------------------------------*/
+// Memory Leak
+// Adam Svetec, Cameron Clifton, Jason Yang, Mark Schatzman, Qing Yi, Yuchen Cai
+/*------------------------------------------------------------------------------*/
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -6,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+//Class used to connect to the locally stored derby database
 public class DBConnection {
 
 	private static Connection conn;

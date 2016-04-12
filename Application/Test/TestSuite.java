@@ -1,3 +1,8 @@
+/*------------------------------------------------------------------------------*/
+// Memory Leak
+// Adam Svetec, Cameron Clifton, Jason Yang, Mark Schatzman, Qing Yi, Yuchen Cai
+/*------------------------------------------------------------------------------*/
+
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runner.JUnitCore;

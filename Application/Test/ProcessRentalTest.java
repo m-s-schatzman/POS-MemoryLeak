@@ -1,10 +1,14 @@
+/*------------------------------------------------------------------------------*/
+// Memory Leak
+// Adam Svetec, Cameron Clifton, Jason Yang, Mark Schatzman, Qing Yi, Yuchen Cai
+/*------------------------------------------------------------------------------*/
+
 import org.junit.*;
 import static org.junit.Assert.*;
 
 public class ProcessRentalTest{
 
-	
-@Test
+	@Test
 	public void testAddLineItem(){ 
 	  Rental r = new Rental();
 	  int ID = 1;
