@@ -9,7 +9,7 @@ import org.junit.internal.TextListener;
    LoginTest.class, 
    ManageUserTest.class,
    //ProcessRentalTest.class,
-   //ProcessSaleTest.class,
+   ProcessSaleTest.class,
    SystemTest.class
 })
  
