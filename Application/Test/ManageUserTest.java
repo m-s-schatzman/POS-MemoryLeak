@@ -11,7 +11,7 @@ public class ManageUserTest{
 	@Test
 	public void testAddandDeleteUser(){
 		ManageUserController muc=new ManageUserController();
-		muc.addUser("testname","12345", User.Role.Normal);
+		muc.addUser("testname","12345", "Normal");
 		assertEquals("testname",User.retrieve("testname").getUsername());
 		assertEquals("12345",User.retrieve("testname").getPassword());
 		assertEquals(User.Role.Normal, User.retrieve("testname").getRole());

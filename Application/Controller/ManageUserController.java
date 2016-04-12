@@ -14,11 +14,11 @@ public class ManageUserController implements ActionListener{
 			new POSController();
 			view.closeFrame();
 		}else if(ac.getActionCommand().equals("Add User")){
-			addUser(view.getId(), view.getPassword(), User.Role.Normal);
-			view.clearIdPassFields();
+			addUser(view.getUsername(), view.getPassword(), view.getRole());
+			view.clearFields();
 		}else if(ac.getActionCommand().equals("Delete")){
 			deleteUser(view.getDeleteField());
-			view.clearDelField();
+			view.clearFields();
 		}
 	}
 	
@@ -30,9 +30,10 @@ public class ManageUserController implements ActionListener{
 	}
 
 	//Adds user to database
-	public void addUser(String newId, String newPassword, User.Role role){
-	    if(newId.length()>0 && newPassword.length() >0 ){
-	  		User newUser = new User(newId, newPassword, role);
+	public void addUser(String newUsername, String newPassword, String roleString){
+		User.Role role = User.stringToRole(roleString);
+	    if(role != null && newUsername.length()>0 && newPassword.length() >0 ){
+	  		User newUser = new User(newUsername, newPassword, role);
 			newUser.save();
 			showUsers();
 		}
