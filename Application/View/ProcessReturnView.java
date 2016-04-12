@@ -25,124 +25,129 @@ public class ProcessReturnView{
     private JLabel cardLabel;
     private JTextField card;
 
-    
+    //Constructor
     public ProcessReturnView(JFrame f){
-       this.f = f;
-       f.pack();
-       p = new JPanel();
-       Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-       int height = screenSize.height;
-       int width = screenSize.width;
-       f.setSize(width/2, height/2);
+        this.f = f;
+        f.pack();
+        p = new JPanel();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int height = screenSize.height;
+        int width = screenSize.width;
+        f.setSize(width/2, height/2);
 
-       f.setLocationRelativeTo(null);
-       fl = new FlowLayout(FlowLayout.CENTER);
-       jlID = new JLabel("Item ID: ");
-       tfID = new JTextField(5);
-       jlQ = new JLabel("Quantity: ");
-       tfQ = new JTextField(5);
-       totalItemsLabel = new JLabel("Total Items:");
-       totalItems = new JTextArea("");
-       totalItems.setEditable(false);
-       totalItems.setColumns(10);
-       totalItems.setRows(12);
-       totalCostLabel = new JLabel("Total returned:");
-       totalCost = new JTextField(10);
-       totalCost.setEditable(false);
-       paymentOption = new JLabel("Select Payment Method: ");
-       ccOption = new JRadioButton("Credit Card", false);
-       cashOption = new JRadioButton("Cash", false);
-       ButtonGroup group = new ButtonGroup();
-       group.add(ccOption);
-       group.add(cashOption);
+        f.setLocationRelativeTo(null);
+        fl = new FlowLayout(FlowLayout.CENTER);
+        jlID = new JLabel("Item ID: ");
+        tfID = new JTextField(5);
+        jlQ = new JLabel("Quantity: ");
+        tfQ = new JTextField(5);
+        totalItemsLabel = new JLabel("Total Items:");
+        totalItems = new JTextArea("");
+        totalItems.setEditable(false);
+        totalItems.setColumns(10);
+        totalItems.setRows(12);
+        totalCostLabel = new JLabel("Total returned:");
+        totalCost = new JTextField(10);
+        totalCost.setEditable(false);
+        paymentOption = new JLabel("Select Payment Method: ");
+        ccOption = new JRadioButton("Credit Card", false);
+        cashOption = new JRadioButton("Cash", false);
+        ButtonGroup group = new ButtonGroup();
+        group.add(ccOption);
+        group.add(cashOption);
 
-       addButton = new JButton("Add Item");
-       exitButton = new JButton("Exit");
-       returnButton = new JButton("Return");
+        addButton = new JButton("Add Item");
+        exitButton = new JButton("Exit");
+        returnButton = new JButton("Return");
 
-       p.add(jlID);
-       p.add(tfID);
-       p.add(jlQ);
-       p.add(tfQ);
-       p.add(addButton);
-       p.add(exitButton);
-       p.add(totalItemsLabel);
-       p.add(totalItems);
-       p.add(totalCostLabel);
-       p.add(totalCost);
-       p.add(paymentOption);
-       p.add(ccOption);
-       p.add(cashOption);
-       p.add(returnButton);
-       p.setLayout(fl);
+        p.add(jlID);
+        p.add(tfID);
+        p.add(jlQ);
+        p.add(tfQ);
+        p.add(addButton);
+        p.add(exitButton);
+        p.add(totalItemsLabel);
+        p.add(totalItems);
+        p.add(totalCostLabel);
+        p.add(totalCost);
+        p.add(paymentOption);
+        p.add(ccOption);
+        p.add(cashOption);
+        p.add(returnButton);
+        p.setLayout(fl);
 
 
-	   //f.setSize(400,400);
-       f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-       f.setContentPane(p);
-       f.setVisible(true);
-   }
+        //f.setSize(400,400);
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f.setContentPane(p);
+        f.setVisible(true);
+    }
 
-   public void addController(ActionListener controller){
+    //Adds an ActionListener to each button
+    public void addController(ActionListener controller){
        exitButton.addActionListener(controller);
        addButton.addActionListener(controller);
        returnButton.addActionListener(controller);
        ccOption.addActionListener(controller);
        cashOption.addActionListener(controller);
-   }
-
-    public int getId(){
-    	return Integer.parseInt(tfID.getText());
     }
 
-    public int getQuantity(){
-    	return Integer.parseInt(tfQ.getText());
+    //Gets the String from the id field
+    public String getId(){
+        return tfID.getText();
     }
 
+    //Gets the String in the quantity field
+    public String getQuantity(){
+        return tfQ.getText();
+    }
 
+    //Updates the list of items
     public void updateTotalItems(String cartList){
-    	//totalItems.append("\n" + itemName + " " + quantity);
         totalItems.setText(cartList);
     }
 
+    //Update the total cost field
     public void updateTotalCost(double total){
-    	totalCost.setText(""+total);
-    }
-    
-    public void addCardField()
-    {
-      if (cardLabel==null){
-      cardLabel = new JLabel("Card Number: ");
-      card = new JTextField(10);
-      p.add(cardLabel);
-      p.add(card);
-      p.setLayout(fl);
-      f.setContentPane(p);
-    }
+        totalCost.setText(""+total);
     }
 
+    //Adds the card field
+    public void addCardField(){
+        if (cardLabel==null){
+            cardLabel = new JLabel("Card Number: ");
+            card = new JTextField(10);
+            p.add(cardLabel);
+            p.add(card);
+            p.setLayout(fl);
+            f.setContentPane(p);
+        }
+    }
+
+    //Removes the card field
     public void removeCardField(){
-      p.remove(card);
-      p.remove(cardLabel);
-      p.setLayout(fl);
-      f.setContentPane(p);
+        p.remove(card);
+        p.remove(cardLabel);
+        p.setLayout(fl);
+        f.setContentPane(p);
     }
 
-
+    //Gets the card number from the card number field
     public String getCardNum(){
-      return card.getText();
+        return card.getText();
     }
 
-	public void returnToSale()
-    {
-    	tfID.setText("");
-    	tfQ.setText("");
-    	totalItems.setText("");
-    	totalCost.setText("");
+    //Clears all of the text fields
+    public void clearFields(){
+        tfID.setText("");
+        tfQ.setText("");
+        totalItems.setText("");
+        totalCost.setText("");
     }
 
-  public void closeFrame(){
-    f.setVisible(false);
-    f.dispose();
-  }
+    //Closes the view and JFrame
+    public void closeFrame(){
+        f.setVisible(false);
+        f.dispose();
+    }
 }

@@ -7,8 +7,9 @@ import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
 
-//Return items need to be stored in differt table 
+//Return items need to be stored in different table 
 public class ProcessReturnController implements ActionListener{
+    
     private Return currentReturn;
     private ProcessReturnView view;
     private String card;
@@ -18,29 +19,32 @@ public class ProcessReturnController implements ActionListener{
 		if(ac.getActionCommand().equals("Exit")){
 	    	new POSController();
 			view.closeFrame();
-		}
-		else if(ac.getActionCommand().equals("Add Item")){
-			addLineItem(view.getId(), view.getQuantity());
-		}
-		else if(ac.getActionCommand().equals("Return"))
-		{
+		}else if(ac.getActionCommand().equals("Add Item")){
+			String idString = view.getId();
+			String quantityString = view.getQuantity();
+			try{
+				int id = Integer.parseInt(idString);
+				int quantity = Integer.parseInt(quantityString);
+				addLineItem(id, quantity);
+			}catch(Exception ex){
+				Logger.logError(ex.getMessage());
+			}
+		}else if(ac.getActionCommand().equals("Return")){
 			card = view.getCardNum();
 			double amountAsk = currentReturn.getTotal();
 			processReturn(amountAsk);
-		}
-		else {
+		}else{
 			AbstractButton rButton = (AbstractButton) ac.getSource();
 			String choice = rButton.getText();
 			if(choice.equals("Credit Card")){
 				view.addCardField();
 				card = "";
-			}
-				
-			else if(choice.equals("Cash")){
-				if(card!=null) view.removeCardField();
+			}else if(choice.equals("Cash")){
+				if(card!=null){ 
+					view.removeCardField();
+				}
 			}
 		}
-		
     }
 
     private ProcessReturnController(JFrame applicationFrame){
@@ -68,7 +72,7 @@ public class ProcessReturnController implements ActionListener{
 		currentReturn.save();
 	    printReceipt(currentReturn.getCartList(), amountAsk);
 		currentReturn = new Return();
-		view.returnToSale();
+		view.clearFields();
     }
 
     public static void create() {

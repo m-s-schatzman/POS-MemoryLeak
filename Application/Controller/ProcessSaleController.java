@@ -113,7 +113,7 @@ public class ProcessSaleController implements ActionListener{
 	   	currentSale.save();
 	    printReceipt(currentSale.getCartList(), payment, isCash);
 		currentSale = new Sale();
-		view.returnToSale();
+		view.clearFields();
     }
 
     public static void create() {
