@@ -39,9 +39,9 @@ public class ProcessRentalView {
         idTextField = new JTextField(5);
         quantityLabel = new JLabel("Quantity: ");
         quantityTextField = new JTextField(5);
-        dateLabel = new JLabel("Date: ");
+        dateLabel = new JLabel("Date(MM/DD/YYYY): ");
         dateTextField = new JTextField(8);
-        dateTextField.setText("MM/DD/YYYY");
+        dateTextField.setText("");
         totalItemsLabel = new JLabel("Items:");
         totalItems = new JTextArea("");
         totalItems.setEditable(false);
