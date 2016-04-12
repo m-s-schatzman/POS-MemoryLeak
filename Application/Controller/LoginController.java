@@ -26,6 +26,9 @@ public class LoginController implements ActionListener{
 
   	//Attempt to login user into the application
   	public POSController login(String username, String password){
+  		if(username == null || password == null){
+  			return null;
+  		}
 		if(CurrentUser.login(username, password)){
         	view.closeFrame();
         	return new POSController();
