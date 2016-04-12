@@ -6,13 +6,14 @@ public class ProcessRentalTest{
 	
 @Test
 	public void testAddLineItem(){ 
-	  RentalLineItem rentalLineItem = new RentalLineItem(2, 12345, "4/11/2016"); //date might not be the right format
-	  assertEquals("quantity", rentalLineItem.getCount());
-	  assertEquals("item", rentalLineItem.getItem().getID());
-	  assertEquals("returnDate", rentalLineItem.getReturnDate());
+	  Rental r = new Rental();
+	  int ID = 1;
+	  int quantity = 1;
+	  Item item=Item.retrieve(ID);f
+	  assertEquals("Apple", item.getName());
+	  RentalLineItem rentalLineItem = new RentalLineItem(quanty, item, "4/11/2016"); //date might not be the right format
+	  r.addLineItem(rentalLineItem);
+	  assertEquals("Apple : 1"+" ", r.getCartList());
 	  }
-	
-	
-	 
-	
 }
+
