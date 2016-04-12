@@ -70,6 +70,8 @@ public class Inventory{
         	item.save();
         	query = "insert into inventory values ( "+item.getID()+", "+100+" )";
         	DBConnection.submitUpdate(query);
+        	query = "insert into returned_item values ( "+item.getID()+", 0 )";
+        	DBConnection.submitUpdate(query);
         }
 	}
 }
