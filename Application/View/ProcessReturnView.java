@@ -114,14 +114,12 @@ public class ProcessReturnView{
 
     //Adds the card field
     public void addCardField(){
-        if (cardLabel==null){
-            cardLabel = new JLabel("Card Number: ");
-            card = new JTextField(10);
-            p.add(cardLabel);
-            p.add(card);
-            p.setLayout(fl);
-            f.setContentPane(p);
-        }
+        cardLabel = new JLabel("Card Number: ");
+        card = new JTextField(10);
+        p.add(cardLabel);
+        p.add(card);
+        p.setLayout(fl);
+        f.setContentPane(p);      
     }
 
     //Removes the card field
