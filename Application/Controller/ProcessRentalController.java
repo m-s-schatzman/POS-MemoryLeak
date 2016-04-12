@@ -46,6 +46,9 @@ public class ProcessRentalController implements ActionListener {
     //Adds a line item to the current rental
     public void addLineItem(int ID, int quantity, Date returnDate){
     	Item item = Item.retrieve(ID);
+        if(item == null){
+            return;
+        }
     	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, returnDate);
     	currentRental.addRentalLineItem(rentalLineItem);
     	view.updateTotalItems(currentRental.getCartList());
@@ -55,6 +58,9 @@ public class ProcessRentalController implements ActionListener {
     //Removes given line item from the current rental
     public void removeLineItem(int ID, int quantity) {
         Item item = Item.retrieve(ID);
+        if(item == null){
+            return;
+        }
         RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, new Date());
         currentRental.removeRentalLineItem(rentalLineItem);
     }

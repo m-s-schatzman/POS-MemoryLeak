@@ -43,7 +43,7 @@ public class ManageUserController implements ActionListener{
 	public void deleteUser(String username){
 		if(username.length()>0){
 			User deletedUser = User.retrieve(username);
-			if(deletedUser.getRole() != User.Role.Admin){
+			if(deletedUser != null && deletedUser.getRole() != User.Role.Admin){
 				deletedUser.delete();
 				showUsers();
 			}
