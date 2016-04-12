@@ -7,7 +7,10 @@ import org.junit.internal.TextListener;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
    LoginTest.class, 
-   ManageUserTest.class
+   ManageUserTest.class,
+   //ProcessRentalTest.class,
+   //ProcessSaleTest.class,
+   SystemTest.class
 })
  
 public class TestSuite{
