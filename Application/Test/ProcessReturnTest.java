@@ -5,7 +5,7 @@ public class ProcessReturnTest{
 
 	private Item item1;
     private Item item2;
-    //private Return return;
+    private Return r;
 
     @Before
     public void setUp() {
@@ -13,7 +13,7 @@ public class ProcessReturnTest{
     	int id2 = 2; 
         item1 = Item.retrieve(id1);
         item2 = Item.retrieve(id2);
-        //return = new return();
+        r = new Return();
     }
 
 	@Test
@@ -25,9 +25,9 @@ public class ProcessReturnTest{
 		ReturnLineItem lineItem1 = new ReturnLineItem(qt1, item1);
 		ReturnLineItem lineItem2 = new ReturnLineItem(qt2, item2);
 
-		//return.addLineItem(lineItem1);
-		//return.addLineItem(lineItem2);
+		r.addLineItem(lineItem1);
+		r.addLineItem(lineItem2);
 
-		//assertEquals(8, return.getTotal(), .0001);
+		assertEquals(5, r.getTotal(), .0001);
 	}
 }
