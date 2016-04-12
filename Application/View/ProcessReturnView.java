@@ -26,8 +26,8 @@ public class ProcessReturnView{
     private JTextField card;
 
     //Constructor
-    public ProcessReturnView(JFrame f){
-        this.f = f;
+    public ProcessReturnView(){
+        this.f = new JFrame("Process Return");
         f.pack();
         p = new JPanel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
