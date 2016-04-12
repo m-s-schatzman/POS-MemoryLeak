@@ -12,6 +12,10 @@ public class ProcessReturnController implements ActionListener{
     
     private Return currentReturn;
     private ProcessReturnView view;
+    private boolean isCash;
+    private boolean showCard = false;
+    private String card = "";
+    
 
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
@@ -28,7 +32,41 @@ public class ProcessReturnController implements ActionListener{
 				Logger.logError(ex.getMessage());
 			}
 		}else if(ac.getActionCommand().equals("Return")){
-			processReturn();
+			if(isCash){
+				try {
+					double amountAsk = currentReturn.getTotal();
+					processReturn(amountAsk, isCash);
+				}catch (NumberFormatException e) {
+    				Logger.logError(e.getMessage());
+    			}
+			}
+			else {
+				card = view.getCardNum();
+				if(PaymentAuthorizer.authorizePayment(card)){
+					double amountAsk = currentReturn.getTotal();
+					processReturn(amountAsk, isCash);
+				}else{
+					Logger.logError("Customer has invalid Credit Card.");
+					Logger.displayError("Payment not accepted. Please try again, or use alternative payment method.");
+				}
+			}
+
+		}else {
+			AbstractButton rButton = (AbstractButton) ac.getSource();
+			String paymentType = rButton.getText();
+			if(paymentType.equals("Cash")){
+				isCash = true;
+				if (showCard) {
+					view.removeCardField();
+					showCard = false;
+				}
+			}else if(paymentType.equals("Credit Card")){
+				isCash = false;
+				if(!showCard) {
+					view.addCardField();
+					showCard = true;
+				}
+			}			
 		}
     }
 
@@ -62,15 +100,15 @@ public class ProcessReturnController implements ActionListener{
     }
 
     //Process the return and save to database
-    public void processReturn(){
+    public void processReturn(double amountAsk, boolean isCash){
 		currentReturn.save();
-	    printReceipt(currentReturn.getCartList());
+	    printReceipt(currentReturn.getCartList(),amountAsk,isCash);
 		currentReturn = new Return();
 		view.clearFields();
     }
 
     //Print the reciept
-    private void printReceipt(String cartList){
+    private void printReceipt(String cartList, double amountAsk, boolean isCash){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -87,15 +125,18 @@ public class ProcessReturnController implements ActionListener{
     	JTextField validated = new JTextField(10);
     	finalTotal.setText(""+currentReturn.getTotal());
     	NumberFormat formatter = new DecimalFormat("#0.00");
-    	double amountAsk = currentReturn.getTotal();
+    	//double amountAsk = currentReturn.getTotal();
     	JLabel changeLabel = new JLabel("Total returned: $" + formatter.format(amountAsk));
-
+    	JLabel pay;
+    	if(isCash) pay = new JLabel("In Cash");
+    	else pay = new JLabel("to Credit Card: "+card);
 		finalItems.setColumns(10);
 		finalItems.setRows(12);
 		receiptPanel.add(finalItems);
 		receiptPanel.add(finalLabel);
 		receiptPanel.add(finalTotal);
 		receiptPanel.add(changeLabel);
+		receiptPanel.add(pay);
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);
     	receiptFrame.setSize(400,400);
