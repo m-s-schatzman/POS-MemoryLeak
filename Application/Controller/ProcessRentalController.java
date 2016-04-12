@@ -87,12 +87,14 @@ public class ProcessRentalController implements ActionListener {
         finalTotal.setText(""+currentRental.getTotal());
         validated.setText("Payment Validated");
     	validated.setEditable(false);
+        JTextArea rentalMessage = new JTextArea("Rentals will cost 5% of the price of the item per day.\nThe full price of the item will be \ncharged if not returned in 20 days.");
 		finalItems.setColumns(10);
 		finalItems.setRows(12);
 		receiptPanel.add(finalItems);
 		receiptPanel.add(finalLabel);
 		receiptPanel.add(finalTotal);
 		receiptPanel.add(validated);
+        receiptPanel.add(rentalMessage);
     	receiptFrame.setContentPane(receiptPanel);
     	receiptFrame.setVisible(true);
     	receiptFrame.setSize(400,400);

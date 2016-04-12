@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 public class Rental{
 
@@ -39,8 +40,9 @@ public class Rental{
 	/** gets String list of rental line items containing name, count, and return date of each item*/
 	public String getCartList(){
 		String cartList = "";
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         for(RentalLineItem cartItem : cart){
-            cartList += cartItem.getItem().getName() + " : " + cartItem.getCount() +" : "+cartItem.getReturnDate().toString()+"\n";
+            cartList += cartItem.getItem().getName() + " : " + cartItem.getCount() +" : "+sdf.format(cartItem.getReturnDate())+"\n";
         }
         return cartList;
 	}
