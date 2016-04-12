@@ -98,7 +98,7 @@ public class ManageUserView{
     public void showUsers(ArrayList<User> users){
         totalUsers.setText("");
         for(int i = 0; i < users.size(); i++){
-            totalUsers.append(users.get(i).getUsername() + "\n");
+            totalUsers.append(users.get(i).getUsername() + " : "+users.get(i).getRole().toString()+"\n");
         }
     }
 
