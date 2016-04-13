@@ -13,7 +13,7 @@ import org.junit.internal.TextListener;
 @Suite.SuiteClasses({
    LoginTest.class, 
    ManageUserTest.class,
-   //ProcessRentalTest.class,
+   ProcessRentalTest.class,
    ProcessReturnTest.class,
    ProcessSaleTest.class,
    SystemTest.class,
