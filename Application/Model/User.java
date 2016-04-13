@@ -107,7 +107,7 @@ public class User {
 	
 	//Add original user list to DB
 	public static void populateTable(){
-		new User("100216","ppfridays", Role.Normal).save();
-		new User("Admin","admin", Role.Admin).save();
+		new User("Normal","Normal", Role.Normal).save();
+		new User("Admin","Admin", Role.Admin).save();
 	}
 }

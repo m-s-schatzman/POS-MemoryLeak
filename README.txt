@@ -12,6 +12,8 @@ To Run Test Suite: from the Application/ folder run the command "./run_script.sh
 
 To Run: from the Application/ folder run the command "./run_script.sh" to run the automated run process. This will set the correct directory to run the compiled Main.java class out of.
 
+To Log In: POS is initially populated with two users. The first user has username "Normal" with password "Normal" and role Normal. The second user has the username "Admin", password "Admin", and role Admin and has the ability to add/delete user.
+
 TESTING SCHEME
 
 For alpha release, testing will revolve around creating integration tests for each use case and making sure that actions performed in each Controller work with the Model classes and database tables. Each Controller will therefore have it's own Testing class in the Test/ directory. There will also be an additional test to make sure database connection is opened and closed correctly at start and stop of system. The TestSuite class contains references to each other test class and uses the JUnit framework to run each test class.
