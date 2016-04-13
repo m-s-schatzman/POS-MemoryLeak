@@ -13,7 +13,7 @@ public class POSController implements ActionListener{
 	//Handles action performed in view
 	public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Process Sale")){
-        	ProcessSaleController.create();
+        	new ProcessSaleController();
         	view.closeFrame();
 		}else if(ac.getActionCommand().equals("Process Rental")){
 			new ProcessRentalController();

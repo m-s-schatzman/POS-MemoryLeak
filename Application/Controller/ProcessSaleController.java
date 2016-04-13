@@ -21,6 +21,7 @@ public class ProcessSaleController implements ActionListener{
     private JLabel paymentLabel;
     private boolean inCash;
 
+    //Action Event handler
     public void actionPerformed(ActionEvent ac){
 		if(ac.getActionCommand().equals("Exit")){
 	    	new POSController();
@@ -91,18 +92,16 @@ public class ProcessSaleController implements ActionListener{
 			}
         	
 		}
-		//else if createSale
-		//else if addLineItem
-		//else if removeLineItem
-		//else if processSale
-    	}
+    }
 
-    private ProcessSaleController(JFrame applicationFrame){
+    //Constructor
+    public ProcessSaleController(){
 		currentSale = new Sale();
-		view = new ProcessSaleView(applicationFrame);
+		view = new ProcessSaleView();
 		view.addController(this);
     }
 
+    //Add line item to the current sale
     private void addLineItem(int ID, int quantity){
 		if(ID>=0 && quantity>0){
 			Item item = Item.retrieve(ID);
@@ -116,6 +115,7 @@ public class ProcessSaleController implements ActionListener{
 		} 
 	}
 
+	//Save the sale in db and remove items from inventory, print receipt
     private void processSale(double payment, boolean isCash){
 	   	currentSale.save();
 	    printReceipt(currentSale.getCartList(), payment, isCash);
@@ -123,11 +123,7 @@ public class ProcessSaleController implements ActionListener{
 		view.clearFields();
     }
 
-    public static void create() {
-    	JFrame applicationFrame = new JFrame("Process Sale");
-    	new ProcessSaleController(applicationFrame);
-    }
-
+    //Print the receipt with given sale
     private void printReceipt(String cartList, double payment, boolean isCash){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();

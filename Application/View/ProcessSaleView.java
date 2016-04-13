@@ -33,8 +33,8 @@ public class ProcessSaleView{
     private JTextField ccField;
 
     //Constructor
-    public ProcessSaleView(JFrame f){
-        this.f = f;
+    public ProcessSaleView(){
+        this.f = new JFrame("Process Sale");
         f.pack();
         p = new JPanel();
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
