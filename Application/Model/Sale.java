@@ -50,7 +50,7 @@ public class Sale {
     }
 
     /** save the sale to the db */
-    public void save(){
+    public boolean save(){
         Connection conn = DBConnection.getConnection();
         int id = 0;
         try{
@@ -65,14 +65,18 @@ public class Sale {
             s.close();
         }catch(SQLException sqle){
             Logger.logError(sqle.getMessage());
+            return false;
         }
         String query = "insert into sale values ( "+id+" )";
-        DBConnection.submitUpdate(query);
+        if(!DBConnection.submitUpdate(query)){
+            return false;
+        }
 
         Inventory inventory = Inventory.getInventory();
         for(LineItem lineItem : cart){
             lineItem.save(id);
             inventory.purchaseLineItem(lineItem);
         }
+        return true;
     }
 }
