@@ -1,5 +1,8 @@
 #!/bin/bash
 
+rm -f POSLog.txt
+touch POSLog.txt
+
 if [ $# -ge 1 ] && [ "$1" == "reset" ]; then
 	set -x
 	rm -r Output/POSDatabase
