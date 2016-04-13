@@ -53,7 +53,7 @@ public class Rental{
 	}
 
 	/** save instance to db */
-    public void save(){
+    public boolean save(){
 		Connection conn = DBConnection.getConnection();
         int id = 0;
         try{
@@ -68,14 +68,18 @@ public class Rental{
             s.close();
         }catch(SQLException sqle){
             Logger.logError(sqle.getMessage());
+            return false;
         }
         String query = "insert into rental values ( "+id+" )";
-        DBConnection.submitUpdate(query);
+        if(!DBConnection.submitUpdate(query)){
+            return false;
+        }
 
         Inventory inventory = Inventory.getInventory();
         for(RentalLineItem lineItem : cart){
             lineItem.save(id);
             inventory.purchaseLineItem(lineItem);
         }
+        return true;
     }
 }

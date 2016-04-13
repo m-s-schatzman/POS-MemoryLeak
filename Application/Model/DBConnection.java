@@ -68,14 +68,16 @@ public class DBConnection {
 	}
 
 	//Submits query without needing result set
-	public static void submitUpdate(String query){
+	public static boolean submitUpdate(String query){
 
 		try{
 			Statement s = getConnection().createStatement();
 			s.executeUpdate(query);
 			s.close();
+			return true;
 		}catch(SQLException sqle){
 			Logger.logError(sqle.getMessage());
+			return false;
 		}
 	}
 }
