@@ -47,9 +47,12 @@ public class User {
 	}
 
 	//Saves given instance of User into the database
-	public void save(){
+	public boolean save(){
 		String query = "insert into employee values ( '"+username+"', '"+password+"', '"+role.toString()+"' )";
-		DBConnection.submitUpdate(query);
+		if(!DBConnection.submitUpdate(query)){
+			return false;
+		}
+		return true;
 	}
 
 	//getAll Users
@@ -94,9 +97,12 @@ public class User {
 	}
 
 	//deletes the given user from the database
-	public void delete(){
+	public boolean delete(){
 		String query = "delete from employee where name = '"+username+"'";
-		DBConnection.submitUpdate(query);
+		if(!DBConnection.submitUpdate(query)){
+			return false;
+		}
+		return true;
 	}
 	
 	//Add original user list to DB
