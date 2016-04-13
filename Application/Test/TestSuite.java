@@ -17,7 +17,8 @@ import org.junit.internal.TextListener;
    ProcessReturnTest.class,
    ProcessSaleTest.class,
    SystemTest.class,
-   RentalUnitTest.class
+   RentalUnitTest.class,
+   ReturnUnitTest.class
 })
  
 public class TestSuite{

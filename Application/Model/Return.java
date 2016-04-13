@@ -52,7 +52,7 @@ public class Return {
     }
 
     //Save this return into the database and save it's children return line items
-    public void save(){
+    public boolean save(){
         Connection conn = DBConnection.getConnection();
         int id = 0;
         try{
@@ -67,14 +67,18 @@ public class Return {
             s.close();
         }catch(SQLException sqle){
             Logger.logError(sqle.getMessage());
+            return false;
         }
         String query = "insert into return values ( "+id+" )";
-        DBConnection.submitUpdate(query);
+        if(!DBConnection.submitUpdate(query)){
+            return false;
+        }
 
         Inventory inventory = Inventory.getInventory();
         for(ReturnLineItem lineItem : cart){
             lineItem.save(id);
             inventory.returnLineItem(lineItem);
         }
+        return true;
     } 
 }
