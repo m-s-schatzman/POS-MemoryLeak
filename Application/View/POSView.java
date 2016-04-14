@@ -23,12 +23,6 @@ public class POSView{
     //Constructor
     public POSView(){
         this.f = new JFrame("Memory Leak POS");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        f.setSize((width/2) - 550, (height/2) - 200);
-
-        f.setLocationRelativeTo(null);
         p = new JPanel();
         fl = new FlowLayout(FlowLayout.CENTER);
         roleLabel=new JLabel();
@@ -49,6 +43,7 @@ public class POSView{
 
         p.setLayout(fl);
         f.setSize(200,225);
+        f.setLocationRelativeTo(null);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setContentPane(p);
         f.setVisible(true);

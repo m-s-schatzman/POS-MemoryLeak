@@ -41,8 +41,9 @@ public class Logger{
 		errorPanel.add(errorLabel);
 		errorPanel.add(returnButton);
     	errorFrame.setContentPane(errorPanel);
+        errorFrame.setSize(400,400);
+        errorFrame.setLocationRelativeTo(null);
     	errorFrame.setVisible(true);
-    	errorFrame.setSize(400,400);
     	errorFrame.getRootPane().setDefaultButton(returnButton);
 	}
 }
