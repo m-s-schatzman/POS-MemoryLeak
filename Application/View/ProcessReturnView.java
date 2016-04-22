@@ -24,11 +24,14 @@ public class ProcessReturnView{
     private JLabel paymentOption;
     private final JRadioButton ccOption;
     private final JRadioButton cashOption;
+    private final JRadioButton cashBackOption;
     private JButton exitButton;
     private JButton addButton;
     private JButton returnButton;
     private JLabel cardLabel;
     private JTextField card;
+    private JLabel cashLabel;
+    private JTextField cash;
 
     //Constructor
     public ProcessReturnView(){
@@ -57,9 +60,11 @@ public class ProcessReturnView{
         paymentOption = new JLabel("Select Payment Method: ");
         ccOption = new JRadioButton("Credit Card", false);
         cashOption = new JRadioButton("Cash", false);
+        cashBackOption = new JRadioButton("Cash Back",false);
         ButtonGroup group = new ButtonGroup();
         group.add(ccOption);
         group.add(cashOption);
+        group.add(cashBackOption);
 
         addButton = new JButton("Add Item");
         exitButton = new JButton("Exit");
@@ -78,6 +83,7 @@ public class ProcessReturnView{
         p.add(paymentOption);
         p.add(ccOption);
         p.add(cashOption);
+        p.add(cashBackOption);
         p.add(returnButton);
         p.setLayout(fl);
 
@@ -95,6 +101,7 @@ public class ProcessReturnView{
        returnButton.addActionListener(controller);
        ccOption.addActionListener(controller);
        cashOption.addActionListener(controller);
+       cashBackOption.addActionListener(controller);
     }
 
     //Gets the String from the id field
@@ -127,6 +134,16 @@ public class ProcessReturnView{
         f.setContentPane(p);      
     }
 
+    // add cash field
+    public void addCashField(){
+        cashLabel = new JLabel("Amount: ");
+        cash = new JTextField(5);
+        p.add(cashLabel);
+        p.add(cash);
+        p.setLayout(fl);
+        f.setContentPane(p);      
+    }
+
     //Removes the card field
     public void removeCardField(){
         p.remove(card);
@@ -135,9 +152,22 @@ public class ProcessReturnView{
         f.setContentPane(p);
     }
 
+    // remove card field
+    public void removeCashField(){
+        p.remove(cash);
+        p.remove(cashLabel);
+        p.setLayout(fl);
+        f.setContentPane(p);
+    }
+
     //Gets the card number from the card number field
     public String getCardNum(){
         return card.getText();
+    }
+
+    // get cash amount from cash field
+    public String getCashAmount(){
+        return cash.getText();
     }
 
     //Clears all of the text fields

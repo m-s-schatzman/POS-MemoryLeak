@@ -18,7 +18,9 @@ public class ProcessReturnController implements ActionListener{
     private Return currentReturn;
     private ProcessReturnView view;
     private boolean isCash;
+    private boolean isCashBack;
     private boolean showCard = false;
+    private boolean showCashField = false;
     private String card = "";
     
 
@@ -44,8 +46,20 @@ public class ProcessReturnController implements ActionListener{
 				}catch (NumberFormatException e) {
     				Logger.logError(e.getMessage());
     			}
-			}
-			else {
+			}else if(isCashBack){
+				try {
+					card = view.getCardNum();
+					double amountCashBack = Double.parseDouble(view.getCashAmount());
+					if(PaymentAuthorizer.authorizePayment(card)){
+						processReturn(amountCashBack, isCash);
+					}else{
+						Logger.logError("Customer has invalid Credit Card.");
+						Logger.displayError("Payment not accepted. Please try again, or use alternative payment method.");
+					}
+				}catch (NumberFormatException e) {
+    				Logger.logError(e.getMessage());
+    			}
+			}else {
 				card = view.getCardNum();
 				if(PaymentAuthorizer.authorizePayment(card)){
 					double amountAsk = currentReturn.getTotal();
@@ -61,15 +75,36 @@ public class ProcessReturnController implements ActionListener{
 			String paymentType = rButton.getText();
 			if(paymentType.equals("Cash")){
 				isCash = true;
+				isCashBack = false;
 				if (showCard) {
 					view.removeCardField();
 					showCard = false;
+				} 
+				if (showCashField){
+					view.removeCashField();
+					showCashField = false;
 				}
 			}else if(paymentType.equals("Credit Card")){
+				isCash = false;
+				isCashBack = false;
+				if(!showCard) {
+					view.addCardField();
+					showCard = true;
+				}
+				if (showCashField){
+					view.removeCashField();
+					showCashField = false;
+				}
+			}else if(paymentType.equals("Cash Back")){
+				isCashBack = true;
 				isCash = false;
 				if(!showCard) {
 					view.addCardField();
 					showCard = true;
+				}
+				if(!showCashField){
+					view.addCashField();
+					showCashField = true;
 				}
 			}			
 		}
@@ -106,10 +141,37 @@ public class ProcessReturnController implements ActionListener{
 
     //Process the return and save to database
     public void processReturn(double amountAsk, boolean isCash){
-		currentReturn.save();
-	    printReceipt(currentReturn.getCartList(),amountAsk,isCash);
-		currentReturn = new Return();
+    	// save for cash back?
+    	if(isCashBack){
+    		printCashBackComfirm(amountAsk);
+    	} else{
+			currentReturn.save();
+	    	printReceipt(currentReturn.getCartList(),amountAsk,isCash);
+			currentReturn = new Return();
+		}
 		view.clearFields();
+    }
+
+    //print confirmation of cash back
+    private void printCashBackComfirm(double amountCashBack){
+    	JFrame confirmFrame = new JFrame("Confirmation");
+    	confirmFrame.pack();
+    	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int height = screenSize.height;
+		int width = screenSize.width;
+		confirmFrame.setSize(width/3, height/9);
+		confirmFrame.setLocationRelativeTo(null);
+
+		JPanel cashBackPanel = new JPanel();	
+    	NumberFormat formatter = new DecimalFormat("#0.00");
+    	JLabel changeLabel = new JLabel("  Total returned: $" + formatter.format(amountCashBack));
+    	JLabel pay = new JLabel("  From Credit Card: "+card);
+		cashBackPanel.setLayout(new BoxLayout(cashBackPanel,BoxLayout.Y_AXIS));
+		cashBackPanel.add(changeLabel);
+		cashBackPanel.add(pay);
+		confirmFrame.setContentPane(cashBackPanel);
+		confirmFrame.setVisible(true);
+    	confirmFrame.setSize(400,400);
     }
 
     //Print the reciept
