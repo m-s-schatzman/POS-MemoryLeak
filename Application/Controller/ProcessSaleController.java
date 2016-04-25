@@ -33,7 +33,7 @@ public class ProcessSaleController implements ActionListener{
 			try {
    				 id = Integer.parseInt(view.getId());
    				 quantity = Integer.parseInt(view.getQuantity());
-   				 if(quantity == 0)
+   				 if(quantity <= 0)
    				 {
    				 	Logger.logError("User entered 0 for amount of items.");
    				 	Logger.displayError("Quanity of item must be greater than 0.");

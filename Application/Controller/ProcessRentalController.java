@@ -32,7 +32,12 @@ public class ProcessRentalController implements ActionListener {
                 int quantity = Integer.parseInt(quantityString);
                 SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
                 Date date = format.parse(dateString);
-                addLineItem(id, quantity, date);
+                if(quantity <= 0){
+                    Logger.logError("User entered 0 for amount of items.");
+                    Logger.displayError("Quanity of item must be greater than 0.");
+                }else{
+                    addLineItem(id, quantity, date);
+                }
             }catch(Exception ex){
                 Logger.logError(ex.getMessage());
             }
