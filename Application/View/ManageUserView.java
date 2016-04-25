@@ -86,7 +86,7 @@ public class ManageUserView{
 
     //Gets the text in the password field
     public String getPassword(){
-        return password.getText();
+        return new String(password.getPassword());
     }
 
     //Gets the text in the password field

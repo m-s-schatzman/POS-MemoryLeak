@@ -61,7 +61,7 @@ public class LoginView{
 
     //Get the String in the password field
     public String getPassword(){
-    	return passwordField.getText();
+    	return new String(passwordField.getPassword());
     }
 
     //Close the view and the JFrame
