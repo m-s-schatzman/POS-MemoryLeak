@@ -25,7 +25,7 @@ public class Inventory{
 
 	//Decrease the inventory count of a specific item by count specified in the lineItem
 	public void purchaseLineItem(LineItem lineItem){
-		int count = getItemCount(lineItem.getItem(), "inventory");
+		int count = getInventoryItemCount(lineItem.getItem());
 		count -= lineItem.getCount();
 		String query = "update inventory set quantity = "+count+" where item_id ="+lineItem.getItem().getID();
 		DBConnection.submitUpdate(query);
@@ -33,19 +33,19 @@ public class Inventory{
 
 	//Increase the inventory count of a specific item by count specified in the lineItem
 	public void returnLineItem(LineItem lineItem){
-		int count = getItemCount(lineItem.getItem(), "returned_item");
+		int count = getReturnedItemCount(lineItem.getItem());
 		count += lineItem.getCount();
 		String query = "update returned_item set quantity = "+count+" where item_id ="+lineItem.getItem().getID();
 		DBConnection.submitUpdate(query);
 	}
 
 	//Gets the count of a specific Item in the inventory
-	private int getItemCount(Item item, String tableName){
+	public int getInventoryItemCount(Item item){
 		Connection conn = DBConnection.getConnection();
         int count = 0;
         try{
             Statement s = conn.createStatement();
-            ResultSet rs = s.executeQuery("select quantity from "+tableName+" where item_id = "+item.getID());
+            ResultSet rs = s.executeQuery("select quantity from inventory where item_id = "+item.getID());
             if(rs.next()){
                 count = rs.getInt("quantity");
             }
@@ -56,6 +56,25 @@ public class Inventory{
         }
         return count;
 	}
+
+	//Gets the count of a specific Item in the returned items
+	public int getReturnedItemCount(Item item){
+		Connection conn = DBConnection.getConnection();
+        int count = 0;
+        try{
+            Statement s = conn.createStatement();
+            ResultSet rs = s.executeQuery("select quantity from returned_item where item_id = "+item.getID());
+            if(rs.next()){
+                count = rs.getInt("quantity");
+            }
+            rs.close();
+            s.close();
+        }catch(SQLException sqle){
+            Logger.logError(sqle.getMessage());
+        }
+        return count;
+	}
+
 
 	//Populates the db with sample items and adds them to the inventory
 	public void populateDB(){
