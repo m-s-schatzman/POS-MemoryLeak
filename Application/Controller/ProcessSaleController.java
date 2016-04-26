@@ -33,18 +33,11 @@ public class ProcessSaleController implements ActionListener{
 			try {
    				 id = Integer.parseInt(view.getId());
    				 quantity = Integer.parseInt(view.getQuantity());
-   				 if(quantity <= 0)
-   				 {
-   				 	Logger.logError("User entered 0 for amount of items.");
-   				 	Logger.displayError("Quanity of item must be greater than 0.");
-   				 }
-   				 else
-   				 	addLineItem(id, quantity);
-  				} catch (NumberFormatException e) 
-  				{
-    				Logger.logError("Invalid input. Try Again.");
-    				Logger.displayError("Invalid input. Try Again.");
-  				}
+   				 addLineItem(id, quantity);
+  			} catch (NumberFormatException e) {
+    			Logger.logError("Invalid input. Try Again.");
+    			Logger.displayError("Invalid input. Try Again.");
+  			}
   		}
 		else if(ac.getActionCommand().equals("Checkout"))
 		{

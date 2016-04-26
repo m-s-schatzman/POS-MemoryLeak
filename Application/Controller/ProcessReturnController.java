@@ -34,12 +34,7 @@ public class ProcessReturnController implements ActionListener{
 			try{
 				int id = Integer.parseInt(idString);
 				int quantity = Integer.parseInt(quantityString);
-				if(quantity <= 0){
-				 	Logger.logError("User entered 0 for amount of items.");
-                    Logger.displayError("Quanity of item must be greater than 0.");
-                }else{
-					addLineItem(id, quantity);
-				}
+				addLineItem(id, quantity);
 			}catch(Exception ex){
 				Logger.logError(ex.getMessage());
 			}
