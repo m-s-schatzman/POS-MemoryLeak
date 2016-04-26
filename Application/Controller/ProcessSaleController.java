@@ -45,8 +45,7 @@ public class ProcessSaleController implements ActionListener{
 			{
 				try {
 						int amountGiven = Integer.parseInt(view.getCashAmount());
-						double change = amountGiven - currentSale.getTotal(); 
-						processSale(change, inCash);
+						processSale(amountGiven, inCash);
 					}
 					catch (NumberFormatException e) 
   					{
@@ -124,7 +123,7 @@ public class ProcessSaleController implements ActionListener{
     }
 
     //Print the receipt with given sale
-    private void printReceipt(String cartList, double payment, boolean isCash){
+    private void printReceipt(String receiptList, double payment, boolean isCash){
     	JFrame receiptFrame = new JFrame("Receipt");
     	receiptFrame.pack();
     	Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -132,18 +131,18 @@ public class ProcessSaleController implements ActionListener{
 		int width = screenSize.width;
 		receiptFrame.setSize(width/2, height/2);
 		receiptFrame.setLocationRelativeTo(null);
+		double tax = TaxCalculator.getSalesTax(currentSale);
+		double total = currentSale.getTotal() + tax;
+		NumberFormat formatter = new DecimalFormat("#0.00");
     	JPanel receiptPanel = new JPanel();
-    	JTextArea finalItems = new JTextArea(cartList);
+    	JTextArea finalItems = new JTextArea(receiptList);
     	finalItems.setEditable(false);
-    	JLabel finalLabel = new JLabel("Total Cost:");
-    	JTextField finalTotal = new JTextField(5);
-    	finalTotal.setEditable(false);
+    	JLabel taxTotal = new JLabel("Tax Amount: $" + formatter.format(tax));
+    	JLabel finalTotal = new JLabel("Total Cost: $" + formatter.format(total));
     	JTextField validated = new JTextField(11);
-    	NumberFormat formatter = new DecimalFormat("#0.00");
-    	finalTotal.setText(""+ formatter.format(currentSale.getTotal()));
     	if(isCash)
     	{     
-    		paymentLabel = new JLabel("Your change: $" + formatter.format(payment));
+    		paymentLabel = new JLabel("Your change: $" + formatter.format(payment - total));
     	}
     	else
     	{
@@ -153,7 +152,7 @@ public class ProcessSaleController implements ActionListener{
 		finalItems.setColumns(10);
 		finalItems.setRows(12);
 		receiptPanel.add(finalItems);
-		receiptPanel.add(finalLabel);
+		receiptPanel.add(taxTotal);
 		receiptPanel.add(finalTotal);
 		if(paymentLabel!=null)
 		{

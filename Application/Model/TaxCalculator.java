@@ -4,13 +4,15 @@
 /*------------------------------------------------------------------------------*/
 
 public class TaxCalculator {
+  private static double saleTotal;
+  private static double totalTax;
+  private static double taxRate;
     
-  public static double salesTax(Sale sale){
-    double salePrice=sale.getTotal(); // get price from another class
-    double tax;
-    double taxRate=0;
-    double totalPrice; // price to charge with tax
-    String state="PA";//another class needs to pass in state info
+  public static double getSalesTax(Sale sale){
+    saleTotal = sale.getTotal();
+    totalTax = 0;
+    taxRate = 0;
+    String state = "NJ";//best state in the continental US. Long Live 
     
     switch (state){
       case "PA": taxRate=0.06;
@@ -25,13 +27,7 @@ public class TaxCalculator {
       break;
       default: System.out.println("Invalide State Information! Please check again");
     }
-    
-    tax=salePrice*taxRate;
-    totalPrice=tax+salePrice;
-    System.out.println("The sales tax at "+state+" is: "+taxRate);
-    System.out.println("The sales tax for this transaction is "+ tax);
-    System.out.println("The total price for this transaction is "+totalPrice);
-    return totalPrice;
+    totalTax = saleTotal * taxRate;
+    return totalTax;
   }
-    
 }
