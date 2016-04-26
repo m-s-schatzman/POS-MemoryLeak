@@ -32,11 +32,18 @@ public class Inventory{
 	}
 
 	//Increase the inventory count of a specific item by count specified in the lineItem
-	public void returnLineItem(LineItem lineItem){
-		int count = getReturnedItemCount(lineItem.getItem());
-		count += lineItem.getCount();
-		String query = "update returned_item set quantity = "+count+" where item_id ="+lineItem.getItem().getID();
-		DBConnection.submitUpdate(query);
+	public void returnLineItem(ReturnLineItem lineItem){
+        if(lineItem.getDamaged() == true){
+		  int count = getReturnedItemCount(lineItem.getItem());
+		  count += lineItem.getCount();
+		  String query = "update returned_item set quantity = "+count+" where item_id ="+lineItem.getItem().getID();
+		  DBConnection.submitUpdate(query);
+        }else{
+            int count = getInventoryItemCount(lineItem.getItem());
+            count += lineItem.getCount();
+            String query = "update inventory set quantity = "+count+" where item_id ="+lineItem.getItem().getID();
+            DBConnection.submitUpdate(query);
+        }
 	}
 
 	//Gets the count of a specific Item in the inventory

@@ -74,6 +74,7 @@ CREATE TABLE return_item
 return_id numeric(10),
 item_id numeric(10),
 quantity numeric(5) not null,
+damaged smallint,
 primary key(return_id, item_id),
 foreign key(return_id) references return(id),
 foreign key(item_id) references item(id)

@@ -13,7 +13,7 @@ public class ReturnUnitTest{
 		Return ret = new Return();
 		int quantity = 5;
 		Item item = Item.retrieve(1);
-		ReturnLineItem lineItem = new ReturnLineItem(quantity, item);
+		ReturnLineItem lineItem = new ReturnLineItem(quantity, item, true);
 		ret.addLineItem(lineItem);
 		assertTrue("Save return", ret.save());
 	}

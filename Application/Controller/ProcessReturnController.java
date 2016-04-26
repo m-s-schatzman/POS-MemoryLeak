@@ -128,7 +128,8 @@ public class ProcessReturnController implements ActionListener{
 		if(item == null){
 			return;
 		}
-		ReturnLineItem lineItem = new ReturnLineItem(quantity, item);
+		//TODO: this needs to take damaged from view
+		ReturnLineItem lineItem = new ReturnLineItem(quantity, item, false);
 		currentReturn.addLineItem(lineItem);
 		view.updateTotalItems(currentReturn.getCartList());
 		view.updateTotalCost(currentReturn.getTotal());
@@ -140,7 +141,8 @@ public class ProcessReturnController implements ActionListener{
 		if(item == null){
 			return;
 		}
-		ReturnLineItem lineItem = new ReturnLineItem(quantity, item);
+		//TODO: this needs to take damaged from view
+		ReturnLineItem lineItem = new ReturnLineItem(quantity, item, true);
 		currentReturn.removeLineItem(lineItem);
     }
 

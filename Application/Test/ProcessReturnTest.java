@@ -27,8 +27,8 @@ public class ProcessReturnTest{
 		int qt1 = 2,qt2 = 3;
 		assertEquals("Banana", item2.getName());
 
-		ReturnLineItem lineItem1 = new ReturnLineItem(qt1, item1);
-		ReturnLineItem lineItem2 = new ReturnLineItem(qt2, item2);
+		ReturnLineItem lineItem1 = new ReturnLineItem(qt1, item1, true);
+		ReturnLineItem lineItem2 = new ReturnLineItem(qt2, item2, false);
 
 		r.addLineItem(lineItem1);
 		r.addLineItem(lineItem2);
