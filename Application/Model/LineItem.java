@@ -40,4 +40,9 @@ public class LineItem {
         String query = "insert into sale_item values ( "+saleId+", "+item.getID()+", "+count+" )";
         DBConnection.submitUpdate(query);
     }
+    
+ public int checkInventorySize(int saleId){
+   int i=DBConnection.checkInventorySize(saleId); 
+   return i;
+    }
 }

@@ -55,14 +55,24 @@ public class ProcessRentalController implements ActionListener {
 
     //Adds a line item to the current rental
     public void addLineItem(int ID, int quantity, Date returnDate){
+    	if(ID>=0 && quantity>0){
     	Item item = Item.retrieve(ID);
         if(item == null){
             return;
         }
     	RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, returnDate);
+    	//CAM addition to make sure inventory updates are within range
+    	int amountLeft= rentalLineItem.checkInventorySize(item.getID());
+    	
+    	if(quantity > amountLeft){
+    		Logger.displayError("Quantity of Item is too high for the Store's inventory \n" + "There are only " + amountLeft +" of them.");
+    		return;
+    	}
+    	
     	currentRental.addRentalLineItem(rentalLineItem);
     	view.updateTotalItems(currentRental.getCartList());
     	view.updateTotalCost(currentRental.getTotal());
+    }
     }
    
     //Removes given line item from the current rental

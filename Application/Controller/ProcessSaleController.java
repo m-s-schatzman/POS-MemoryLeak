@@ -109,6 +109,13 @@ public class ProcessSaleController implements ActionListener{
 				return;
 			}
 			LineItem lineItem = new LineItem(quantity, item);
+			//CAM addition to make sure inventory updates are within range
+			int amountLeft= lineItem.checkInventorySize(item.getID());
+    	
+    	if(quantity > amountLeft){
+    		Logger.displayError("Quantity of Item is too high for the Store's inventory \n" + "There are only " + amountLeft +" of them.");
+    		return;
+    	}
 			currentSale.addLineItem(lineItem);
 			view.updateTotalItems(currentSale.getCartList());
 			view.updateTotalCost(currentSale.getTotal());
