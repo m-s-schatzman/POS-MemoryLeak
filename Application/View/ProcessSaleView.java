@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionListener;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class ProcessSaleView{
 
@@ -31,6 +33,7 @@ public class ProcessSaleView{
     private JTextField cashField;
     private JLabel ccFieldLabel;
     private JTextField ccField;
+    private NumberFormat formatter = new DecimalFormat("#0.00");
 
     //Constructor
     public ProcessSaleView(){
@@ -131,7 +134,7 @@ public class ProcessSaleView{
 
     //Update the total cost field
     public void updateTotalCost(double total){
-        totalCost.setText(""+total);
+        totalCost.setText(""+ formatter.format(total));
     }
 
     //Shows the cash field in the view

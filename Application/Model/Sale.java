@@ -5,6 +5,8 @@
 
 import java.util.*;
 import java.sql.*;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class Sale {
     
@@ -46,8 +48,9 @@ public class Sale {
 
     public String formatReceiptList(){
         String receiptList = "";
+        NumberFormat formatter = new DecimalFormat("#0.00");
         for(LineItem cartItem : cart){
-            receiptList += cartItem.getCount() + " x " + cartItem.getItem().getName() + " @ " + cartItem.getItem().getPrice()  + "\n";
+            receiptList += cartItem.getCount() + " x " + cartItem.getItem().getName() + " @ " + formatter.format(cartItem.getItem().getPrice())  + "\n";
         }
         return receiptList;
     }

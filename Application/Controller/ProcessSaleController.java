@@ -139,8 +139,8 @@ public class ProcessSaleController implements ActionListener{
     	JTextField finalTotal = new JTextField(5);
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(11);
-    	finalTotal.setText(""+currentSale.getTotal());
     	NumberFormat formatter = new DecimalFormat("#0.00");
+    	finalTotal.setText(""+ formatter.format(currentSale.getTotal()));
     	if(isCash)
     	{     
     		paymentLabel = new JLabel("Your change: $" + formatter.format(payment));
