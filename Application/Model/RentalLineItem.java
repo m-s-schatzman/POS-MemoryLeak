@@ -27,8 +27,4 @@ public class RentalLineItem extends LineItem{
         String query = "insert into rental_item values ( "+rentalId+", "+item.getID()+", "+count+", '"+df.format(returnDate)+"' )";
         DBConnection.submitUpdate(query);
     }
-    public int checkInventorySize(int rentalId){
-   int i=DBConnection.checkInventorySize(rentalId); 
-   return i;/////
-    }
 }

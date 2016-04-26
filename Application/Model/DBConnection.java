@@ -79,29 +79,5 @@ public class DBConnection {
 			Logger.logError(sqle.getMessage());
 			return false;
 		}
-	}
-	
-	public static int checkInventorySize(int itemID){
-		try{
-			Statement s = conn.createStatement();
-			int quantity=0;
- 			ResultSet rs = s.executeQuery("select quantity from inventory where item_id = "+ itemID);
- 			int counter=0;
- 			while(rs.next()){
- 				quantity = rs.getInt("quantity");
- 				counter++;
- 			}
- 			if(counter==0){
- 				return -1;}
- 			return quantity;
- 			}
- 		catch(SQLException sqle){
-			Logger.logError(sqle.getMessage());
-			return -1;
-		}
-		}
-	
-	
-	
-	
+	}	
 }

@@ -103,23 +103,23 @@ public class ProcessSaleController implements ActionListener{
 
     //Add line item to the current sale
     private void addLineItem(int ID, int quantity){
-		if(ID>=0 && quantity>0){
-			Item item = Item.retrieve(ID);
-			if(item == null){
-				return;
-			}
-			LineItem lineItem = new LineItem(quantity, item);
-			//CAM addition to make sure inventory updates are within range
-			int amountLeft= lineItem.checkInventorySize(item.getID());
-    	
+		if(ID<=0 && quantity<=0){
+			return;
+		}
+		Item item = Item.retrieve(ID);
+		if(item == null){
+			return;
+		}
+		//CAM addition to make sure inventory updates are within range
+		int amountLeft= Inventory.getInventory().getInventoryItemCount(item);
     	if(quantity > amountLeft){
     		Logger.displayError("Quantity of Item is too high for the Store's inventory \n" + "There are only " + amountLeft +" of them.");
     		return;
     	}
-			currentSale.addLineItem(lineItem);
-			view.updateTotalItems(currentSale.getCartList());
-			view.updateTotalCost(currentSale.getTotal());
-		} 
+		LineItem lineItem = new LineItem(quantity, item);
+		currentSale.addLineItem(lineItem);
+		view.updateTotalItems(currentSale.getCartList());
+		view.updateTotalCost(currentSale.getTotal());
 	}
 
 	//Save the sale in db and remove items from inventory, print receipt

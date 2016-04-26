@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 
 public class Rental{
 
-	public ArrayList<RentalLineItem> cart;
+	private ArrayList<RentalLineItem> cart;
 	private int id;
 
 	/** constructor */
