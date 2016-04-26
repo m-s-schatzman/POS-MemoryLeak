@@ -43,6 +43,14 @@ public class Sale {
         }
         return cartList;
     }
+
+    public String formatReceiptList(){
+        String receiptList = "";
+        for(LineItem cartItem : cart){
+            receiptList += cartItem.getCount() + " x " + cartItem.getItem().getName() + " @ " + cartItem.getItem().getPrice()  + "\n";
+        }
+        return receiptList;
+    }
     
     /** removeLineItem() */
     public boolean removeLineItem(LineItem lineItem){

@@ -118,7 +118,7 @@ public class ProcessSaleController implements ActionListener{
 	//Save the sale in db and remove items from inventory, print receipt
     private void processSale(double payment, boolean isCash){
 	   	currentSale.save();
-	    printReceipt(currentSale.getCartList(), payment, isCash);
+	    printReceipt(currentSale.formatReceiptList(), payment, isCash);
 		currentSale = new Sale();
 		view.clearFields();
     }
