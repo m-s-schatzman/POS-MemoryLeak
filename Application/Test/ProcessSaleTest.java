@@ -29,5 +29,6 @@ public class ProcessSaleTest{
 		Item item=Item.retrieve(ID);
 		LineItem lineItem = new LineItem(quantity, item);
 		s.removeLineItem(lineItem);
+		//assertEquals("Apple : 0"+" ", s.getCartList());
 		assertEquals("Apple : "+(lineItem.getCount()-1)+" ", s.getCartList());
 }
