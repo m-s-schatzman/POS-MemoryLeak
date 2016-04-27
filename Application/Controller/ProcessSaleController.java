@@ -115,6 +115,18 @@ public class ProcessSaleController implements ActionListener{
 		view.updateTotalCost(currentSale.getTotal());
 	}
 
+//remove the line item from the current sale
+    public void removeLineItem(int ID, int quantity) {
+        Item item = Item.retrieve(ID);
+        if(item == null){
+            return;
+        }
+        LineItem lineItem = new LineItem(quantity, item);
+        currentSale.removeLineItem(lineItem);
+    }
+
+
+
 	//Save the sale in db and remove items from inventory, print receipt
     private void processSale(double payment, boolean isCash){
 	   	currentSale.save();
