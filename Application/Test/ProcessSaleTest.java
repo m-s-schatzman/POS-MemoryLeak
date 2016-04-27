@@ -23,7 +23,7 @@ public class ProcessSaleTest{
 	
 	@Test
 	public void testRemoveLineItem(){
-		Rental s=new Sale();
+		Sale s=new Sale();
 		int ID=1;
 		int quantity=1;
 		Item item=Item.retrieve(ID);
