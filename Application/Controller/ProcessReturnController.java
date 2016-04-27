@@ -148,7 +148,7 @@ public class ProcessReturnController implements ActionListener{
     		printCashBackComfirm(amountAsk);
     	} else{
 			currentReturn.save();
-	    	printReceipt(currentReturn.getCartList(),amountAsk,isCash);
+	    	printReceipt(currentReturn.formatReceiptList(),amountAsk,isCash);
 			currentReturn = new Return();
 		}
 		view.clearFields();

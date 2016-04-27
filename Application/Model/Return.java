@@ -6,6 +6,8 @@
 import java.util.ArrayList;
 import java.util.*;
 import java.sql.*;
+import java.text.NumberFormat;
+import java.text.DecimalFormat;
 
 public class Return {
 
@@ -49,6 +51,15 @@ public class Return {
     /** remove given line item from the cart */
     public boolean removeLineItem(ReturnLineItem lineItem){
         return cart.remove(lineItem);
+    }
+
+    public String formatReceiptList(){
+        String receiptList = "";
+        NumberFormat formatter = new DecimalFormat("#0.00");
+        for(LineItem cartItem : cart){
+            receiptList += cartItem.getCount() + " x " + cartItem.getItem().getName() + " @ " + formatter.format(cartItem.getItem().getPrice())  + "\n";
+        }
+        return receiptList;
     }
 
     //Save this return into the database and save it's children return line items
