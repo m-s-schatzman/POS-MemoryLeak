@@ -31,4 +31,5 @@ public class ProcessSaleTest{
 		s.removeLineItem(lineItem);
 		//assertEquals("Apple : 0"+" ", s.getCartList());
 		assertEquals("Apple : "+(lineItem.getCount()-1)+" ", s.getCartList());
+	}
 }
