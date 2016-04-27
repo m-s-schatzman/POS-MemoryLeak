@@ -31,7 +31,7 @@ public class Main{
 
   //Open a frame to indicate that the application is currently connecting to the database
   private static JFrame openConnectionFrame(){
-    JFrame receiptFrame = new JFrame("Receipt");
+    JFrame receiptFrame = new JFrame("Opening");
     receiptFrame.pack();
     JPanel connectionPane = new JPanel();
     JLabel message = new JLabel("Connecting to Database");
