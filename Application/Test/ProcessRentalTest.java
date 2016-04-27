@@ -20,5 +20,17 @@ public class ProcessRentalTest{
 	  r.addRentalLineItem(rentalLineItem);
 	  //assertEquals("Apple : 1"+" ", r.getCartList());
 	  }
+	  
+	@Test
+	public void testRemoveLineItem(){
+		Rental r=new Rental();
+		int ID=1;
+		int quantity=1;
+		Item item=Item.retrieve(ID);
+		RentalLineItem rentalLineItem = new RentalLineItem(quantity, item, new Date());
+		r.removeRentalLineItem(rentalLineItem);
+	//assertEquals("Apple : 0"+" ", r.getCartList());
+		assertEquals(0, r.getCartList().length());
+	}
 }
 

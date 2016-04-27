@@ -20,4 +20,16 @@ public class ProcessSaleTest{
 		assertEquals("Apple : 5" +"\n", sale.getCartList());
 		assertEquals(5, sale.getTotal(), .0001);
 	}
+	
+	@Test
+	public void testRemoveLineItem(){
+		Sale s=new Sale();
+		int ID=1;
+		int quantity=1;
+		Item item=Item.retrieve(ID);
+		LineItem lineItem = new LineItem(quantity, item);
+		s.removeLineItem(lineItem);
+		//assertEquals("Apple : 0"+" ", s.getCartList());
+		assertEquals(0, s.getCartList().length());
+	}
 }
