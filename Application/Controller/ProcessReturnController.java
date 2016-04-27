@@ -192,13 +192,21 @@ public class ProcessReturnController implements ActionListener{
     	JTextField finalTotal = new JTextField(5);
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(10);
+    	double tax = TaxCalculator.getSalesTax(currentReturn);
+		double total = amountAsk + tax;
     	finalTotal.setText(""+currentReturn.getTotal());
     	NumberFormat formatter = new DecimalFormat("#0.00");
     	//double amountAsk = currentReturn.getTotal();
-    	JLabel changeLabel = new JLabel("Total returned: $" + formatter.format(amountAsk));
+    	JLabel changeLabel ;//= new JLabel("Total returned: $" + formatter.format(amountAsk));
     	JLabel pay;
-    	if(isCash) pay = new JLabel("In Cash");
-    	else pay = new JLabel("to Credit Card: "+card);
+    	if(isCash) {
+    		pay = new JLabel("In Cash");
+    		changeLabel = new JLabel("Total returned: $" + formatter.format(amountAsk));
+    	}
+    	else {
+    		pay = new JLabel("to Credit Card: "+card);
+    		changeLabel = new JLabel("Total returned: $" + formatter.format(total));
+    	}
 		finalItems.setColumns(10);
 		finalItems.setRows(12);
 		receiptPanel.add(finalItems);

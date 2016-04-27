@@ -9,7 +9,7 @@ import java.sql.*;
 import java.text.NumberFormat;
 import java.text.DecimalFormat;
 
-public class Return {
+public class Return extends Sale{
 
     private ArrayList<ReturnLineItem> cart;
     
