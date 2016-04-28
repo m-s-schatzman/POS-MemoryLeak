@@ -67,7 +67,7 @@ public class ProcessRentalController implements ActionListener {
     	//CAM addition to make sure inventory updates are within range	
     	currentRental.addRentalLineItem(rentalLineItem);
     	view.updateTotalItems(currentRental.getCartList());
-    	view.updateTotalCost(currentRental.getTotal());
+    	view.updateTotalCost(currentRental.getTotal()+currentRental.getTax());
     }
    
     //Removes given line item from the current rental
@@ -98,6 +98,9 @@ public class ProcessRentalController implements ActionListener {
 		int width = screenSize.width;
 		receiptFrame.setSize(width/2, height/2);
 		receiptFrame.setLocationRelativeTo(null);
+		double tax = currentRental.getTax();
+		double total = currentRental.getTotal();
+		NumberFormat formatter = new DecimalFormat("#0.00");
     	JPanel receiptPanel = new JPanel();
     	JTextArea finalItems = new JTextArea(cartList);
     	finalItems.setEditable(false);
