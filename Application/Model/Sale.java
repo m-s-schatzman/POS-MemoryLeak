@@ -26,6 +26,10 @@ public class Sale {
         }
         return total;
     }
+
+    public double getTax(){
+        return TaxCalculator.getSalesTax(getTotal());
+    }
     
     /** add lineitem to the cart unless cart already has a lineitem of the same item, then it will add the quantity */
     public void addLineItem(LineItem lineItem){

@@ -8,8 +8,7 @@ public class TaxCalculator {
   private static double totalTax;
   private static double taxRate;
     
-  public static double getSalesTax(Sale sale){
-    saleTotal = sale.getTotal();
+  public static double getSalesTax(double total){
     totalTax = 0;
     taxRate = 0;
     String state = "NJ";//best state in the continental US. Long Live 
@@ -27,7 +26,7 @@ public class TaxCalculator {
       break;
       default: System.out.println("Invalide State Information! Please check again");
     }
-    totalTax = saleTotal * taxRate;
+    totalTax = total * taxRate;
     return totalTax;
   }
 }

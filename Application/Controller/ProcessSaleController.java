@@ -111,7 +111,7 @@ public class ProcessSaleController implements ActionListener{
 		LineItem lineItem = new LineItem(quantity, item);
 		currentSale.addLineItem(lineItem);
 		view.updateTotalItems(currentSale.getCartList());
-		view.updateTotalCost(currentSale.getTotal());
+		view.updateTotalCost(currentSale.getTotal() + currentSale.getTax());
 	}
 
 //remove the line item from the current sale
@@ -143,18 +143,18 @@ public class ProcessSaleController implements ActionListener{
 		int width = screenSize.width;
 		receiptFrame.setSize(width/2, height/2);
 		receiptFrame.setLocationRelativeTo(null);
-		double tax = TaxCalculator.getSalesTax(currentSale);
-		double total = currentSale.getTotal() + tax;
+		double tax = currentSale.getTax();
+		double total = currentSale.getTotal();
 		NumberFormat formatter = new DecimalFormat("#0.00");
     	JPanel receiptPanel = new JPanel();
     	JTextArea finalItems = new JTextArea(receiptList);
     	finalItems.setEditable(false);
     	JLabel taxTotal = new JLabel("Tax Amount: $" + formatter.format(tax));
-    	JLabel finalTotal = new JLabel("Total Cost: $" + formatter.format(total));
+    	JLabel finalTotal = new JLabel("Total Cost: $" + formatter.format(total + tax));
     	JTextField validated = new JTextField(11);
     	if(isCash)
     	{     
-    		paymentLabel = new JLabel("Your change: $" + formatter.format(payment - total));
+    		paymentLabel = new JLabel("Your change: $" + formatter.format(payment - (total + tax)));
     	}
     	else
     	{

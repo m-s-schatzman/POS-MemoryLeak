@@ -26,6 +26,10 @@ public class Return extends Sale{
         }
         return total;
     }
+
+    public double getTax(){
+        return TaxCalculator.getSalesTax(getTotal());
+    }
     
     /** add the given line item to the cart */
     public void addLineItem(ReturnLineItem lineItem){

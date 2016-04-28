@@ -127,7 +127,7 @@ public class ProcessReturnController implements ActionListener{
 		ReturnLineItem lineItem = new ReturnLineItem(quantity, item, false);
 		currentReturn.addLineItem(lineItem);
 		view.updateTotalItems(currentReturn.getCartList());
-		view.updateTotalCost(currentReturn.getTotal());
+		view.updateTotalCost(currentReturn.getTotal() + currentReturn.getTax());
     }
 
     //Removes the given line item from the current return
@@ -192,7 +192,7 @@ public class ProcessReturnController implements ActionListener{
     	JTextField finalTotal = new JTextField(5);
     	finalTotal.setEditable(false);
     	JTextField validated = new JTextField(10);
-    	double tax = TaxCalculator.getSalesTax(currentReturn);
+    	double tax = currentReturn.getTax();
 		double total = amountAsk + tax;
     	finalTotal.setText(""+currentReturn.getTotal());
     	NumberFormat formatter = new DecimalFormat("#0.00");
